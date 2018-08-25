@@ -63,7 +63,11 @@ class AssetEdit:
 	def getAssetInfo(self, assets, bundle):
 		if self.id == None:
 			for id, obj in assets.objects.items():
-				if obj.type != self.type: continue
+				try:
+					objType = obj.type
+				except:
+					continue
+				if objType != self.type: continue
 				# UnityPack is broken and overreads its buffer if we try to use it to automatically decode things, so instead we use this sometimes-working thing to decode the name
 				data = bundle[obj.data_offset:(obj.data_offset + obj.size)]
 				length = int.from_bytes(data[0:4], byteorder='little')
@@ -71,7 +75,7 @@ class AssetEdit:
 				if length + 4 <= len(data):
 					if self.name == data[4:4+length].decode('utf-8'):
 						self.id = id
-						if obj.type == "Texture2D" and self.file[-4:] == ".png":
+						if objType == "Texture2D" and self.file[-4:] == ".png":
 							print(f"Will replace object #{id} with contents of {self.file} converted to a Texture2D")
 							self.shouldDecode = True
 						else:
