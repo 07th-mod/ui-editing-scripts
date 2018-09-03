@@ -1,5 +1,6 @@
 import sys
 import os
+import struct
 
 if len(sys.argv) < 5:
 	print("Usage: " + sys.argv[0] + " newAtlas.dat newMonoBehaviour.dat originalMonoBehaviour.dat outputFolder")
@@ -111,8 +112,16 @@ behaviourOut += behaviour.peek(4) # Char info array length
 originalArrayLength = int.from_bytes(original.read(4), byteorder='little')
 newArrayLength = int.from_bytes(behaviour.read(4), byteorder='little')
 original.advance(originalArrayLength * 4 * 8) # We don't need this data
+atlasWidth = struct.unpack("<f", AtlasWidth)[0]
+atlasHeight = struct.unpack("<f", AtlasHeight)[0]
 for i in range(newArrayLength):
-	behaviourOut += behaviour.read(4 * 8)
+	info = bytearray(behaviour.read(4 * 8))
+	x, y = struct.unpack("<ff", info[4:12])
+	if x > atlasWidth:
+		info[4:8] = AtlasWidth
+	if y > atlasHeight:
+		info[8:12] = AtlasHeight
+	behaviourOut += info
 	behaviour.advance(4) # One field is only in the new data so we need to remove it
 behaviourOut += original.rest() # Rest of file can be copied from the original
 with open(sys.argv[4] + "/" + os.path.basename(sys.argv[3]), "wb") as outFile:
