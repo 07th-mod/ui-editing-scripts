@@ -69,6 +69,7 @@ class AssetEdit:
 				except:
 					# Special case handling for newer files that fail to read type id
 					if self.type == "TextMeshProFont" and obj.type_id < 0:
+						objType = self.type
 						pass
 					else:
 						continue
