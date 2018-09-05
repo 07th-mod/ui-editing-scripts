@@ -97,7 +97,7 @@ class ScriptEdit:
 		except: return "<ScriptEdit for unknown position>"
 
 
-with open(sys.argv[2]) as jsonFile:
+with open(sys.argv[2], encoding="utf-8") as jsonFile:
 	edits = [ScriptEdit.fromJSON(x) for x in json.load(jsonFile)]
 
 with open(sys.argv[1], "rb") as assetsFile:
