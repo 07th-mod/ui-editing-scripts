@@ -61,19 +61,34 @@ class AssetEdit:
 		self.name = data[4:4+length].decode('utf-8')
 
 	def getAssetInfo(self, assets, bundle):
-		if self.id == None:
+		if self.id is None:
 			for id, obj in assets.objects.items():
 				try:
 					objType = obj.type
+					if objType != self.type: continue
 				except:
-					continue
-				if objType != self.type: continue
+					# Special case handling for newer files that fail to read type id
+					if self.type == "TextMeshProFont" and obj.type_id < 0:
+						pass
+					else:
+						continue
+				
 				# UnityPack is broken and overreads its buffer if we try to use it to automatically decode things, so instead we use this sometimes-working thing to decode the name
 				data = bundle[obj.data_offset:(obj.data_offset + obj.size)]
-				length = int.from_bytes(data[0:4], byteorder='little')
-				paddedLength = length + (4 - length) % 4
-				if length + 4 <= len(data):
-					if self.name == data[4:4+length].decode('utf-8'):
+				
+				name = None
+				try:
+					name = obj.read()["m_Name"]
+				except:
+					length = int.from_bytes(data[0:4], byteorder='little')
+					if length + 4 <= len(data) and length < 40:
+						name = data[4:4+length].decode('utf-8')
+					elif len(data) > 32:
+						length = int.from_bytes(data[28:32], byteorder='little')
+						if length + 4 <= len(data) and length < 40:
+							name = data[4:4+length].decode('utf-8')
+				if name is not None:
+					if self.name == name:
 						self.id = id
 						if objType == "Texture2D" and self.file[-4:] == ".png":
 							print(f"Will replace object #{id} with contents of {self.file} converted to a Texture2D")
