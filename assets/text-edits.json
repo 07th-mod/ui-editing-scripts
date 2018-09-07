@@ -1,0 +1,50 @@
+[
+    {
+        "CurrentEnglish": "Updated",
+        "CurrentJapanese": "新規",
+        "NewEnglish": "Remake",
+        "NewJapanese": "リメーク"
+    },
+    {
+        "CurrentEnglish": "Original",
+        "CurrentJapanese": "オリジナル",
+        "NewEnglish": "Console",
+        "NewJapanese": "ゲーム機"
+    },
+    {
+        "CurrentEnglish": "Standard 640x480",
+        "CurrentJapanese": "標準 640x480",
+        "NewEnglish": "Standard 854x480",
+        "NewJapanese": "標準 854x480"
+    },
+    {
+        "CurrentEnglish": "800x600",
+        "CurrentJapanese": "800x600",
+        "NewEnglish": "1067x600",
+        "NewJapanese": "1067x600"
+    },
+    {
+        "CurrentEnglish": "1024x768",
+        "CurrentJapanese": "1024x768",
+        "NewEnglish": "1366x768",
+        "NewJapanese": "1366x768"
+    },
+    {
+        "CurrentEnglish": "Watanagashi 12-3",
+        "CurrentJapanese": "綿流し編　１２日目３",
+        "NewEnglish": "Watanagashi Day 12-3",
+        "NewJapanese": "綿流し編　１２日目３"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi 2-2",
+        "CurrentJapanese": "暇潰し編　２日目２",
+        "NewEnglish": "Himatsubushi Day 2-2",
+        "NewJapanese": "暇潰し編　２日目２"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi 2-3",
+        "CurrentJapanese": "暇潰し編　２日目３",
+        "NewEnglish": "Himatsubushi Day 2-3",
+        "NewJapanese": "暇潰し編　２日目３"
+    }
+]
