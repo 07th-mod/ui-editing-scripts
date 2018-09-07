@@ -31,12 +31,12 @@ def readString(str):
 	return str[4:(4+length)].decode("utf-8")
 
 class FontFile:
-	def __init__(self, data, filename):
+	def __init__(self, data, filename, emptyAtlasPoint=None):
 		stringLength = int.from_bytes(data[(4 * 15):(4 * 16)], byteorder="little")
 		if stringLength in range(4, 26): # Assumes filenames are between 4 and 25 chars
 			print(f"Detected {filename} as coming from TextMesh Pro")
 			self.type = "TMP"
-			self._fromAssetCreator(data, filename)
+			self._fromAssetCreator(data, filename, emptyAtlasPoint)
 		else:
 			stringLength = int.from_bytes(data[(4*12):(4*13)], byteorder="little")
 			if stringLength == 1:
@@ -45,10 +45,10 @@ class FontFile:
 			else:
 				print(f"Detected {filename} as coming from an older Higurashi game")
 				self.type = "Oni"
-			self._fromGame(data, filename)
+			self._fromGame(data, filename, emptyAtlasPoint)
 		self.filename = readString(self.Filename)
 
-	def _readArray(self, data, itemLength):
+	def _readArray(self, data, itemLength, emptyAtlasPoint):
 		self.Array = data.read(4)
 		length = int.from_bytes(self.Array, byteorder="little")
 		atlasWidth = struct.unpack("<f", self.AtlasWidth)[0]
@@ -57,14 +57,19 @@ class FontFile:
 			info = bytearray(data.read(4 * 8))
 			if itemLength > 8:
 				data.advance((itemLength - 8) * 4)
-			x, y = struct.unpack("<ff", info[4:12])
+			x, y, width, height = struct.unpack("<ffff", info[4:20])
+			if emptyAtlasPoint is not None:
+				if width == 0 and height == 0:
+					charid = int.from_bytes(info[:4], byteorder="little")
+					print(f"Relocating 0x0 character U+{charid:x} to ({emptyAtlasPoint[0]}, {emptyAtlasPoint[1]})")
+					info[4:12] = struct.pack("<ff", emptyAtlasPoint[0], emptyAtlasPoint[1])
 			if x > atlasWidth:
 				info[4:8] = self.AtlasWidth
 			if y > atlasHeight:
 				info[8:12] = self.AtlasHeight
 			self.Array += info
 
-	def _fromGame(self, data, filename):
+	def _fromGame(self, data, filename, emptyAtlasPoint):
 		data = DataScanner(data)
 		self.Header = data.read(4 * 7)
 		self.Filename = data.readString()
@@ -92,10 +97,10 @@ class FontFile:
 		self.AtlasHeight = data.read(4)
 
 		self.AfterFontFace = data.read(4 * 8)
-		self._readArray(data, 8)
+		self._readArray(data, 8, emptyAtlasPoint)
 		self.Footer = data.rest()
 
-	def _fromAssetCreator(self, data, filename):
+	def _fromAssetCreator(self, data, filename, emptyAtlasPoint):
 		data = DataScanner(data)
 		self.Header = data.read(4 * 15)
 		self.Filename = data.readString()
@@ -124,7 +129,7 @@ class FontFile:
 		self.AtlasHeight = data.read(4)
 
 		self.AfterFontFace = data.read(4 * 3)
-		self._readArray(data, 9)
+		self._readArray(data, 9, emptyAtlasPoint)
 		self.Footer = data.rest()
 
 def combineFonts(original: FontFile, new: FontFile):
@@ -157,6 +162,38 @@ def combineFonts(original: FontFile, new: FontFile):
 
 	return out
 
+# Finds a size x size completely blank spot in the atlas
+# Can be used for whitespace character relocation
+def findEmptyAtlasPoint(atlas, size):
+	atlasWidth = int.from_bytes(atlas[0:4], byteorder="little")
+	atlasHeight = int.from_bytes(atlas[4:8], byteorder="little")
+	atlasSize = int.from_bytes(atlas[56:60], byteorder="little")
+	atlasData = atlas[60:]
+	if atlasWidth * atlasHeight != atlasSize:
+		print("Atlas doesn't match width and height!  This shouldn't happen")
+		return None
+	distance = size // 2
+	stringToFind = b"\0" * size
+	pos = 0
+	try:
+		while True:
+			pos = atlasData.index(stringToFind, pos)
+			offsets = []
+			for i in range(-distance, distance+1):
+				offset = ((i * atlasWidth) + pos) % atlasSize
+				offsets.append(offset)
+				if atlasData[offset:offset+size] != stringToFind:
+					pos += 1
+					break
+			else:
+				y = pos // atlasWidth
+				y = atlasHeight - 1 - y # Texture2Ds are flipped
+				x = pos % atlasWidth + distance
+				return (x, y)
+	except ValueError:
+		return None
+
+
 if len(sys.argv) > 4:
 	atlasFN = sys.argv[1]
 	behaviourFN = sys.argv[2]
@@ -175,10 +212,7 @@ if not os.path.isdir(outFN):
 	print("Output folder " + outFN + " must be a directory!")
 	exit()
 
-with open(originalFN, "rb") as originalFile:
-	original = FontFile(originalFile.read(), originalFN)
-with open(behaviourFN, "rb") as behaviourFile:
-	behaviour = FontFile(behaviourFile.read(), behaviourFN)
+emptyAtlasPoint = None
 if len(sys.argv) > 4:
 	with open(atlasFN, "rb") as atlasFile:
 		atlas = DataScanner(atlasFile.read())
@@ -190,7 +224,15 @@ if len(sys.argv) > 4:
 	else:
 		atlasName = atlas.readString()
 	atlasOut += atlasName
-	atlasOut += atlas.rest()
+	atlasRest = atlas.rest()
+	emptyAtlasPoint = findEmptyAtlasPoint(atlasRest, 13)
+	atlasOut += atlasRest
+
+with open(originalFN, "rb") as originalFile:
+	original = FontFile(originalFile.read(), originalFN)
+with open(behaviourFN, "rb") as behaviourFile:
+	behaviour = FontFile(behaviourFile.read(), behaviourFN, emptyAtlasPoint)
+
 
 atlasName = readString(atlasName)
 with open(outFN + "/" + atlasName + "_Texture2D.dat", "wb") as outFile:
