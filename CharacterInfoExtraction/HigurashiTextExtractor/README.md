@@ -1,0 +1,1 @@
+Extractor that extracts text from Higurashi script files.  Compile with `swiftc -O -wmo *.swift -o HigurashiTextExtractor`.  Run with `./HigurashiTextExtractor scriptFile [e|j]` where `e` will get you the English script and `j` will get you Japanese
