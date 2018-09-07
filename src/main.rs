@@ -24,7 +24,7 @@ fn main() {
     // 1. texts
     let output = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
-        .arg("../ui-editing-scripts/UnityTextModifier.py")
+        .arg("scripts/UnityTextModifier.py")
         .arg(&assets)
         .arg("assets/text-edits.json")
         .arg(&directory)
@@ -47,7 +47,7 @@ fn main() {
     // 3. fonts
     let output = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
-        .arg("../ui-editing-scripts/TMPAssetConverter.py")
+        .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
         .arg(format!("assets/vanilla/{}/msgothic_0.dat", &chapter))
@@ -66,7 +66,7 @@ fn main() {
     // 4. emip
     let output = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
-        .arg("../ui-editing-scripts/EMIPGenerator.py")
+        .arg("scripts/EMIPGenerator.py")
         .arg(&assets)
         .arg(&directory)
         .arg(&emip)
