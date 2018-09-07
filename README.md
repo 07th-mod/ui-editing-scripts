@@ -3,7 +3,11 @@ UI Compiler
 
 Scripts for easier editing of Unity assets for Higurashi.
 
-To use this tool you will need to install both Python and Rust. Then simply run this:
+To use this tool you will need to install both Python and Rust.
+
+Next you will need to download the [vanilla UIs]() for Higurashi games and unpack them into `assets/vanilla`.
+
+Then simply run this:
 
 ```
 cargo run <chapter> <platform>
