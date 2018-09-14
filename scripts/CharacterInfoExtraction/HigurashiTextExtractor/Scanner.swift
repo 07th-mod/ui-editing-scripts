@@ -178,7 +178,7 @@ extension UnicodeScalar {
 		return (0x0a...0x0d).contains(self.value) || self.value == 0x85 || self.value == 0x2028 || self.value == 0x2029
 	}
 	var isWhitespace: Bool {
-		return self.value == 0x20 || self.value == 0xa0 || self.value == 0x1680 || (0x2000...0x200a).contains(self.value) || self.value == 0x202f || self.value == 0x205f || self.value == 0x3000
+		return self.value == 0x20 || self.value == 0x09 || self.value == 0xa0 || self.value == 0x1680 || (0x2000...0x200a).contains(self.value) || self.value == 0x202f || self.value == 0x205f || self.value == 0x3000
 	}
 	var isNewlineOrWhitespace: Bool {
 		return isNewline || isWhitespace
