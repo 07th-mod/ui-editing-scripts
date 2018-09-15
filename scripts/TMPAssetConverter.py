@@ -53,8 +53,15 @@ class FontFile:
 		length = int.from_bytes(self.Array, byteorder="little")
 		atlasWidth = struct.unpack("<f", self.AtlasWidth)[0]
 		atlasHeight = struct.unpack("<f", self.AtlasHeight)[0]
+		cr = None
+		lf = False
 		for _ in range(length):
 			info = bytearray(data.read(4 * 8))
+			unicodeScalar = int.from_bytes(info[0:4], byteorder="little")
+			if unicodeScalar == 0x0A:
+				lf = True
+			if unicodeScalar == 0x0D:
+				cr = info
 			if itemLength > 8:
 				data.advance((itemLength - 8) * 4)
 			x, y, width, height = struct.unpack("<ffff", info[4:20])
@@ -68,6 +75,15 @@ class FontFile:
 			if y > atlasHeight:
 				info[8:12] = self.AtlasHeight
 			self.Array += info
+		if not lf and cr is not None:
+			print(f"No 0x0A LF character found, copying one from 0x0D CR")
+			arrayLength = int.from_bytes(self.Array[0:4], byteorder="little")
+			arrayLength += 1
+			arrayLengthBytes = arrayLength.to_bytes(4, byteorder="little")
+			cr[0:4] = (0x0A).to_bytes(4, byteorder="little")
+			self.Array = arrayLengthBytes + cr + self.Array[4:]
+			self.CharacterCount = arrayLengthBytes
+
 
 	def _fromGame(self, data, filename, emptyAtlasPoint):
 		data = DataScanner(data)
