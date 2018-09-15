@@ -88,10 +88,10 @@ func stringFinder(data: Data, maxStringLength: Int = 100) -> [String] {
 				continue
 			}
 			let uint32Length = Int((int &+ 3) / 4)
-			let padding = (4 - (int % 4))
+			let padding = ((4 - (int % 4)) % 4)
 			let unicode = UnsafeBufferPointer(rebasing: ints[(index + 1)...].prefix(uint32Length))
 			// Ensure padding is all 0s
-			guard unicode.last!.littleEndian &>> (padding * 8) == 0 else { continue }
+			guard padding == 0 || unicode.last!.littleEndian &>> (padding * 8) == 0 else { continue }
 			let optionalStr = unicode.withMemoryRebound(to: UInt8.self) { (unicode) -> String? in
 				let stringUnicode = unicode[..<Int(int)]
 				guard isValidUTF8(data: stringUnicode) else { return nil }
