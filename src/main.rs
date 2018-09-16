@@ -61,6 +61,22 @@ fn main() {
         println!("{}", String::from_utf8_lossy(&output.stderr));
     }
 
+    let output = Command::new("python")
+        .env("PYTHONIOENCODING", "utf-8")
+        .arg("scripts/TMPAssetConverter.py")
+        .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
+        .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
+        .arg(format!("assets/vanilla/{}/msgothic_2.dat", &chapter))
+        .arg(&directory)
+        .output()
+        .expect("failed to execute TMPAssetConverter.py");
+
+    if output.status.success() {
+        println!("{}", String::from_utf8_lossy(&output.stdout));
+    } else {
+        println!("{}", String::from_utf8_lossy(&output.stderr));
+    }
+
     println!();
 
     // 4. emip
