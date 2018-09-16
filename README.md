@@ -5,7 +5,7 @@ Scripts for easier editing of Unity assets for Higurashi.
 
 To use this tool you will need to install both Python and Rust.
 
-Next you will need to download the [vanilla UIs]() for Higurashi games and unpack them into `assets/vanilla`.
+Next you will need to download the [vanilla UIs](http://07th-mod.com/higurashi_resources/vanilla.7z) for Higurashi games and unpack them into `assets/vanilla`.
 
 Then simply run this:
 
