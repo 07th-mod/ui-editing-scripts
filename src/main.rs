@@ -2,97 +2,130 @@ use std::env;
 use std::process::Command;
 use std::fs;
 use std::path::Path;
+use std::collections::HashMap;
+use std::process;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let chapter = &args[1];
     let platform = &args[2];
 
-    let arc_type = if chapter == "onikakushi" || chapter == "watanagashi" || chapter == "tatarigoroshi" || chapter == "himatsubushi" { "question_arcs" } else { "answer_arcs" };
+    let mut chapters = HashMap::new();
+    chapters.insert("onikakushi".to_string(), 1);
+    chapters.insert("watanagashi".to_string(), 2);
+    chapters.insert("tatarigoroshi".to_string(), 3);
+    chapters.insert("himatsubushi".to_string(), 4);
+    chapters.insert("meakashi".to_string(), 5);
+    chapters.insert("tsumihoroboshi".to_string(), 6);
+
+    if !chapters.contains_key(chapter) {
+        println!("Unknown chapter");
+        process::exit(1);
+    }
+
+    let arc_number = chapters.get(chapter).unwrap();
+    let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}/sharedassets0.assets", chapter, platform);
-    let directory = "output/assets";
-    let emip = format!("output/{}-{}.emip", &chapter, &platform);
+    let directory_assets = "output/assets";
+    let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
+    let emip = format!("{}/{}-{}.emip", &directory_data, &chapter, &platform);
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
     }
-    if Path::new(&directory).exists() {
-        fs::remove_dir_all("output/assets").expect("Failed to remove directory");
+    if Path::new(&directory_assets).exists() {
+        fs::remove_dir_all(&directory_assets).expect("Failed to remove directory");
     }
-    fs::create_dir_all("output/assets").expect("Failed to recreate directory");
+    fs::create_dir_all(&directory_assets).expect("Failed to recreate directory");
+    if Path::new(&directory_data).exists() {
+        fs::remove_dir_all(&directory_data).expect("Failed to remove directory");
+    }
+    fs::create_dir_all(&directory_data).expect("Failed to recreate directory");
 
     // 1. texts
-    let output = Command::new("python")
+    let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/UnityTextModifier.py")
         .arg(&assets)
         .arg("assets/text-edits.json")
-        .arg(&directory)
-        .output()
+        .arg(&directory_assets)
+        .status()
         .expect("failed to execute UnityTextModifier.py");
 
-    if output.status.success() {
-        println!("{}", String::from_utf8_lossy(&output.stdout));
-    } else {
-        println!("{}", String::from_utf8_lossy(&output.stderr));
-    }
+    assert!(status.success());
 
     // 2. images
-    copy_files("assets/images/shared", &directory);
-    copy_files(format!("assets/images/{}", &arc_type).as_ref(), &directory);
-    copy_files(format!("assets/images/specific/{}", &chapter).as_ref(), &directory);
+    copy_images("assets/images/shared", &directory_assets);
+    copy_images(format!("assets/images/{}", &arc_type).as_ref(), &directory_assets);
+    copy_images(format!("assets/images/specific/{}", &chapter).as_ref(), &directory_assets);
     fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
     println!();
 
     // 3. fonts
-    let output = Command::new("python")
+    let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
         .arg(format!("assets/vanilla/{}/msgothic_0.dat", &chapter))
-        .arg(&directory)
-        .output()
+        .arg(&directory_assets)
+        .status()
         .expect("failed to execute TMPAssetConverter.py");
 
-    if output.status.success() {
-        println!("{}", String::from_utf8_lossy(&output.stdout));
-    } else {
-        println!("{}", String::from_utf8_lossy(&output.stderr));
-    }
+    assert!(status.success());
 
-    let output = Command::new("python")
+    let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
         .arg(format!("assets/vanilla/{}/msgothic_2.dat", &chapter))
-        .arg(&directory)
-        .output()
+        .arg(&directory_assets)
+        .status()
         .expect("failed to execute TMPAssetConverter.py");
 
-    if output.status.success() {
-        println!("{}", String::from_utf8_lossy(&output.stdout));
-    } else {
-        println!("{}", String::from_utf8_lossy(&output.stderr));
-    }
+    assert!(status.success());
 
     println!();
 
-    // 4. emip
-    let output = Command::new("python")
+    // 4. copy assets
+    copy_files(format!("assets/vanilla/{}/{}", chapter, platform).as_ref(), &directory_data);
+
+    println!();
+
+    // 5. generate emip
+    let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/EMIPGenerator.py")
-        .arg(&assets)
-        .arg(&directory)
+        .arg(format!("{}/sharedassets0.assets", &directory_data))
+        .arg(&directory_assets)
         .arg(&emip)
-        .output()
+        .status()
         .expect("failed to execute EMIPGenerator.py");
 
-    if output.status.success() {
-        println!("{}", String::from_utf8_lossy(&output.stdout));
-    } else {
-        println!("{}", String::from_utf8_lossy(&output.stderr));
+    assert!(status.success());
+
+    println!();
+
+    // 6. apply emip
+    let status = Command::new("AssetBundleExtractor.exe")
+        .arg("applyemip")
+        .arg(&emip)
+        .arg("output")
+        .status()
+        .expect("failed to execute AssetBundleExtractor.exe");
+
+    println!("{}", status.to_string());
+
+    fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
+    fs::remove_file(&emip).expect("Failed to remove file");
+}
+
+fn copy_images(from: &str, to: &str) {
+    println!("Copying files from {}", from);
+    for entry in fs::read_dir(from).expect("Can't read directory") {
+        let path = entry.unwrap().path();
+        fs::copy(&path, format!("{}/{}_Texture2D.png", to, path.file_stem().unwrap().to_str().unwrap())).expect("Unable to copy");
     }
 }
 
@@ -100,6 +133,6 @@ fn copy_files(from: &str, to: &str) {
     println!("Copying files from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
-        fs::copy(&path, format!("{}/{}_Texture2D.png", to, path.file_stem().unwrap().to_str().unwrap())).expect("Unable to copy");
+        fs::copy(&path, format!("{}/{}", to, path.file_name().unwrap().to_str().unwrap())).expect("Unable to copy");
     }
 }
