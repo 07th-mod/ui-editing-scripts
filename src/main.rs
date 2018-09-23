@@ -1,9 +1,12 @@
+extern crate inflector;
+
 use std::env;
 use std::process::Command;
 use std::fs;
 use std::path::Path;
 use std::collections::HashMap;
 use std::process;
+use inflector::Inflector;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -23,15 +26,33 @@ fn main() {
         process::exit(1);
     }
 
+    let mut suffixes = HashMap::new();
+    suffixes.insert("win".to_string(), "UI");
+    suffixes.insert("mac".to_string(), "UI_UNIX");
+
+    if chapter == "tatarigoroshi" {
+        suffixes.insert("win-mg".to_string(), "UI_MG");
+        suffixes.insert("mac-mg".to_string(), "UI_UNIX-MG");
+    }
+
+    if !suffixes.contains_key(platform) {
+        println!("Unknown platform");
+        process::exit(2);
+    }
+
     let arc_number = chapters.get(chapter).unwrap();
     let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}/sharedassets0.assets", chapter, platform);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
     let emip = format!("{}/{}-{}.emip", &directory_data, &chapter, &platform);
+    let archive = format!("{}-{}.7z", &chapter.to_title_case(), suffixes.get(platform).unwrap());
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
+    }
+    if Path::new(&archive).exists() {
+        fs::remove_file(&archive).expect("Failed to remove file");
     }
     if Path::new(&directory_assets).exists() {
         fs::remove_dir_all(&directory_assets).expect("Failed to remove directory");
@@ -108,17 +129,29 @@ fn main() {
     println!();
 
     // 6. apply emip
-    let status = Command::new("AssetBundleExtractor.exe")
+    let status = Command::new("AssetBundleExtractor")
         .arg("applyemip")
         .arg(&emip)
         .arg("output")
         .status()
-        .expect("failed to execute AssetBundleExtractor.exe");
+        .expect("failed to execute AssetBundleExtractor");
 
-    println!("{}", status.to_string());
+    assert!(status.success());
 
     fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
     fs::remove_file(&emip).expect("Failed to remove file");
+
+    // 7. pack with 7xip
+    let status = Command::new("7za")
+        .current_dir("output")
+        .arg("a")
+        .arg("-t7z")
+        .arg(&archive)
+        .arg(format!("../{}", &directory_data))
+        .status()
+        .expect("failed to execute 7ze");
+
+    assert!(status.success());
 }
 
 fn copy_images(from: &str, to: &str) {
