@@ -82,12 +82,15 @@ class AssetEdit:
 					name = obj.read()["m_Name"]
 				except:
 					length = int.from_bytes(data[0:4], byteorder='little')
-					if length + 4 <= len(data) and length < 40:
+					# Things often store their length in the beginning of the file
+					# Note: the `len(self.name) * 4` is the maximum length the string `self.name` could be if it used high unicode characters
+					if length >= len(self.name) and length + 4 <= len(data) and length < len(self.name) * 4:
 						name = data[4:4+length].decode('utf-8')
+					# TextMeshPro assets store their name here
 					elif len(data) > 32:
 						length = int.from_bytes(data[28:32], byteorder='little')
 						if length + 4 <= len(data) and length < 40:
-							name = data[4:4+length].decode('utf-8')
+							name = data[32:32+length].decode('utf-8')
 				if name is not None:
 					if self.name == name:
 						self.id = id
