@@ -251,7 +251,7 @@ with open(behaviourFN, "rb") as behaviourFile:
 
 if len(sys.argv) > 4:
 	atlasName = readString(atlasName)
-	with open(outFN + "/" + atlasName + "_Texture2D.dat", "wb") as outFile:
+	with open(outFN + "/" + original.filename + " Atlas_Texture2D.dat", "wb") as outFile:
 		outFile.write(atlasOut)
 with open(outFN + "/" + original.filename + "_TextMeshProFont.dat", "wb") as outFile:
 	outFile.write(combineFonts(original=original, new=behaviour))

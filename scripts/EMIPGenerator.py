@@ -48,7 +48,7 @@ class AssetEdit:
 		output += (1).to_bytes(4, byteorder="little") # m_ColorSpace
 		output += len(imageData).to_bytes(4, byteorder="little")
 		output += imageData
-		if self.type > 0:
+		if self.hasStream:
 			output += b"\0" * 12 # Empty Streaming Data
 		return output
 
@@ -59,6 +59,16 @@ class AssetEdit:
 		length = int.from_bytes(data[0:4], byteorder='little')
 		paddedLength = length + (4 - length) % 4
 		self.name = data[4:4+length].decode('utf-8')
+		arrayPos = paddedLength + 4 * 15
+		arrayLength = int.from_bytes(data[arrayPos:arrayPos+4], byteorder="little")
+		paddedArrayLength = arrayLength + (4 - arrayLength) % 4
+		if arrayPos + 4 + paddedArrayLength == len(data):
+			self.hasStream = False
+		elif arrayPos + 4 + paddedArrayLength == len(data) - 12:
+			self.hasStream = True
+		else:
+			print(f"Couldn't figure out if {self.name} has a stream or not.  Comparing {arrayPos + 4 + paddedArrayLength} to {len(data)}")
+			self.hasStream = True
 
 	def getAssetInfo(self, assets, bundle):
 		if self.id is None:
@@ -96,7 +106,7 @@ class AssetEdit:
 						self.id = id
 						if objType == "Texture2D" and self.file[-4:] == ".png":
 							print(f"Will replace object #{id} with contents of {self.file} converted to a Texture2D")
-							self.shouldDecode = True
+							self.loadTexture2DInfo(assets, bundle)
 						else:
 							print(f"Will replace object #{id} with contents of {self.file}")
 						break
