@@ -64,7 +64,7 @@ class AssetEdit:
 		paddedArrayLength = arrayLength + (4 - arrayLength) % 4
 		if arrayPos + 4 + paddedArrayLength == len(data):
 			self.hasStream = False
-		elif arrayPos + 4 + paddedArrayLength == len(data) - 12:
+		elif arrayPos + 4 + paddedArrayLength <= len(data) - 12:
 			self.hasStream = True
 		else:
 			print(f"Couldn't figure out if {self.name} has a stream or not.  Comparing {arrayPos + 4 + paddedArrayLength} to {len(data)}")

@@ -191,6 +191,7 @@ class FontFile:
 
 if len(sys.argv) <= 3:
 	print("Usage: " + sys.argv[0] + " monobehaviour.dat charset.txt outputMonoBehaviour.dat")
+	exit(0)
 
 with open(sys.argv[1], "rb") as tmp:
 	tmpAsset = FontFile(tmp.read(), sys.argv[1])
