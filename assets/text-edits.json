@@ -20,14 +20,44 @@
     {
         "CurrentEnglish": "800x600",
         "CurrentJapanese": "800x600",
-        "NewEnglish": "1067x600",
-        "NewJapanese": "1067x600"
+        "NewEnglish": "1068x600",
+        "NewJapanese": "1068x600"
     },
     {
         "CurrentEnglish": "1024x768",
         "CurrentJapanese": "1024x768",
         "NewEnglish": "1366x768",
         "NewJapanese": "1366x768"
+    },
+    {
+        "CurrentEnglish": "All-Cast Review Session",
+        "CurrentJapanese": "お疲れさま会",
+        "NewEnglish": "All-Cast Review Session",
+        "NewJapanese": "お疲れさま会"
+    },
+    {
+        "CurrentEnglish": "Chapter Jump",
+        "CurrentJapanese": "シナリオジャンプモード",
+        "NewEnglish": "Chapter Jump",
+        "NewJapanese": "シナリオジャンプモード"
+    },
+    {
+        "CurrentEnglish": "View TIPS",
+        "CurrentJapanese": "TIPSを読む",
+        "NewEnglish": "View TIPS",
+        "NewJapanese": "TIPSを読む"
+    },
+    {
+        "CurrentEnglish": "Back",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Back",
+        "NewJapanese": "戻る"
+    },
+    {
+        "CurrentEnglish": "Staff Room",
+        "CurrentJapanese": "スタッフルーム",
+        "NewEnglish": "Staff Room",
+        "NewJapanese": "スタッフルーム"
     },
     {
         "CurrentEnglish": "Watanagashi 12-3",
