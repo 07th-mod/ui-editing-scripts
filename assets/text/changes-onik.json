@@ -1,0 +1,197 @@
+[
+	{
+		"CurrentEnglish": "Console",
+		"CurrentJapanese": "ゲーム機",
+		"NewEnglish": "rato",
+		"NewJapanese": "rato"
+	}, {
+		"CurrentEnglish": "Remake",
+		"CurrentJapanese": "リメーク",
+		"NewEnglish": "Kurosaki",
+		"NewJapanese": "クロサキ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "全て",
+		"NewEnglish": "Bật",
+		"NewJapanese": "全て"
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "既読のみ",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "既読のみ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "Bật",
+		"NewJapanese": "ON",
+		"Discriminator": 0
+	},{
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "Bật",
+		"NewJapanese": "ON",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "OFF",
+		"Discriminator": 0
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "OFF",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "Show Menu",
+		"CurrentJapanese": "メニュー表示",
+		"NewEnglish": "Hiện menu",
+		"NewJapanese": "メニュー表示"
+	}, {
+		"CurrentEnglish": "Hide Window",
+		"CurrentJapanese": "ウィンドウ非表示",
+		"NewEnglish": "Ẩn văn bản",
+		"NewJapanese": "ウィンドウ非表示"
+	}, {
+		"CurrentEnglish": "English",
+		"CurrentJapanese": "English",
+		"NewEnglish": "Tiếng Việt",
+		"NewJapanese": "Tiếng Việt"
+	}, {
+		"CurrentEnglish": "Standard 854x480",
+		"CurrentJapanese": "標準 854x480",
+		"NewEnglish": "Chuẩn 854x480",
+		"NewJapanese": "標準 854x480"
+	}, {
+		"CurrentEnglish": "Fullscreen",
+		"CurrentJapanese": "フルスクリーン",
+		"NewEnglish": "Toàn m.hình",
+		"NewJapanese": "フルスクリーン"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 1",
+		"CurrentJapanese": "鬼隠し編１日目",
+		"NewEnglish": "Onikakushi Ngày 1",
+		"NewJapanese": "鬼隠し編１日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 2",
+		"CurrentJapanese": "鬼隠し編２日目",
+		"NewEnglish": "Onikakushi Ngày 2",
+		"NewJapanese": "鬼隠し編２日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 3",
+		"CurrentJapanese": "鬼隠し編３日目",
+		"NewEnglish": "Onikakushi Ngày 3",
+		"NewJapanese": "鬼隠し編３日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 4",
+		"CurrentJapanese": "鬼隠し編４日目",
+		"NewEnglish": "Onikakushi Ngày 4",
+		"NewJapanese": "鬼隠し編４日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 5",
+		"CurrentJapanese": "鬼隠し編５日目",
+		"NewEnglish": "Onikakushi Ngày 5",
+		"NewJapanese": "鬼隠し編５日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 9",
+		"CurrentJapanese": "鬼隠し編９日目",
+		"NewEnglish": "Onikakushi Ngày 9",
+		"NewJapanese": "鬼隠し編９日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 9-2",
+		"CurrentJapanese": "鬼隠し編９日目２",
+		"NewEnglish": "Onikakushi Ngày 9-2",
+		"NewJapanese": "鬼隠し編９日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 10",
+		"CurrentJapanese": "鬼隠し編１０日目",
+		"NewEnglish": "Onikakushi Ngày 10",
+		"NewJapanese": "鬼隠し編１０日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 11",
+		"CurrentJapanese": "鬼隠し編１１日目",
+		"NewEnglish": "Onikakushi Ngày 11",
+		"NewJapanese": "鬼隠し編１１日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 12",
+		"CurrentJapanese": "鬼隠し編１２日目",
+		"NewEnglish": "Onikakushi Ngày 12",
+		"NewJapanese": "鬼隠し編１２日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 13",
+		"CurrentJapanese": "鬼隠し編１３日目",
+		"NewEnglish": "Onikakushi Ngày 13",
+		"NewJapanese": "鬼隠し編１３日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 14",
+		"CurrentJapanese": "鬼隠し編１４日目",
+		"NewEnglish": "Onikakushi Ngày 14",
+		"NewJapanese": "鬼隠し編１４日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 14-2",
+		"CurrentJapanese": "鬼隠し編１４日目２",
+		"NewEnglish": "Onikakushi Ngày 14-2",
+		"NewJapanese": "鬼隠し編１４日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15",
+		"CurrentJapanese": "鬼隠し編１５日目",
+		"NewEnglish": "Onikakushi Ngày 15",
+		"NewJapanese": "鬼隠し編１５日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15-2",
+		"CurrentJapanese": "鬼隠し編１５日目２",
+		"NewEnglish": "Onikakushi Ngày 15-2",
+		"NewJapanese": "鬼隠し編１５日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15-3",
+		"CurrentJapanese": "鬼隠し編１５日目３",
+		"NewEnglish": "Onikakushi Ngày 15-3",
+		"NewJapanese": "鬼隠し編１５日目３"
+	}, {
+		"CurrentEnglish": "Return to Extras Screen",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Trở về",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "All-Cast Review Session",
+		"CurrentJapanese": "お疲れさま会",
+		"NewEnglish": "Hậu trường sân khấu",
+		"NewJapanese": "お疲れさま会"
+	}, {
+		"CurrentEnglish": "Chapter Jump",
+		"CurrentJapanese": "シナリオジャンプモード",
+		"NewEnglish": "Nhảy chương",
+		"NewJapanese": "シナリオジャンプモード"
+	}, {
+		"CurrentEnglish": "View TIPS",
+		"CurrentJapanese": "TIPSを読む",
+		"NewEnglish": "Các Tips",
+		"NewJapanese": "TIPSを読む"
+	}, {
+		"CurrentEnglish": "Back",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Trở về",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "View New TIPS",
+		"CurrentJapanese": "新規TIPSを読む",
+		"NewEnglish": "Đọc Tips mới",
+		"NewJapanese": "新規TIPSを読む"
+	}, {
+		"CurrentEnglish": "View All TIPS",
+		"CurrentJapanese": "TIPSをすべて読む",
+		"NewEnglish": "Đọc toàn bộ Tips",
+		"NewJapanese": "TIPSをすべて読む"
+	}, {
+		"CurrentEnglish": "Save & Load",
+		"CurrentJapanese": "Save & Load",
+		"NewEnglish": "Lưu dữ liệu",
+		"NewJapanese": "Save & Load"
+	}, {
+		"CurrentEnglish": "Continue",
+		"CurrentJapanese": "ゲームを進める",
+		"NewEnglish": "Đọc tiếp",
+		"NewJapanese": "ゲームを進める"
+	}
+]
