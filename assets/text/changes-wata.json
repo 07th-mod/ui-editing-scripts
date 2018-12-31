@@ -1,0 +1,222 @@
+[
+	{
+		"CurrentEnglish": "Original",
+		"CurrentJapanese": "オリジナル",
+		"NewEnglish": "rato",
+		"NewJapanese": "rato"
+	}, {
+		"CurrentEnglish": "Updated",
+		"CurrentJapanese": "新規",
+		"NewEnglish": "Kurosaki",
+		"NewJapanese": "クロサキ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "全て",
+		"NewEnglish": "Bật",
+		"NewJapanese": "全て"
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "既読のみ",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "既読のみ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "Bật",
+		"NewJapanese": "ON",
+		"Discriminator": 0
+	},{
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "Bật",
+		"NewJapanese": "ON",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "OFF",
+		"Discriminator": 0
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "Tắt",
+		"NewJapanese": "OFF",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "Show Menu",
+		"CurrentJapanese": "メニュー表示",
+		"NewEnglish": "Hiện menu",
+		"NewJapanese": "メニュー表示"
+	}, {
+		"CurrentEnglish": "Hide Window",
+		"CurrentJapanese": "ウィンドウ非表示",
+		"NewEnglish": "Ẩn văn bản",
+		"NewJapanese": "ウィンドウ非表示"
+	}, {
+		"CurrentEnglish": "English",
+		"CurrentJapanese": "English",
+		"NewEnglish": "Tiếng Việt",
+		"NewJapanese": "Tiếng Việt"
+	}, {
+		"CurrentEnglish": "Standard 640x480",
+		"CurrentJapanese": "標準 640x480",
+		"NewEnglish": "Chuẩn 640x480",
+		"NewJapanese": "標準 640x480"
+	}, {
+		"CurrentEnglish": "Fullscreen",
+		"CurrentJapanese": "フルスクリーン",
+		"NewEnglish": "Toàn m.hình",
+		"NewJapanese": "フルスクリーン"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 1",
+		"CurrentJapanese": "綿流し編　１日目",
+		"NewEnglish": "Watanagashi Ngày 1",
+		"NewJapanese": "綿流し編　１日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 2",
+		"CurrentJapanese": "綿流し編　２日目",
+		"NewEnglish": "Watanagashi Ngày 2",
+		"NewJapanese": "綿流し編　２日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 3",
+		"CurrentJapanese": "綿流し編　３日目",
+		"NewEnglish": "Watanagashi Ngày 3",
+		"NewJapanese": "綿流し編　３日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 4",
+		"CurrentJapanese": "綿流し編　４日目",
+		"NewEnglish": "Watanagashi Ngày 4",
+		"NewJapanese": "綿流し編　４日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 5",
+		"CurrentJapanese": "綿流し編　５日目",
+		"NewEnglish": "Watanagashi Ngày 5",
+		"NewJapanese": "綿流し編　５日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 6",
+		"CurrentJapanese": "綿流し編　６日目",
+		"NewEnglish": "Watanagashi Ngày 6",
+		"NewJapanese": "綿流し編　６日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 7",
+		"CurrentJapanese": "綿流し編　７日目",
+		"NewEnglish": "Watanagashi Ngày 7",
+		"NewJapanese": "綿流し編　７日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 8",
+		"CurrentJapanese": "綿流し編　８日目",
+		"NewEnglish": "Watanagashi Ngày 8",
+		"NewJapanese": "綿流し編　８日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 9",
+		"CurrentJapanese": "綿流し編　９日目",
+		"NewEnglish": "Watanagashi Ngày 9",
+		"NewJapanese": "綿流し編　９日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 9-2",
+		"CurrentJapanese": "綿流し編　９日目２",
+		"NewEnglish": "Watanagashi Ngày 9-2",
+		"NewJapanese": "綿流し編　９日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10",
+		"CurrentJapanese": "綿流し編　１０日目",
+		"NewEnglish": "Watanagashi Ngày 10",
+		"NewJapanese": "綿流し編　１０日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-2",
+		"CurrentJapanese": "綿流し編　１０日目２",
+		"NewEnglish": "Watanagashi Ngày 10-2",
+		"NewJapanese": "綿流し編　１０日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-3",
+		"CurrentJapanese": "綿流し編　１０日目３",
+		"NewEnglish": "Watanagashi Ngày 10-3",
+		"NewJapanese": "綿流し編　１０日目３"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-4",
+		"CurrentJapanese": "綿流し編　１０日目４",
+		"NewEnglish": "Watanagashi Ngày 10-4",
+		"NewJapanese": "綿流し編　１０日目４"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 11",
+		"CurrentJapanese": "綿流し編　１１日目",
+		"NewEnglish": "Watanagashi Ngày 11",
+		"NewJapanese": "綿流し編　１１日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 11-2",
+		"CurrentJapanese": "綿流し編　１１日目２",
+		"NewEnglish": "Watanagashi Ngày 11-2",
+		"NewJapanese": "綿流し編　１１日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 12",
+		"CurrentJapanese": "綿流し編　１２日目",
+		"NewEnglish": "Watanagashi Ngày 12",
+		"NewJapanese": "綿流し編　１２日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 12-2",
+		"CurrentJapanese": "綿流し編　１２日目２",
+		"NewEnglish": "Watanagashi Ngày 12-2",
+		"NewJapanese": "綿流し編　１２日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi 12-3",
+		"CurrentJapanese": "綿流し編　１２日目３",
+		"NewEnglish": "Watanagashi Ngày 12-3",
+		"NewJapanese": "綿流し編　１２日目３"
+	}, {
+		"CurrentEnglish": "Watanagashi Epilogue 1",
+		"CurrentJapanese": "綿流し編　エピローグ１",
+		"NewEnglish": "Watanagashi Phần kết 1",
+		"NewJapanese": "綿流し編　エピローグ１"
+	}, {
+		"CurrentEnglish": "Watanagashi Epilogue 2",
+		"CurrentJapanese": "綿流し編　エピローグ２",
+		"NewEnglish": "Watanagashi Phần kết 2",
+		"NewJapanese": "綿流し編　エピローグ２"
+	}, {
+		"CurrentEnglish": "Return to Extras Screen",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Trở về",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "All-Cast Review Session",
+		"CurrentJapanese": "お疲れさま会",
+		"NewEnglish": "Hậu trường sân khấu",
+		"NewJapanese": "お疲れさま会"
+	}, {
+		"CurrentEnglish": "Chapter Jump",
+		"CurrentJapanese": "シナリオジャンプモード",
+		"NewEnglish": "Nhảy chương",
+		"NewJapanese": "シナリオジャンプモード"
+	}, {
+		"CurrentEnglish": "View TIPS",
+		"CurrentJapanese": "TIPSを読む",
+		"NewEnglish": "Các Tips",
+		"NewJapanese": "TIPSを読む"
+	}, {
+		"CurrentEnglish": "Back",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Trở về",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "View New TIPS",
+		"CurrentJapanese": "新規TIPSを読む",
+		"NewEnglish": "Đọc Tips mới",
+		"NewJapanese": "新規TIPSを読む"
+	}, {
+		"CurrentEnglish": "View All TIPS",
+		"CurrentJapanese": "TIPSをすべて読む",
+		"NewEnglish": "Đọc toàn bộ Tips",
+		"NewJapanese": "TIPSをすべて読む"
+	}, {
+		"CurrentEnglish": "Save & Load",
+		"CurrentJapanese": "Save & Load",
+		"NewEnglish": "Lưu dữ liệu",
+		"NewJapanese": "Save & Load"
+	}, {
+		"CurrentEnglish": "Continue",
+		"CurrentJapanese": "ゲームを進める",
+		"NewEnglish": "Đọc tiếp",
+		"NewJapanese": "ゲームを進める"
+	}
+]
