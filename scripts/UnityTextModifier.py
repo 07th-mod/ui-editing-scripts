@@ -19,14 +19,12 @@ class ScriptEdit:
 		self.newEnglish = newEnglish
 		self.newJapanese = newJapanese
 		self.discriminator = discriminator
+		if (newJapanese is None) != (currentJapanese is None):
+			raise ValueError("Include either both NewJapanese and CurrentJapanese or neither, but not just one!")
 
 	@staticmethod
 	def fromJSON(json):
-		if "Discriminator" in json:
-			discriminator = json["Discriminator"]
-		else:
-			discriminator = None
-		return ScriptEdit(json["CurrentEnglish"], json["CurrentJapanese"], json["NewEnglish"], json["NewJapanese"], discriminator)
+		return ScriptEdit(json["CurrentEnglish"], json.get("CurrentJapanese"), json["NewEnglish"], json.get("NewJapanese"), json.get("Discriminator"))
 
 	@staticmethod
 	def bytesFromString(string):
@@ -38,11 +36,15 @@ class ScriptEdit:
 
 	@property
 	def expectedBytes(self):
-		return self.bytesFromString(self.currentEnglish) + self.bytesFromString(self.currentJapanese)
+		if self.currentJapanese is not None:
+			return self.bytesFromString(self.currentEnglish) + self.bytesFromString(self.currentJapanese)
+		return self.bytesFromString(self.currentEnglish)
 
 	@property
 	def newBytes(self):
-		return self.bytesFromString(self.newEnglish) + self.bytesFromString(self.newJapanese)
+		if self.currentJapanese is not None:
+			return self.bytesFromString(self.newEnglish) + self.bytesFromString(self.newJapanese)
+		return self.bytesFromString(self.newEnglish)
 
 	def findInAssetBundle(self, bundle):
 		search = self.expectedBytes
