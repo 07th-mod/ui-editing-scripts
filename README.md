@@ -7,7 +7,7 @@ To use this tool you will need to install both Python and Rust.
 
 Next you will need to download the [vanilla UIs](http://07th-mod.com/higurashi_resources/vanilla.7z) for Higurashi games and unpack them into `assets/vanilla`.
 
-You'll also need UABE 2.2 beta5 or newer (or 2.2 beta4 with [this patch applied](https://github.com/DerPopo/UABE/files/2408196/AssetsBundleExtractor_2.2beta4_applyemip.zip)) and 7zip command line executable. Both `AssetBundleExtractor.exe` and `7za.exe` need to be available in your system `PATH`.
+You'll also need UABE 2.2 stable or newer (or 2.2 beta4 with [this patch applied](https://github.com/DerPopo/UABE/files/2408196/AssetsBundleExtractor_2.2beta4_applyemip.zip)) and 7zip command line executable. Both `AssetBundleExtractor.exe` and `7za.exe` need to be available in your system `PATH`.
 
 Then simply run this:
 
