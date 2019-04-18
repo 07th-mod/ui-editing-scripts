@@ -12,6 +12,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let chapter = &args[1];
     let platform = &args[2];
+    let system = &args[3];
 
     let mut chapters = HashMap::new();
     chapters.insert("onikakushi".to_string(), 1);
@@ -26,28 +27,13 @@ fn main() {
         process::exit(1);
     }
 
-    let mut suffixes = HashMap::new();
-    suffixes.insert("win".to_string(), "UI");
-    suffixes.insert("mac".to_string(), "UI_UNIX");
-
-    if chapter == "tatarigoroshi" {
-        suffixes.insert("win-mg".to_string(), "UI_MG");
-        suffixes.insert("mac-mg".to_string(), "UI_UNIX-MG");
-    }
-
-    if !suffixes.contains_key(platform) {
-        println!("Unknown platform");
-        process::exit(2);
-    }
-
-    let distributor = if platform == "win-mg" || platform == "mac-mg" { "mg" } else { "steam" };
     let arc_number = chapters.get(chapter).unwrap();
     let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
-    let assets = format!("assets/vanilla/{}/{}/{}/sharedassets0.assets", chapter, distributor, platform);
+    let assets = format!("assets/vanilla/{}/{}/{}/sharedassets0.assets", chapter, platform, system);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
-    let emip = format!("{}/{}-{}.emip", &directory_data, &chapter, &platform);
-    let archive = format!("{}-{}.7z", &chapter.to_title_case(), suffixes.get(platform).unwrap());
+    let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &platform, &system);
+    let archive = format!("{}_{}_{}.7z", &chapter.to_title_case(), &platform, &system);
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
@@ -89,7 +75,7 @@ fn main() {
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
-        .arg(format!("assets/vanilla/{}/{}/msgothic_0.dat", &chapter, distributor))
+        .arg(format!("assets/vanilla/{}/{}/msgothic_0.dat", &chapter, platform))
         .arg(&directory_assets)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
@@ -101,7 +87,7 @@ fn main() {
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
-        .arg(format!("assets/vanilla/{}/{}/msgothic_2.dat", &chapter, distributor))
+        .arg(format!("assets/vanilla/{}/{}/msgothic_2.dat", &chapter, platform))
         .arg(&directory_assets)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
@@ -111,7 +97,7 @@ fn main() {
     println!();
 
     // 4. copy assets
-    copy_files(format!("assets/vanilla/{}/{}/{}", chapter, distributor, platform).as_ref(), &directory_data);
+    copy_files(format!("assets/vanilla/{}/{}/{}", chapter, platform, system).as_ref(), &directory_data);
 
     println!();
 

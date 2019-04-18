@@ -1,14 +1,15 @@
-cargo run onikakushi win
-cargo run onikakushi mac
-cargo run watanagashi win
-cargo run watanagashi mac
-cargo run tatarigoroshi win
-cargo run tatarigoroshi mac
-cargo run tatarigoroshi win-mg
-cargo run tatarigoroshi mac-mg
-cargo run himatsubushi win
-cargo run himatsubushi mac
-cargo run meakashi win
-cargo run meakashi mac
-cargo run tsumihoroboshi win
-cargo run tsumihoroboshi mac
+cargo run onikakushi steam win
+cargo run onikakushi steam mac
+cargo run watanagashi steam win
+cargo run watanagashi steam mac
+cargo run tatarigoroshi steam win
+cargo run tatarigoroshi steam mac
+cargo run tatarigoroshi mg win
+cargo run tatarigoroshi mg mac
+cargo run himatsubushi steam win
+cargo run himatsubushi steam mac
+cargo run meakashi steam win
+cargo run meakashi steam mac
+cargo run meakashi gog win
+cargo run tsumihoroboshi steam win
+cargo run tsumihoroboshi steam mac
