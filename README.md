@@ -12,12 +12,14 @@ You'll also need UABE 2.2 stable or newer (or 2.2 beta4 with [this patch applied
 Then simply run this:
 
 ```
-cargo run <chapter> <platform>
+cargo run <chapter> <platform> <system>
 ```
 
 `<chapter>` is simply `onikakushi`, `watanagashi` and so on.
 
-`<platform>` is `win` or `mac`. For tatarigoroshi platform can also be `win-mg` and `mac-mg`.
+`<platform>` is `steam`, `mg` or `gog`.
+
+`<system>` is `win` or `unix`.
 
 Documentation for the underlying python scripts can be found [here](https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts).
 

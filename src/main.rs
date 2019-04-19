@@ -33,7 +33,7 @@ fn main() {
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
     let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &platform, &system);
-    let archive = format!("{}_{}_{}.7z", &chapter.to_title_case(), &platform, &system);
+    let archive = format!("{}-UI_{}_{}.7z", &chapter.to_title_case(), &platform, &system);
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
