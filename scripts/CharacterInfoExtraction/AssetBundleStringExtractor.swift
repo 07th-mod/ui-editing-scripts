@@ -20,9 +20,9 @@ guard CommandLine.arguments.count > 1 else {
 
 #if !swift(>=4.2)
 extension Collection {
-func firstIndex(where predicate: (Element) throws -> Bool) rethrows -> Index? {
-return try self.index(where: predicate)
-}
+	func firstIndex(where predicate: (Element) throws -> Bool) rethrows -> Index? {
+		return try self.index(where: predicate)
+	}
 }
 #endif
 
@@ -92,13 +92,12 @@ func stringFinder(data: Data, maxStringLength: Int = 100) -> [String] {
 			let unicode = UnsafeBufferPointer(rebasing: ints[(index + 1)...].prefix(uint32Length))
 			// Ensure padding is all 0s
 			guard padding == 0 || unicode.last!.littleEndian &>> (padding * 8) == 0 else { continue }
-			let optionalStr = unicode.withMemoryRebound(to: UInt8.self) { (unicode) -> String? in
-				let stringUnicode = unicode[..<Int(int)]
-				guard isValidUTF8(data: stringUnicode) else { return nil }
-				return String(decoding: stringUnicode, as: UTF8.self)
-			}
-			guard let str = optionalStr else { continue }
-			out.append(str)
+
+			let unicodeBytes = UnsafeRawBufferPointer(unicode).bindMemory(to: UInt8.self)
+			let stringUnicode = unicodeBytes[..<Int(int)]
+			guard isValidUTF8(data: stringUnicode) else { continue }
+
+			out.append(String(decoding: stringUnicode, as: UTF8.self))
 		}
 		return out
 	}
