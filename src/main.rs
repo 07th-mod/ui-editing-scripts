@@ -11,7 +11,7 @@ use inflector::Inflector;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let chapter = &args[1];
-    let platform = &args[2];
+    let unity = &args[2];
     let system = &args[3];
 
     let mut chapters = HashMap::new();
@@ -29,11 +29,11 @@ fn main() {
 
     let arc_number = chapters.get(chapter).unwrap();
     let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
-    let assets = format!("assets/vanilla/{}/{}/{}/sharedassets0.assets", chapter, platform, system);
+    let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
     let directory_assets = "output/assets";
-    let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
-    let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &platform, &system);
-    let archive = format!("{}-UI_{}_{}.7z", &chapter.to_title_case(), &platform, &system);
+    let directory_data = format!("output/HigurashiEp{:02}_Data", &arc_number);
+    let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &unity, &system);
+    let archive = format!("{}-UI_{}_{}.7z", &chapter.to_title_case(), &unity, &system);
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
@@ -49,6 +49,18 @@ fn main() {
         fs::remove_dir_all(&directory_data).expect("Failed to remove directory");
     }
     fs::create_dir_all(&directory_data).expect("Failed to recreate directory");
+
+    // 0. check version
+    let output = Command::new("python")
+        .env("PYTHONIOENCODING", "utf-8")
+        .arg("scripts/AssetVersion.py")
+        .arg(&assets)
+        .output()
+        .expect("failed to execute UnityTextModifier.py");
+
+    let version = String::from_utf8_lossy(&output.stdout).into_owned();
+
+    assert_eq!(unity, &version.trim());
 
     // 1. texts
     let status = Command::new("python")
@@ -66,6 +78,10 @@ fn main() {
     copy_images("assets/images/shared", &directory_assets);
     copy_images(format!("assets/images/{}", &arc_type).as_ref(), &directory_assets);
     copy_images(format!("assets/images/specific/{}", &chapter).as_ref(), &directory_assets);
+    let version_specific_path = format!("assets/images/version-specific/{}-{}", &chapter, &unity);
+    if Path::new(&version_specific_path).exists() {
+        copy_images(version_specific_path.as_ref(), &directory_assets);
+    }
     fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
     println!();
 
@@ -75,7 +91,7 @@ fn main() {
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
-        .arg(format!("assets/vanilla/{}/{}/msgothic_0.dat", &chapter, platform))
+        .arg(format!("assets/vanilla/{}/msgothic_0.dat", &chapter))
         .arg(&directory_assets)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
@@ -87,7 +103,7 @@ fn main() {
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
-        .arg(format!("assets/vanilla/{}/{}/msgothic_2.dat", &chapter, platform))
+        .arg(format!("assets/vanilla/{}/msgothic_2.dat", &chapter))
         .arg(&directory_assets)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
@@ -97,7 +113,7 @@ fn main() {
     println!();
 
     // 4. copy assets
-    copy_files(format!("assets/vanilla/{}/{}/{}", chapter, platform, system).as_ref(), &directory_data);
+    copy_files(format!("assets/vanilla/{}/{}-{}", &chapter, &system, &unity).as_ref(), &directory_data);
 
     println!();
 
