@@ -87,7 +87,7 @@ fn main() {
     println!();
 
     // 3. fonts
-    let mut font_path = format!("assets/vanilla/{}/{}-{}/msgothic_0.dat", &chapter, &system, &unity);
+    let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
     if ! Path::new(&font_path).exists() {
         font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
     }
@@ -104,7 +104,7 @@ fn main() {
 
     assert!(status.success());
 
-    let mut font_path = format!("assets/vanilla/{}/{}-{}/msgothic_2.dat", &chapter, &system, &unity);
+    let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
     if ! Path::new(&font_path).exists() {
         font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
     }
@@ -153,9 +153,10 @@ fn main() {
     assert!(status.success());
 
     fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
+    fs::remove_file(format!("{}/sharedassets0.assets.resS", &directory_data)).expect("Failed to remove file");
     fs::remove_file(&emip).expect("Failed to remove file");
 
-    // 7. pack with 7xip
+    // 7. pack with 7zip
     let status = Command::new("7za")
         .current_dir("output")
         .arg("a")
