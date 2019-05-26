@@ -83,7 +83,7 @@ fn main() {
         copy_images(version_specific_path.as_ref(), &directory_assets);
     }
     fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
-    copy_files("assets/files", &directory_assets);
+    copy_files(if arc_number <= &2 { "assets/files-legacy" } else { "assets/files" }, &directory_assets);
     println!();
 
     // 3. fonts
