@@ -104,12 +104,17 @@ fn main() {
 
     assert!(status.success());
 
+    let mut font_path = format!("assets/vanilla/{}/{}-{}/msgothic_2.dat", &chapter, &system, &unity);
+    if ! Path::new(&font_path).exists() {
+        font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
+    }
+
     let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/TMPAssetConverter.py")
         .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
         .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
-        .arg(format!("assets/vanilla/{}/msgothic_2.dat", &chapter))
+        .arg(font_path)
         .arg(&directory_assets)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
