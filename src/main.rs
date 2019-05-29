@@ -83,7 +83,13 @@ fn main() {
         copy_images(version_specific_path.as_ref(), &directory_assets);
     }
     fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
-    copy_files(if arc_number <= &2 { "assets/files-legacy" } else { "assets/files" }, &directory_assets);
+    let caretdir = match arc_number {
+        1..=2 => "assets/files-5.2",
+        3..=4 => "assets/files-5.3",
+        5..=6 => "assets/files-5.5",
+        _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
+    };
+    copy_files(&caretdir, &directory_assets);
     println!();
 
     // 3. fonts
