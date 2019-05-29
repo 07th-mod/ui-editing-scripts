@@ -159,7 +159,10 @@ fn main() {
     assert!(status.success());
 
     fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
-    fs::remove_file(format!("{}/sharedassets0.assets.resS", &directory_data)).expect("Failed to remove file");
+    let res_file = format!("{}/sharedassets0.assets.resS", &directory_data);
+    if Path::new(&res_file).exists() {
+        fs::remove_file(&res_file).expect("Failed to remove file");
+    }
     fs::remove_file(&emip).expect("Failed to remove file");
 
     // 7. pack with 7zip
