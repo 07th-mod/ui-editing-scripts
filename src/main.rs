@@ -21,6 +21,7 @@ fn main() {
     chapters.insert("himatsubushi", 4);
     chapters.insert("meakashi", 5);
     chapters.insert("tsumihoroboshi", 6);
+    chapters.insert("minagoroshi", 7);
 
     if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter");
@@ -87,6 +88,7 @@ fn main() {
         1..=2 => "assets/files-5.2",
         3..=4 => "assets/files-5.3",
         5..=6 => "assets/files-5.5",
+        7     => "assets/files-5.6",
         _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
