@@ -15,19 +15,19 @@ fn main() {
     let system = &args[3];
 
     let mut chapters = HashMap::new();
-    chapters.insert("onikakushi".to_string(), 1);
-    chapters.insert("watanagashi".to_string(), 2);
-    chapters.insert("tatarigoroshi".to_string(), 3);
-    chapters.insert("himatsubushi".to_string(), 4);
-    chapters.insert("meakashi".to_string(), 5);
-    chapters.insert("tsumihoroboshi".to_string(), 6);
+    chapters.insert("onikakushi", 1);
+    chapters.insert("watanagashi", 2);
+    chapters.insert("tatarigoroshi", 3);
+    chapters.insert("himatsubushi", 4);
+    chapters.insert("meakashi", 5);
+    chapters.insert("tsumihoroboshi", 6);
 
-    if !chapters.contains_key(chapter) {
+    if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter");
         process::exit(1);
     }
 
-    let arc_number = chapters.get(chapter).unwrap();
+    let arc_number = chapters.get(&chapter[..]).unwrap();
     let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
     let directory_assets = "output/assets";
