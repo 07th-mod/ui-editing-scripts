@@ -14,20 +14,20 @@
     {
         "CurrentEnglish": "Standard 640x480",
         "CurrentJapanese": "標準 640x480",
-        "NewEnglish": "Standard 854x480",
-        "NewJapanese": "標準 854x480"
+        "NewEnglish": "Standard 1280x720",
+        "NewJapanese": "標準 1280x720"
     },
     {
         "CurrentEnglish": "800x600",
         "CurrentJapanese": "800x600",
-        "NewEnglish": "1068x600",
-        "NewJapanese": "1068x600"
+        "NewEnglish": "1920x1080",
+        "NewJapanese": "1920x1080"
     },
     {
         "CurrentEnglish": "1024x768",
         "CurrentJapanese": "1024x768",
-        "NewEnglish": "1366x768",
-        "NewJapanese": "1366x768"
+        "NewEnglish": "2560x1440",
+        "NewJapanese": "2560x1440"
     },
     {
         "CurrentEnglish": "All-Cast Review Session",
