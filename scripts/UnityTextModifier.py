@@ -13,6 +13,19 @@ if not os.path.isdir(sys.argv[3]):
 	exit()
 
 class ScriptEdit:
+	@staticmethod
+	def truncateString(string):
+		trimmed = False
+		if len(string) > 60:
+			trimmed = True
+			string = string[:60]
+		if "\n" in string:
+			trimmed = True
+			string = string.partition("\n")[0].rstrip()
+		if trimmed:
+			string += "..."
+		return string
+
 	def __init__(self, currentEnglish, currentJapanese, newEnglish, newJapanese, discriminator=None):
 		self.currentEnglish = currentEnglish
 		self.currentJapanese = currentJapanese
@@ -21,6 +34,8 @@ class ScriptEdit:
 		self.discriminator = discriminator
 		if (newJapanese is None) != (currentJapanese is None):
 			raise ValueError("Include either both NewJapanese and CurrentJapanese or neither, but not just one!")
+		self.shortString = ScriptEdit.truncateString(self.currentEnglish) if newJapanese is None else ScriptEdit.truncateString(self.currentEnglish) + " / " + ScriptEdit.truncateString(self.currentJapanese)
+
 
 	@staticmethod
 	def fromJSON(json):
@@ -57,14 +72,14 @@ class ScriptEdit:
 			offsets.append(offset)
 			start = offset + 1
 		if len(offsets) == 0:
-			raise IndexError(f"No asset found for {self.currentEnglish} / {self.currentJapanese}")
+			raise IndexError(f"No asset found for {self.shortString}")
 		if self.discriminator == None:
 			if len(offsets) > 1:
-				raise IndexError(f"Multiple assets found for {self.currentEnglish} / {self.currentJapanese}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ".  Please select one and add a Discriminator tag for it.")
+				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ".  Please select one and add a Discriminator tag for it.")
 			self.offset = offsets[0]
 		else:
 			if len(offsets) <= self.discriminator:
-				raise IndexError(f"Not enough offsets found for ${self.currentEnglish} / {self.currentJapanese} to meet request for #{self.discriminator}, there were only {len(offsets)}")
+				raise IndexError(f"Not enough offsets found for ${self.trimmedE} / {self.trimmedJ} to meet request for #{self.discriminator}, there were only {len(offsets)}")
 			self.offset = offsets[self.discriminator]
 
 	def checkObject(self, id, object, bundle):
@@ -74,13 +89,13 @@ class ScriptEdit:
 			expectedBytes = self.expectedBytes
 			smallOffset = self.currentData.find(expectedBytes)
 			self.newData = self.currentData[:smallOffset] + self.newBytes + self.currentData[(smallOffset + len(expectedBytes)):]
-			print(f"Found {self.currentEnglish} / {self.currentJapanese} in object #{id}")
+			print(f"Found {self.shortString} in object #{id}")
 
 	def write(self, folder):
 		try:
 			self.newData
 		except:
-			print(f"Failed to find object id for {self.currentEnglish} / {self.currentJapanese}!")
+			print(f"Failed to find object id for {self.shortString}!")
 			return
 		filename = folder + "/" + str(self.id) + ".dat"
 		with open(filename, "wb") as outputFile:
@@ -109,7 +124,7 @@ with open(sys.argv[1], "rb") as assetsFile:
 		try:
 			edit.findInAssetBundle(bundle)
 			newEdits.append(edit)
-			print(f"Found {edit.currentEnglish} / {edit.currentJapanese} at offset 0x{edit.offset:x}")
+			print(f"Found {edit.shortString} at offset 0x{edit.offset:x}")
 		except IndexError as e:
 			print(e)
 	edits = newEdits
