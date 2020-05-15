@@ -22,6 +22,7 @@ fn main() {
     chapters.insert("meakashi", 5);
     chapters.insert("tsumihoroboshi", 6);
     chapters.insert("minagoroshi", 7);
+    chapters.insert("matsuribayashi", 8);
 
     if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter");
@@ -83,12 +84,16 @@ fn main() {
     if Path::new(&version_specific_path).exists() {
         copy_images(version_specific_path.as_ref(), &directory_assets);
     }
-    fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
+    if arc_number.clone() == 8 {
+        fs::rename("output/assets/configbg_Texture2D.png", "output/assets/50configbg_Texture2D.png").expect("Unable to rename");
+    } else {
+        fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
+    }
     let caretdir = match arc_number {
         1..=2 => "assets/files-5.2",
         3..=4 => "assets/files-5.3",
         5..=6 => "assets/files-5.5",
-        7     => "assets/files-5.6",
+        7..=8 => "assets/files-5.6",
         _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
