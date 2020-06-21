@@ -93,7 +93,8 @@ fn main() {
         1..=2 => "assets/files-5.2",
         3..=4 => "assets/files-5.3",
         5..=6 => "assets/files-5.5",
-        7..=8 => "assets/files-5.6",
+        7     => "assets/files-5.6",
+        8     => "assets/files-2017.2",
         _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
