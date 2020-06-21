@@ -25,7 +25,7 @@ class AssetEdit:
 	def filePath(self):
 		return sys.argv[2] + "/" + self.file
 
-	def pngToTexture2D(self, pngData):
+	def pngToTexture2D(self, pngData, unityVersion):
 		image = Image.open(self.filePath)
 		image = ImageOps.flip(image)
 		imageData = image.convert("RGBA").tobytes()
@@ -43,7 +43,12 @@ class AssetEdit:
 		output += (2).to_bytes(4, byteorder="little") # m_FilterMode
 		output += (2).to_bytes(4, byteorder="little") # m_Aniso
 		output += (0).to_bytes(4, byteorder="little") # m_MipBias
-		output += (1).to_bytes(4, byteorder="little") # m_WrapMode
+		if unityVersion[0] == 5:
+			output += (1).to_bytes(4, byteorder="little") # m_WrapMode
+		elif unityVersion[0] == 2017:
+			output += (1).to_bytes(4, byteorder="little") * 3 # m_wrap{U,V,W}
+		else:
+			sys.stderr.write("Warning: Unrecognized Unity version: " + str(unityVersion[0]))
 		output += (0).to_bytes(4, byteorder="little") # m_LightmapFormat
 		output += (1).to_bytes(4, byteorder="little") # m_ColorSpace
 		output += len(imageData).to_bytes(4, byteorder="little")
@@ -123,8 +128,7 @@ class AssetEdit:
 		obj = assets.objects[self.id]
 		self.type = obj.type_id
 
-	@property
-	def bytes(self):
+	def bytes(self, unityVersion):
 		out = (2).to_bytes(4, byteorder='little') # Unknown
 		out += b"\0" * 3 # Unknown
 		out += self.id.to_bytes(4, byteorder='little') # Unknown
@@ -134,7 +138,7 @@ class AssetEdit:
 		with open(self.filePath, "rb") as file:
 			fileBytes = file.read()
 			if self.shouldDecode:
-				fileBytes = self.pngToTexture2D(fileBytes)
+				fileBytes = self.pngToTexture2D(fileBytes, unityVersion)
 			out += len(fileBytes).to_bytes(4, byteorder='little') # Payload Size
 			out += b"\0" * 4 # Unknown
 			out += fileBytes # Payload
@@ -169,6 +173,7 @@ for file in os.listdir(sys.argv[2]):
 
 with open(sys.argv[1], "rb") as assetsFile:
 	bundle = assetsFile.read()
+	unityVersion = [int(x) for x in bundle[20:28].decode("utf-8").rstrip("\0").split(".")]
 	assetsFile.seek(0)
 	assets = Asset.from_file(assetsFile)
 	for edit in edits:
@@ -180,5 +185,5 @@ edits = sorted(edits, key=lambda x: x.id)
 with open(sys.argv[3], "wb") as outputFile:
 	outputFile.write(generateHeader(len(edits)))
 	for edit in edits:
-		outputFile.write(edit.bytes)
+		outputFile.write(edit.bytes(unityVersion))
 
