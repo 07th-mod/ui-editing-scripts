@@ -106,6 +106,8 @@ fn main() {
         font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
     }
 
+    let unity_ver_str = if *arc_number >= 8 { "2017" } else { "5" };
+
     let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
         .arg("scripts/TMPAssetConverter.py")
@@ -113,6 +115,7 @@ fn main() {
         .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
         .arg(font_path)
         .arg(&directory_assets)
+        .arg(&unity_ver_str)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
 
@@ -130,6 +133,7 @@ fn main() {
         .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
         .arg(font_path)
         .arg(&directory_assets)
+        .arg(&unity_ver_str)
         .status()
         .expect("failed to execute TMPAssetConverter.py");
 

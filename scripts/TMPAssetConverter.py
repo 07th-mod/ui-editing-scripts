@@ -242,7 +242,12 @@ if len(sys.argv) > 4:
 	atlasOut += atlasName
 	atlasRest = atlas.rest()
 	emptyAtlasPoint = findEmptyAtlasPoint(atlasRest, 13)
-	atlasOut += atlasRest
+	if len(sys.argv) > 5 and sys.argv[5] == "2017":
+		atlasOut += atlasRest[:40]
+		atlasOut += atlasRest[40:44] * 3 # Unity 2017 split m_wrap into U, V, and W
+		atlasOut += atlasRest[44:]
+	else:
+		atlasOut += atlasRest
 
 with open(originalFN, "rb") as originalFile:
 	original = FontFile(originalFile.read(), originalFN)
