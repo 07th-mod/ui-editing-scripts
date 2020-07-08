@@ -173,7 +173,7 @@ for file in os.listdir(sys.argv[2]):
 
 with open(sys.argv[1], "rb") as assetsFile:
 	bundle = assetsFile.read()
-	unityVersion = [int(x) for x in bundle[20:28].decode("utf-8").rstrip("\0").split(".")]
+	unityVersion = [int(x) for x in bundle[20:28].decode("utf-8").rstrip("\0").split(".")[:2]]
 	assetsFile.seek(0)
 	assets = Asset.from_file(assetsFile)
 	for edit in edits:
