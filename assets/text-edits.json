@@ -1,80 +1,197 @@
 [
-    {
-        "CurrentEnglish": "Updated",
-        "CurrentJapanese": "新規",
-        "NewEnglish": "Remake",
-        "NewJapanese": "リメーク"
-    },
-    {
-        "CurrentEnglish": "Original",
-        "CurrentJapanese": "オリジナル",
-        "NewEnglish": "Console",
-        "NewJapanese": "ゲーム機"
-    },
-    {
-        "CurrentEnglish": "Standard 640x480",
-        "CurrentJapanese": "標準 640x480",
-        "NewEnglish": "Standard 1280x720",
-        "NewJapanese": "標準 1280x720"
-    },
-    {
-        "CurrentEnglish": "800x600",
-        "CurrentJapanese": "800x600",
-        "NewEnglish": "1920x1080",
-        "NewJapanese": "1920x1080"
-    },
-    {
-        "CurrentEnglish": "1024x768",
-        "CurrentJapanese": "1024x768",
-        "NewEnglish": "2560x1440",
-        "NewJapanese": "2560x1440"
-    },
-    {
-        "CurrentEnglish": "All-Cast Review Session",
-        "CurrentJapanese": "お疲れさま会",
-        "NewEnglish": "Sessione Riepilogativa del Cast",
-        "NewJapanese": "お疲れさま会"
-    },
-    {
-        "CurrentEnglish": "Chapter Jump",
-        "CurrentJapanese": "シナリオジャンプモード",
-        "NewEnglish": "Salta Scenario",
-        "NewJapanese": "シナリオジャンプモード"
-    },
-    {
-        "CurrentEnglish": "View TIPS",
-        "CurrentJapanese": "TIPSを読む",
-        "NewEnglish": "Leggi gli INDIZI",
-        "NewJapanese": "TIPSを読む"
-    },
-    {
-        "CurrentEnglish": "Back",
-        "CurrentJapanese": "戻る",
-        "NewEnglish": "Indietro",
-        "NewJapanese": "戻る"
-    },
-    {
-        "CurrentEnglish": "Staff Room",
-        "CurrentJapanese": "スタッフルーム",
-        "NewEnglish": "Staff Room",
-        "NewJapanese": "スタッフルーム"
-    },
-    {
-        "CurrentEnglish": "Watanagashi 12-3",
-        "CurrentJapanese": "綿流し編　１２日目３",
-        "NewEnglish": "Watanagashi Giorno 12-3",
-        "NewJapanese": "綿流し編　１２日目３"
-    },
-    {
-        "CurrentEnglish": "Himatsubushi 2-2",
-        "CurrentJapanese": "暇潰し編　２日目２",
-        "NewEnglish": "Himatsubushi Giorno 2-2",
-        "NewJapanese": "暇潰し編　２日目２"
-    },
-    {
-        "CurrentEnglish": "Himatsubushi 2-3",
-        "CurrentJapanese": "暇潰し編　２日目３",
-        "NewEnglish": "Himatsubushi Giorno 2-3",
-        "NewJapanese": "暇潰し編　２日目３"
-    }
+	{
+		"CurrentEnglish": "Console",
+		"CurrentJapanese": "ゲーム機",
+		"NewEnglish": "rato",
+		"NewJapanese": "rato"
+	}, {
+		"CurrentEnglish": "Remake",
+		"CurrentJapanese": "リメーク",
+		"NewEnglish": "Kurosaki",
+		"NewJapanese": "クロサキ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "全て",
+		"NewEnglish": "ON",
+		"NewJapanese": "全て"
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "既読のみ",
+		"NewEnglish": "OFF",
+		"NewJapanese": "既読のみ"
+	}, {
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "ON",
+		"NewJapanese": "ON",
+		"Discriminator": 0
+	},{
+		"CurrentEnglish": "ON",
+		"CurrentJapanese": "ON",
+		"NewEnglish": "ON",
+		"NewJapanese": "ON",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "OFF",
+		"NewJapanese": "OFF",
+		"Discriminator": 0
+	}, {
+		"CurrentEnglish": "OFF",
+		"CurrentJapanese": "OFF",
+		"NewEnglish": "OFF",
+		"NewJapanese": "OFF",
+		"Discriminator": 1
+	}, {
+		"CurrentEnglish": "Show Menu",
+		"CurrentJapanese": "メニュー表示",
+		"NewEnglish": "Mostra Menu",
+		"NewJapanese": "メニュー表示"
+	}, {
+		"CurrentEnglish": "Hide Window",
+		"CurrentJapanese": "ウィンドウ非表示",
+		"NewEnglish": "Nascondi Finestra",
+		"NewJapanese": "ウィンドウ非表示"
+	}, {
+		"CurrentEnglish": "English",
+		"CurrentJapanese": "English",
+		"NewEnglish": "Italiano",
+		"NewJapanese": "Italiano"
+	}, {
+		"CurrentEnglish": "Standard 854x480",
+		"CurrentJapanese": "標準 854x480",
+		"NewEnglish": "Standard 854x480",
+		"NewJapanese": "標準 854x480"
+	}, {
+		"CurrentEnglish": "Fullscreen",
+		"CurrentJapanese": "フルスクリーン",
+		"NewEnglish": "Fullscreen",
+		"NewJapanese": "フルスクリーン"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 1",
+		"CurrentJapanese": "鬼隠し編１日目",
+		"NewEnglish": "Onikakushi Giorno 1",
+		"NewJapanese": "鬼隠し編１日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 2",
+		"CurrentJapanese": "鬼隠し編２日目",
+		"NewEnglish": "Onikakushi Giorno 2",
+		"NewJapanese": "鬼隠し編２日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 3",
+		"CurrentJapanese": "鬼隠し編３日目",
+		"NewEnglish": "Onikakushi Giorno 3",
+		"NewJapanese": "鬼隠し編３日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 4",
+		"CurrentJapanese": "鬼隠し編４日目",
+		"NewEnglish": "Onikakushi Giorno 4",
+		"NewJapanese": "鬼隠し編４日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 5",
+		"CurrentJapanese": "鬼隠し編５日目",
+		"NewEnglish": "Onikakushi Giorno 5",
+		"NewJapanese": "鬼隠し編５日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 9",
+		"CurrentJapanese": "鬼隠し編９日目",
+		"NewEnglish": "Onikakushi Giorno 9",
+		"NewJapanese": "鬼隠し編９日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 9-2",
+		"CurrentJapanese": "鬼隠し編９日目２",
+		"NewEnglish": "Onikakushi Giorno 9-2",
+		"NewJapanese": "鬼隠し編９日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 10",
+		"CurrentJapanese": "鬼隠し編１０日目",
+		"NewEnglish": "Onikakushi Giorno 10",
+		"NewJapanese": "鬼隠し編１０日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 11",
+		"CurrentJapanese": "鬼隠し編１１日目",
+		"NewEnglish": "Onikakushi Giorno 11",
+		"NewJapanese": "鬼隠し編１１日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 12",
+		"CurrentJapanese": "鬼隠し編１２日目",
+		"NewEnglish": "Onikakushi Giorno 12",
+		"NewJapanese": "鬼隠し編１２日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 13",
+		"CurrentJapanese": "鬼隠し編１３日目",
+		"NewEnglish": "Onikakushi Giorno 13",
+		"NewJapanese": "鬼隠し編１３日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 14",
+		"CurrentJapanese": "鬼隠し編１４日目",
+		"NewEnglish": "Onikakushi Giorno 14",
+		"NewJapanese": "鬼隠し編１４日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 14-2",
+		"CurrentJapanese": "鬼隠し編１４日目２",
+		"NewEnglish": "Onikakushi Giorno 14-2",
+		"NewJapanese": "鬼隠し編１４日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15",
+		"CurrentJapanese": "鬼隠し編１５日目",
+		"NewEnglish": "Onikakushi Giorno 15",
+		"NewJapanese": "鬼隠し編１５日目"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15-2",
+		"CurrentJapanese": "鬼隠し編１５日目２",
+		"NewEnglish": "Onikakushi Giorno 15-2",
+		"NewJapanese": "鬼隠し編１５日目２"
+	}, {
+		"CurrentEnglish": "Onikakushi Day 15-3",
+		"CurrentJapanese": "鬼隠し編１５日目３",
+		"NewEnglish": "Onikakushi Giorno 15-3",
+		"NewJapanese": "鬼隠し編１５日目３"
+	}, {
+		"CurrentEnglish": "Return to Extras Screen",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Indietro",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "All-Cast Review Session",
+		"CurrentJapanese": "お疲れさま会",
+		"NewEnglish": "Sessione di Riepilogo del Cast",
+		"NewJapanese": "お疲れさま会"
+	}, {
+		"CurrentEnglish": "Chapter Jump",
+		"CurrentJapanese": "シナリオジャンプモード",
+		"NewEnglish": "Salta Scenario",
+		"NewJapanese": "シナリオジャンプモード"
+	}, {
+		"CurrentEnglish": "View TIPS",
+		"CurrentJapanese": "TIPSを読む",
+		"NewEnglish": "Sfoglia gli INDIZI",
+		"NewJapanese": "TIPSを読む"
+	}, {
+		"CurrentEnglish": "Back",
+		"CurrentJapanese": "戻る",
+		"NewEnglish": "Indietro",
+		"NewJapanese": "戻る"
+	}, {
+		"CurrentEnglish": "View New TIPS",
+		"CurrentJapanese": "新規TIPSを読む",
+		"NewEnglish": "Sfoglia i Nuovi INDIZI",
+		"NewJapanese": "新規TIPSを読む"
+	}, {
+		"CurrentEnglish": "View All TIPS",
+		"CurrentJapanese": "TIPSをすべて読む",
+		"NewEnglish": "Sfoglia Tutti gli INDIZI",
+		"NewJapanese": "TIPSをすべて読む"
+	}, {
+		"CurrentEnglish": "Save & Load",
+		"CurrentJapanese": "Save & Load",
+		"NewEnglish": "Salva & Carica",
+		"NewJapanese": "Save & Load"
+	}, {
+		"CurrentEnglish": "Continue",
+		"CurrentJapanese": "ゲームを進める",
+		"NewEnglish": "Continua",
+		"NewJapanese": "ゲームを進める"
+	}
 ]
