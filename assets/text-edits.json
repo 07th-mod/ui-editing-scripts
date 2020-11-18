@@ -34,7 +34,8 @@
 		"CurrentJapanese": "フルスクリーン",
 		"NewEnglish": "Fullscreen",
 		"NewJapanese": "フルスクリーン"
-	},{
+	},
+    {
         "CurrentEnglish": "All-Cast Review Session",
         "CurrentJapanese": "お疲れさま会",
         "NewEnglish": "Sessione di Riepilogo del Cast",
@@ -145,7 +146,7 @@
 		"NewEnglish": "Italiano",
 		"NewJapanese": "Italiano"
 	},
-    { 
+    {
 		"CurrentEnglish": "Onikakushi Day 1",
 		"CurrentJapanese": "鬼隠し編１日目",
 		"NewEnglish": "Onikakushi Giorno 1",
@@ -225,6 +226,97 @@
 		"CurrentJapanese": "鬼隠し編１５日目３",
 		"NewEnglish": "Onikakushi Giorno 15-3",
 		"NewJapanese": "鬼隠し編１５日目３"
+	},
+    { 
+		"CurrentEnglish": "Watanagashi Day 1",
+		"CurrentJapanese": "綿流し編１日目",
+		"NewEnglish": "Watanagashi Giorno 1",
+		"NewJapanese": "綿流し編１日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 2",
+		"CurrentJapanese": "綿流し編２日目",
+		"NewEnglish": "Watanagashi Giorno 2",
+		"NewJapanese": "綿流し編２日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 3",
+		"CurrentJapanese": "綿流し編３日目",
+		"NewEnglish": "Watanagashi Giorno 3",
+		"NewJapanese": "綿流し編３日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 4",
+		"CurrentJapanese": "綿流し編４日目",
+		"NewEnglish": "Watanagashi Giorno 4",
+		"NewJapanese": "綿流し編４日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 5",
+		"CurrentJapanese": "綿流し編５日目",
+		"NewEnglish": "Watanagashi Giorno 5",
+		"NewJapanese": "綿流し編５日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 6",
+		"CurrentJapanese": "綿流し編９日目",
+		"NewEnglish": "Watanagashi Giorno 6",
+		"NewJapanese": "綿流し編９日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 7",
+		"CurrentJapanese": "綿流し編９日目２",
+		"NewEnglish": "Watanagashi Giorno 7",
+		"NewJapanese": "綿流し編９日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 8",
+		"CurrentJapanese": "綿流し編１０日目",
+		"NewEnglish": "Watanagashi Giorno 8",
+		"NewJapanese": "綿流し編１０日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 9",
+		"CurrentJapanese": "綿流し編１１日目",
+		"NewEnglish": "Watanagashi Giorno 9",
+		"NewJapanese": "綿流し編１１日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 9-2",
+		"CurrentJapanese": "綿流し編１２日目",
+		"NewEnglish": "Watanagashi Giorno 9-2",
+		"NewJapanese": "綿流し編１２日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10",
+		"CurrentJapanese": "綿流し編１３日目",
+		"NewEnglish": "Watanagashi Giorno 10",
+		"NewJapanese": "綿流し編１３日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-2",
+		"CurrentJapanese": "綿流し編１４日目",
+		"NewEnglish": "Watanagashi Giorno 10-2",
+		"NewJapanese": "綿流し編１４日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-3",
+		"CurrentJapanese": "綿流し編１４日目２",
+		"NewEnglish": "Watanagashi Giorno 10-3",
+		"NewJapanese": "綿流し編１４日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 10-4",
+		"CurrentJapanese": "綿流し編１５日目",
+		"NewEnglish": "Watanagashi Giorno 10-4",
+		"NewJapanese": "綿流し編１５日目"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 11",
+		"CurrentJapanese": "綿流し編１５日目２",
+		"NewEnglish": "Watanagashi Giorno 11",
+		"NewJapanese": "綿流し編１５日目２"
+	}, {
+		"CurrentEnglish": "Watanagashi Day 11-2",
+		"CurrentJapanese": "綿流し編１５日目３",
+		"NewEnglish": "Watanagashi Giorno 11-2",
+		"NewJapanese": "綿流し編１５日目３"
+	}, {
+        "CurrentEnglish": "Watanagashi 12",
+        "CurrentJapanese": "綿流し編　１２日目３",
+        "NewEnglish": "Watanagashi Giorno 12",
+        "NewJapanese": "綿流し編　１２日目３"
+    },{
+		"CurrentEnglish": "Watanagashi Day 12-2",
+		"CurrentJapanese": "綿流し編１５日目３",
+		"NewEnglish": "Watanagashi Giorno 12-2",
+		"NewJapanese": "綿流し編１５日目３"
 	}, {
         "CurrentEnglish": "Watanagashi 12-3",
         "CurrentJapanese": "綿流し編　１２日目３",
