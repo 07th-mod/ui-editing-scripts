@@ -9,7 +9,7 @@ The main rust script will generate a new emip file, apply it to the assets and p
 Please note that documentation is in two places:
 
 1. This Readme.md file
-2. [Detailed documentation with images etc. on this repository's Wiki](https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts).
+2. [Detailed documentation with images etc. on the `higurashi-dev-guides` Wiki](https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts).
 
 Please look through the detailed documentation, especially if you're working on a new chapter, new language, or using UABE - this file does not contain information on those topics.
 
