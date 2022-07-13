@@ -23,6 +23,7 @@ fn main() {
     chapters.insert("tsumihoroboshi", 6);
     chapters.insert("minagoroshi", 7);
     chapters.insert("matsuribayashi", 8);
+    chapters.insert("rei", 9);
 
     if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter");
@@ -84,7 +85,9 @@ fn main() {
     if Path::new(&version_specific_path).exists() {
         copy_images(version_specific_path.as_ref(), &directory_assets);
     }
-    if arc_number.clone() == 8 {
+    if arc_number.clone() == 9 {
+        fs::rename("output/assets/configbg_Texture2D.png", "output/assets/56configbg_Texture2D.png").expect("Unable to rename");
+    } else if arc_number.clone() == 8 {
         fs::rename("output/assets/configbg_Texture2D.png", "output/assets/50configbg_Texture2D.png").expect("Unable to rename");
     } else {
         fs::rename("output/assets/configbg_Texture2D.png", "output/assets/47configbg_Texture2D.png").expect("Unable to rename");
@@ -95,6 +98,7 @@ fn main() {
         5..=6 => "assets/files-5.5",
         7     => "assets/files-5.6",
         8     => "assets/files-2017.2",
+        9     => "assets/files-2019.4",
         _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
@@ -106,7 +110,11 @@ fn main() {
         font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
     }
 
-    let unity_ver_str = if *arc_number >= 8 { "2017" } else { "5" };
+    let unity_ver_str = match arc_number {
+        1..=7 => "5",
+        8     => "2017",
+        9     => "2019",
+    };
 
     let status = Command::new("python")
         .env("PYTHONIOENCODING", "utf-8")
