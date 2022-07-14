@@ -30,11 +30,11 @@ fn main() {
         process::exit(1);
     }
 
-    let arc_number = chapters.get(&chapter[..]).unwrap();
-    let arc_type = if arc_number <= &4 { "question_arcs" } else { "answer_arcs" };
+    let arc_number = chapters.get(&chapter[..]).unwrap().clone();
+    let arc_type = if arc_number <= 4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
     let directory_assets = "output/assets";
-    let directory_data = format!("output/HigurashiEp{:02}_Data", &arc_number);
+    let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
     let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &unity, &system);
     let archive = format!("{}-UI_{}_{}.7z", &chapter.to_title_case(), &unity, &system);
 
@@ -105,49 +105,52 @@ fn main() {
     println!();
 
     // 3. fonts
-    let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
-    if ! Path::new(&font_path).exists() {
-        font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
+    if arc_number.clone() < 9 {
+        let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
+        if ! Path::new(&font_path).exists() {
+            font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
+        }
+
+        let unity_ver_str = match arc_number {
+            1..=7 => "5",
+            8     => "2017",
+            9     => "2019",
+            _     => panic!("Couldn't identify version for arc {}", arc_number),
+        };
+
+        let status = Command::new("python")
+            .env("PYTHONIOENCODING", "utf-8")
+            .arg("scripts/TMPAssetConverter.py")
+            .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
+            .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
+            .arg(font_path)
+            .arg(&directory_assets)
+            .arg(&unity_ver_str)
+            .status()
+            .expect("failed to execute TMPAssetConverter.py");
+
+        assert!(status.success());
+
+        let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
+        if ! Path::new(&font_path).exists() {
+            font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
+        }
+
+        let status = Command::new("python")
+            .env("PYTHONIOENCODING", "utf-8")
+            .arg("scripts/TMPAssetConverter.py")
+            .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
+            .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
+            .arg(font_path)
+            .arg(&directory_assets)
+            .arg(&unity_ver_str)
+            .status()
+            .expect("failed to execute TMPAssetConverter.py");
+
+        assert!(status.success());
+
+        println!();
     }
-
-    let unity_ver_str = match arc_number {
-        1..=7 => "5",
-        8     => "2017",
-        9     => "2019",
-    };
-
-    let status = Command::new("python")
-        .env("PYTHONIOENCODING", "utf-8")
-        .arg("scripts/TMPAssetConverter.py")
-        .arg("assets/fonts/msgothic_0 SDF Atlas_Texture2D.dat")
-        .arg("assets/fonts/msgothic_0 SDF_TextMeshProFont.dat")
-        .arg(font_path)
-        .arg(&directory_assets)
-        .arg(&unity_ver_str)
-        .status()
-        .expect("failed to execute TMPAssetConverter.py");
-
-    assert!(status.success());
-
-    let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
-    if ! Path::new(&font_path).exists() {
-        font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
-    }
-
-    let status = Command::new("python")
-        .env("PYTHONIOENCODING", "utf-8")
-        .arg("scripts/TMPAssetConverter.py")
-        .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
-        .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
-        .arg(font_path)
-        .arg(&directory_assets)
-        .arg(&unity_ver_str)
-        .status()
-        .expect("failed to execute TMPAssetConverter.py");
-
-    assert!(status.success());
-
-    println!();
 
     // 4. copy assets
     copy_files(format!("assets/vanilla/{}/{}-{}", &chapter, &system, &unity).as_ref(), &directory_data);
