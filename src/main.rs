@@ -66,25 +66,25 @@ fn main() {
     assert_eq!(unity, &version.trim());
 
     // 1. texts
-    let status = Command::new("python")
-        .env("PYTHONIOENCODING", "utf-8")
-        .arg("scripts/UnityTextModifier.py")
-        .arg(&assets)
-        .arg("assets/text-edits.json")
-        .arg(&directory_assets)
-        .status()
-        .expect("failed to execute UnityTextModifier.py");
+    if arc_number.clone() < 9 {
+        let status = Command::new("python")
+            .env("PYTHONIOENCODING", "utf-8")
+            .arg("scripts/UnityTextModifier.py")
+            .arg(&assets)
+            .arg("assets/text-edits.json")
+            .arg(&directory_assets)
+            .status()
+            .expect("failed to execute UnityTextModifier.py");
 
-    assert!(status.success());
+        assert!(status.success());
+    }
 
     // 2. images
     copy_images("assets/images/shared", &directory_assets);
     copy_images(format!("assets/images/{}", &arc_type).as_ref(), &directory_assets);
     copy_images(format!("assets/images/specific/{}", &chapter).as_ref(), &directory_assets);
     let version_specific_path = format!("assets/images/version-specific/{}-{}", &chapter, &unity);
-    if Path::new(&version_specific_path).exists() {
-        copy_images(version_specific_path.as_ref(), &directory_assets);
-    }
+    copy_images(version_specific_path.as_ref(), &directory_assets);
     if arc_number.clone() == 9 {
         fs::rename("output/assets/configbg_Texture2D.png", "output/assets/56configbg_Texture2D.png").expect("Unable to rename");
     } else if arc_number.clone() == 8 {
@@ -202,6 +202,10 @@ fn main() {
 }
 
 fn copy_images(from: &str, to: &str) {
+    if ! Path::new(&from).exists() {
+        println!("Path {} not found", from);
+        return
+    }
     println!("Copying files from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
@@ -210,6 +214,10 @@ fn copy_images(from: &str, to: &str) {
 }
 
 fn copy_files(from: &str, to: &str) {
+    if ! Path::new(&from).exists() {
+        println!("Path {} not found", from);
+        return
+    }
     println!("Copying files from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
