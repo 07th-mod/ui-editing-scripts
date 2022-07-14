@@ -21,4 +21,5 @@ cargo run minagoroshi 5.6.7f1 unix && \
 cargo run matsuribayashi 5.6.7f1 win && \
 cargo run matsuribayashi 5.6.7f1 unix && \
 cargo run matsuribayashi 2017.2.5 unix && \
-cargo run matsuribayashi 2017.2.5 win
+cargo run matsuribayashi 2017.2.5 win && \
+cargo run rei 2019.4.3 win
