@@ -32,12 +32,17 @@ class AssetEdit:
 		output = len(self.name).to_bytes(4, byteorder="little")
 		output += self.name.encode("utf-8")
 		output += b"\0" * ((4 - len(self.name)) % 4)
+		if unityVersion[0] == 2019:
+			output += (4).to_bytes(4, byteorder="little") # m_ForcedFallbackFormat
+			output += (0).to_bytes(4, byteorder="little") # m_DownscaleFallback
 		output += image.width.to_bytes(4, byteorder="little")
 		output += image.height.to_bytes(4, byteorder="little")
 		output += len(imageData).to_bytes(4, byteorder="little")
 		output += (4).to_bytes(4, byteorder="little") # m_TextureFormat
 		output += (1).to_bytes(4, byteorder="little") # m_MipCount
 		output += b"\0\x01\0\0" # Flags
+		if unityVersion[0] == 2019:
+			output += (0).to_bytes(4, byteorder="little") # m_StreamingMipmapsPriority
 		output += (1).to_bytes(4, byteorder="little") # m_ImageCount
 		output += (2).to_bytes(4, byteorder="little") # m_TextureDimension
 		output += (2).to_bytes(4, byteorder="little") # m_FilterMode
@@ -45,7 +50,7 @@ class AssetEdit:
 		output += (0).to_bytes(4, byteorder="little") # m_MipBias
 		if unityVersion[0] == 5:
 			output += (1).to_bytes(4, byteorder="little") # m_WrapMode
-		elif unityVersion[0] == 2017:
+		elif unityVersion[0] == 2017 or unityVersion[0] == 2019:
 			output += (1).to_bytes(4, byteorder="little") * 3 # m_wrap{U,V,W}
 		else:
 			sys.stderr.write("Warning: Unrecognized Unity version: " + str(unityVersion[0]))
