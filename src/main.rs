@@ -66,18 +66,16 @@ fn main() {
     assert_eq!(unity, &version.trim());
 
     // 1. texts
-    if arc_number.clone() < 9 {
-        let status = Command::new("python")
-            .env("PYTHONIOENCODING", "utf-8")
-            .arg("scripts/UnityTextModifier.py")
-            .arg(&assets)
-            .arg("assets/text-edits.json")
-            .arg(&directory_assets)
-            .status()
-            .expect("failed to execute UnityTextModifier.py");
+    let status = Command::new("python")
+        .env("PYTHONIOENCODING", "utf-8")
+        .arg("scripts/UnityTextModifier.py")
+        .arg(&assets)
+        .arg("assets/text-edits.json")
+        .arg(&directory_assets)
+        .status()
+        .expect("failed to execute UnityTextModifier.py");
 
-        assert!(status.success());
-    }
+    assert!(status.success());
 
     // 2. images
     copy_images("assets/images/shared", &directory_assets);
