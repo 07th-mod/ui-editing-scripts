@@ -31,7 +31,6 @@ fn main() {
     }
 
     let arc_number = chapters.get(&chapter[..]).unwrap().clone();
-    let arc_type = if arc_number <= 4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
@@ -79,7 +78,11 @@ fn main() {
 
     // 2. images
     copy_images("assets/images/shared", &directory_assets);
-    copy_images(format!("assets/images/{}", &arc_type).as_ref(), &directory_assets);
+    if arc_number <= 4 {
+        copy_images("assets/images/question_arcs", &directory_assets);
+    } else if arc_number <= 8 {
+        copy_images("assets/images/answer_arcs", &directory_assets);
+    };
     copy_images(format!("assets/images/specific/{}", &chapter).as_ref(), &directory_assets);
     let version_specific_path = format!("assets/images/version-specific/{}-{}", &chapter, &unity);
     copy_images(version_specific_path.as_ref(), &directory_assets);
