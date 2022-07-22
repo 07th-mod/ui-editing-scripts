@@ -27,7 +27,7 @@ Please note that documentation is in two places:
    - On Windows, you need to restart your terminal window to update your `PATH`.
      - Try caling `AssetBundleExtractor.exe`
      - Try caling `7za.exe`
-7. Download the [vanilla UIs](http://07th-mod.com/archive/vanilla.7z) for Higurashi games and unpack them into `assets/vanilla`.
+7. Download the [vanilla UI archive](http://07th-mod.com/archive/vanilla.7z) and unpack it into the repository root (creating the folder `assets/vanilla`).
 
 ### Using the tool to generate sharedassets0.assets
 
