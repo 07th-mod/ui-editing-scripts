@@ -75,7 +75,7 @@ class ScriptEdit:
 			raise IndexError(f"No asset found for {self.shortString}")
 		if self.discriminator == None:
 			if len(offsets) > 1:
-				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ". Please add a field like 'Discriminator: 0' to indicate which block should apply to which asset (do NOT use quotes around the number, do not use the raw address)")
+				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ". Please add a field like 'Discriminator: 0' to indicate which block should apply to which asset (do NOT use quotes around the number, do not use the raw address). For an example, see https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts#unitytextmodifier")
 			self.offset = offsets[0]
 		else:
 			if len(offsets) <= self.discriminator:
