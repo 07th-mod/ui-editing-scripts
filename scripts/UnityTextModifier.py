@@ -75,7 +75,7 @@ class ScriptEdit:
 			raise IndexError(f"No asset found for {self.shortString}")
 		if self.discriminator == None:
 			if len(offsets) > 1:
-				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ".  Please select one and add a Discriminator tag for it.")
+				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ". Please add a field like 'Discriminator: 0' to indicate which block should apply to which asset (do NOT use quotes around the number, do not use the raw address)")
 			self.offset = offsets[0]
 		else:
 			if len(offsets) <= self.discriminator:
