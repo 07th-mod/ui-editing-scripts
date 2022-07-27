@@ -31,7 +31,6 @@ fn main() {
     }
 
     let arc_number = chapters.get(&chapter[..]).unwrap().clone();
-    let arc_type = if arc_number <= 4 { "question_arcs" } else { "answer_arcs" };
     let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
@@ -66,22 +65,24 @@ fn main() {
     assert_eq!(unity, &version.trim());
 
     // 1. texts
-    if arc_number.clone() < 9 {
-        let status = Command::new("python")
-            .env("PYTHONIOENCODING", "utf-8")
-            .arg("scripts/UnityTextModifier.py")
-            .arg(&assets)
-            .arg("assets/text-edits.json")
-            .arg(&directory_assets)
-            .status()
-            .expect("failed to execute UnityTextModifier.py");
+    let status = Command::new("python")
+        .env("PYTHONIOENCODING", "utf-8")
+        .arg("scripts/UnityTextModifier.py")
+        .arg(&assets)
+        .arg("assets/text-edits.json")
+        .arg(&directory_assets)
+        .status()
+        .expect("failed to execute UnityTextModifier.py");
 
-        assert!(status.success());
-    }
+    assert!(status.success());
 
     // 2. images
     copy_images("assets/images/shared", &directory_assets);
-    copy_images(format!("assets/images/{}", &arc_type).as_ref(), &directory_assets);
+    if arc_number <= 4 {
+        copy_images("assets/images/question_arcs", &directory_assets);
+    } else if arc_number <= 8 {
+        copy_images("assets/images/answer_arcs", &directory_assets);
+    };
     copy_images(format!("assets/images/specific/{}", &chapter).as_ref(), &directory_assets);
     let version_specific_path = format!("assets/images/version-specific/{}-{}", &chapter, &unity);
     copy_images(version_specific_path.as_ref(), &directory_assets);
