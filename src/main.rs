@@ -13,6 +13,11 @@ fn main() {
     let chapter = &args[1];
     let unity = &args[2];
     let system = &args[3];
+    let checksum = if args.len() > 4 {
+        Some(&args[4])
+    } else {
+        None
+    };
 
     let mut chapters = HashMap::new();
     chapters.insert("onikakushi", 1);
@@ -26,16 +31,18 @@ fn main() {
     chapters.insert("rei", 9);
 
     if !chapters.contains_key(&chapter[..]) {
-        println!("Unknown chapter");
+        println!("Unknown chapter, should be one of {:?}", chapters.keys());
         process::exit(1);
     }
 
     let arc_number = chapters.get(&chapter[..]).unwrap().clone();
-    let assets = format!("assets/vanilla/{}/{}-{}/sharedassets0.assets", &chapter, &system, &unity);
+    let assets = format!("assets/vanilla/{}/{}-{}{}/sharedassets0.assets", &chapter, &system, &unity, &format_checksum(checksum, "-"));
+    println!("Looking for vanilla assets at [{}]", assets);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
     let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &unity, &system);
-    let archive = format!("{}-UI_{}_{}.7z", &chapter.to_title_case(), &unity, &system);
+    //to_title_case() replaces hyphens and underscores with spaces. If this happens, revert it by replacing spaces with hyphens.
+    let archive = format!("{}-UI_{}_{}{}.7z", &chapter.to_title_case().replace(" ", "-"), &unity, &system, &format_checksum(checksum, "_"));
 
     if Path::new(&emip).exists() {
         fs::remove_file(&emip).expect("Failed to remove file");
@@ -61,6 +68,10 @@ fn main() {
         .expect("failed to execute UnityTextModifier.py");
 
     let version = String::from_utf8_lossy(&output.stdout).into_owned();
+
+    if unity != &version.trim() {
+        println!("ERROR: Expected unity version {} but got version {}. If 'nothing found' then check the vanilla folder actually contains the required vanilla sharedassets!", unity,  &version.trim());
+    }
 
     assert_eq!(unity, &version.trim());
 
@@ -180,6 +191,8 @@ fn main() {
         .status()
         .expect("failed to execute AssetBundleExtractor");
 
+    println!("AssetBundleExtractor Status: {}", status);
+
     assert!(status.success());
 
     fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
@@ -190,16 +203,37 @@ fn main() {
     fs::remove_file(&emip).expect("Failed to remove file");
 
     // 7. pack with 7zip
-    let status = Command::new("7za")
-        .current_dir("output")
-        .arg("a")
-        .arg("-t7z")
-        .arg(&archive)
-        .arg(format!("../{}", &directory_data))
-        .status()
-        .expect("failed to execute 7ze");
+    let result_7za = pack_7zip("7za", &archive, &directory_data);
 
-    assert!(status.success());
+    let status: std::io::Result<process::ExitStatus> = match result_7za {
+        Ok(ok) => Ok(ok),
+        Err(err) => match err.kind() {
+            std::io::ErrorKind::NotFound => {
+                println!("Warning: '7za' not found - trying '7z' instead");
+                pack_7zip("7z", &archive, &directory_data)
+            },
+            _ => Err(err),
+        }
+    };
+
+    let exit_status = status.expect("failed to execute 7za or 7z");
+
+    assert!(exit_status.success());
+}
+
+fn format_checksum(checksum: Option<&String>, sep: &str) -> String
+{
+    return checksum.map_or("".to_string(), |c| format!("{}{}", sep, c));
+}
+
+fn pack_7zip(command: &str, archive: &String, directory_data: &String) -> std::io::Result<process::ExitStatus> {
+    Command::new(command)
+    .current_dir("output")
+    .arg("a")
+    .arg("-t7z")
+    .arg(archive)
+    .arg(format!("../{}", directory_data))
+    .status()
 }
 
 fn copy_images(from: &str, to: &str) {

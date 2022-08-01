@@ -2,3 +2,4 @@
 /output
 /target
 **/*.rs.bk
+/64bit
