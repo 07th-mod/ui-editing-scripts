@@ -16,40 +16,54 @@ Please note that documentation is in two places:
 
 ## Usage instructions for translators and dev team
 
-### Prerequisites
+### Setup (Windows Only)
 
-1. Install Python 3
-2. Run `pip install numpy Pillow unitypack` to install the required Python packages
-3. Install Rust
-4. Download exactly this version of UABE https://github.com/SeriousCache/UABE/releases/tag/2.2stabled
-5. Download 7zip (standalone console version) from here https://www.7-zip.org/download.html
-6. Extract UABE and 7z and make sure **both** are on your `PATH`
-   - On Windows, you need to restart your terminal window to update your `PATH`.
-     - Try caling `AssetBundleExtractor.exe`
-     - Try caling `7za.exe`
-7. Download the [vanilla UI archive](http://07th-mod.com/archive/vanilla.7z) and unpack it into the repository root (creating the folder `assets/vanilla`).
+The below instructions only work on Windows!
 
-### Using the tool to generate sharedassets0.assets
+1. Install Python 3 from the [Python Download Page](https://www.python.org/downloads/)
+2. For translators, fork this repository ([Github forking instructions]( https://docs.github.com/en/get-started/quickstart/fork-a-repo))
+     - A fork is recommended for translators as you can check in your changes to github. It also allows you to use Github for building and hosting assets
+3. Clone the repository (either this repository, or the one you forked) to your computer
 
-To build all chapters:
- - On Linux open a terminal and run the below command
- - On Windows with "Git for Windows" installed, right click the folder and click "Git Bash Here", then use that terminal
+### Using the tool to generate sharedassets0.assets (Windows Only)
 
-```
-./compileall.sh
-```
+To list the supported Higurashi chapters for this tool, run
 
-To build a particular chapter/version run the following command
+```python build.py```
 
-```
-cargo run <chapter> <unityversion> <system>
-```
+which should show an error message complaining about a missing `chapter` argument
 
-`<chapter>` is simply `onikakushi`, `watanagashi` and so on.
+Then run
 
-`<unityversion>` is the unity version, like `5.5.3p3` or `2017.2.5`. Note that for version `2017.2.5f1`, you just enter `2017.2.5` (currently only support the first 8 characters of the unity version)
+```python build.py onikakushi```
 
-`<system>` is `win` or `unix`.
+for example, to build the sharedassets required for onikakushi. You can also run `python build.py all` to build all chapters.
+
+**NOTE: If a new game is released, or a game is updated, you may need to re-download the vanilla assets. To do this, add the '--force-download' option like so:**
+
+```python build.py rei --force-download```
+
+You may encounter the following problems:
+- Windows Defender may block/delete our precompiled `ui-compiler.exe`. In this case, you can either try to unblock it, or install Rust to make the script compile it on your own computer. Contact us if you have this issue.
+- For any other error, likely we just need to update the build script, so please contact us.
+
+### Modifying Assets
+
+Assets are located in the `assets` folder. Replace any file in the `assets` folder, then run the script again, and it should be included in the generated assets files.
+
+### Building assets using Github Actions
+
+#### Note for forks/translators
+
+Github actions might be disabled for your forks. Clicking on the 'Actions' tab should allow you to enable it. Please do this before proceeding.
+
+#### Building a release
+
+To use Github Actions to build a release, create a tag like `v1.0.6_onikakushi` which contains the chapter name (separated by an underscore) you want to build (or 'all' for all chapters).
+
+Click on the 'Actions' tab to observe the build process.
+
+Once the build is complete, go to the 'Releases' page, and a new draft release should appear. You can check everything is OK before publishing the release, or just download the files without publishing the release.
 
 ----
 
@@ -71,6 +85,9 @@ You'll need to extract the 'msgothic' font files from the stock `.assets` file b
 2. Rename them as `msgothic_0.dat` and `msgothic_2.dat`
 3. Move them to `assets/vanilla/<chapter>/msgothic_0.dat` & `assets/vanilla/<chapter>/msgothic_2.dat`
 
+## Building `ui-compiler.exe`
+
+To build just the `ui-compiler.exe`, push any tag to the repository.
 
 ## Extra Notes
 
