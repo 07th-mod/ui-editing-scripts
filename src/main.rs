@@ -117,18 +117,18 @@ fn main() {
     println!();
 
     // 3. fonts
+    let unity_ver_str = match arc_number {
+        1..=7 => "5",
+        8     => "2017",
+        9     => "2019",
+        _     => panic!("Couldn't identify version for arc {}", arc_number),
+    };
+
     if arc_number.clone() < 9 {
         let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
         if ! Path::new(&font_path).exists() {
             font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
         }
-
-        let unity_ver_str = match arc_number {
-            1..=7 => "5",
-            8     => "2017",
-            9     => "2019",
-            _     => panic!("Couldn't identify version for arc {}", arc_number),
-        };
 
         let status = Command::new("python")
             .env("PYTHONIOENCODING", "utf-8")
@@ -142,27 +142,28 @@ fn main() {
             .expect("failed to execute TMPAssetConverter.py");
 
         assert!(status.success());
-
-        let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
-        if ! Path::new(&font_path).exists() {
-            font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
-        }
-
-        let status = Command::new("python")
-            .env("PYTHONIOENCODING", "utf-8")
-            .arg("scripts/TMPAssetConverter.py")
-            .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
-            .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
-            .arg(font_path)
-            .arg(&directory_assets)
-            .arg(&unity_ver_str)
-            .status()
-            .expect("failed to execute TMPAssetConverter.py");
-
-        assert!(status.success());
-
-        println!();
     }
+
+    let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
+    if ! Path::new(&font_path).exists() {
+        font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
+    }
+
+    let status = Command::new("python")
+        .env("PYTHONIOENCODING", "utf-8")
+        .arg("scripts/TMPAssetConverter.py")
+        .arg("assets/fonts/msgothic_2 SDF Atlas_Texture2D.dat")
+        .arg("assets/fonts/msgothic_2 SDF_TextMeshProFont.dat")
+        .arg(font_path)
+        .arg(&directory_assets)
+        .arg(&unity_ver_str)
+        .status()
+        .expect("failed to execute TMPAssetConverter.py");
+
+    assert!(status.success());
+
+    println!();
+
 
     // 4. copy assets
     copy_files(format!("assets/vanilla/{}/{}-{}", &chapter, &system, &unity).as_ref(), &directory_data);
