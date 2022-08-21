@@ -5,7 +5,10 @@ import os
 import pathlib
 import shutil
 import argparse
+import json
 from typing import List
+from urllib.request import Request, urlopen
+from warnings import catch_warnings
 
 # Get the github ref
 GIT_TAG = None
@@ -72,7 +75,6 @@ chapter_to_build_variants = {
     ],
 }
 
-
 def is_windows():
     return sys.platform == "win32"
 
@@ -132,6 +134,49 @@ def get_build_variants(selected_chapter: str) -> List[str]:
         )
 
 
+class LastModifiedManager:
+    savePath = 'lastModified.json'
+
+    def __init__(self) -> None:
+        self.lastModifiedDict = {}
+
+        if os.path.exists(LastModifiedManager.savePath):
+            with open(LastModifiedManager.savePath, 'r') as handle:
+                self.lastModifiedDict = json.load(handle)
+
+    def getRemoteLastModified(url: str):
+        httpResponse = urlopen(Request(url, headers={"User-Agent": ""}))
+        return httpResponse.getheader("Last-Modified").strip()
+
+    def isRemoteModifiedAndUpdateMemory(self, url: str):
+        """
+        Checks whether a URL has been modified compared to the in-memory database,
+        and updates the in-memory database with the new date modified time.
+
+        NOTE: calling this function twice will return true the first time, then false
+        the second time (assuming remote has not been updated), as the first call
+        updates the in-memory database
+        """
+        remoteLastModified = LastModifiedManager.getRemoteLastModified(url)
+        localLastModified = self.lastModifiedDict.get(url)
+
+        if localLastModified is not None and localLastModified == remoteLastModified:
+            print(f"LastModifiedManager: local and remote dates the same {localLastModified}")
+            return False
+
+        print(f"LastModifiedManager: local {localLastModified} and remote {remoteLastModified} are different")
+        self.lastModifiedDict[url] = remoteLastModified
+        return True
+
+    def save(self):
+        """
+        Save the in-memory database to file, so it persists even when the program is closed.
+        """
+        with open(LastModifiedManager.savePath, 'w') as handle:
+            json.dump(self.lastModifiedDict, handle)
+
+lastModifiedManager = LastModifiedManager()
+
 # Parse command line arguments
 parser = argparse.ArgumentParser(
     description="Download and Install dependencies for ui editing scripts, then run build"
@@ -167,27 +212,30 @@ call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 # Download and extract the vanilla assets
 assets_path = "assets"
 vanilla_archive = "vanilla.7z"
+assets_url = "http://07th-mod.com/archive/vanilla.7z"
 vanilla_folder_path = os.path.join(assets_path, "vanilla")
 vanilla_fully_extracted = os.path.exists(vanilla_folder_path) and not os.path.exists(vanilla_archive)
-if force_download or not vanilla_fully_extracted:
+if lastModifiedManager.isRemoteModifiedAndUpdateMemory(assets_url) or force_download or not vanilla_fully_extracted:
     print("Downloading and Extracting Vanilla assets")
     pathlib.Path(vanilla_archive).unlink(missing_ok=True)
     if os.path.exists(vanilla_folder_path):
         shutil.rmtree(vanilla_folder_path)
 
-    download("http://07th-mod.com/archive/vanilla.7z")
+    download(assets_url)
     seven_zip_extract(vanilla_archive)
 
     # Remove the archive to indicate extraction was successful
     pathlib.Path(vanilla_archive).unlink(missing_ok=True)
+    lastModifiedManager.save()
 else:
     print("Vanilla archive already extracted - skipping")
 
 # Download and extract UABE
 uabe_folder = "64bit"
 uabe_archive = "AssetsBundleExtractor_2.2stabled_64bit_with_VC2010.zip"
+uabe_url = f"http://07th-mod.com/archive/{uabe_archive}"
 uabe_fully_extracted = os.path.exists(uabe_folder) and not os.path.exists(uabe_archive)
-if force_download or not uabe_fully_extracted:
+if lastModifiedManager.isRemoteModifiedAndUpdateMemory(uabe_url) or force_download or not uabe_fully_extracted:
     print("Downloading and Extracting UABE")
     pathlib.Path(uabe_archive).unlink(missing_ok=True)
     if os.path.exists(uabe_folder):
@@ -195,11 +243,12 @@ if force_download or not uabe_fully_extracted:
 
     # The default Windows github runner doesn't have the 2010 VC++ redistributable preventing UABE from running
     # This zip file bundles the required DLLs (msvcr100.dll & msvcp100.dll) so it's not required
-    download(f"http://07th-mod.com/archive/{uabe_archive}")
+    download(uabe_url)
     seven_zip_extract(uabe_archive)
 
     # Remove the archive to indicate extraction was successful
     pathlib.Path(uabe_archive).unlink(missing_ok=True)
+    lastModifiedManager.save()
 else:
     print("UABE already extracted - skipping")
 

@@ -39,7 +39,7 @@ Then run
 
 for example, to build the sharedassets required for onikakushi. You can also run `python build.py all` to build all chapters.
 
-**NOTE: If a new game is released, or a game is updated, you may need to re-download the vanilla assets. To do this, add the '--force-download' option like so:**
+**NOTE: The script should automatically detect if the vanilla assets or UABE has changed, and re-download them. But if that doesn't work, use the '--force-download' option like so:**
 
 ```python build.py rei --force-download```
 
