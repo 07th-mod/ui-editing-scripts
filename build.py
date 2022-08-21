@@ -71,7 +71,9 @@ chapter_to_build_variants = {
     ],
     'rei': [
         'rei 2019.4.3 win',
+        'rei 2019.4.4 win',
         'rei 2019.4.3 unix',
+        'rei 2019.4.4 unix',
     ],
 }
 
@@ -161,10 +163,10 @@ class LastModifiedManager:
         localLastModified = self.lastModifiedDict.get(url)
 
         if localLastModified is not None and localLastModified == remoteLastModified:
-            print(f"LastModifiedManager: local and remote dates the same {localLastModified}")
+            print(f"LastModifiedManager [{url}]: local and remote dates the same {localLastModified}")
             return False
 
-        print(f"LastModifiedManager: local {localLastModified} and remote {remoteLastModified} are different")
+        print(f"LastModifiedManager [{url}]: local {localLastModified} and remote {remoteLastModified} are different")
         self.lastModifiedDict[url] = remoteLastModified
         return True
 
