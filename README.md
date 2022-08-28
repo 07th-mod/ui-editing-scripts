@@ -20,7 +20,10 @@ Please note that documentation is in two places:
 
 The below instructions only work on Windows!
 
-1. Install Python 3 from the [Python Download Page](https://www.python.org/downloads/)
+1. Follow [the instructions here](https://phoenixnap.com/kb/how-to-install-python-3-windows) to install Python 3, and make sure Python is on your path
+     - If the above link doesn't work, just make sure you do the following:
+     - During the install, make sure you tick the checkbox "Add Python 3 to PATH"
+     - After the install is finished, **open a fresh command window**, then type `python` to check if python is correctly on your path (should display the python prompt)
 2. For translators, fork this repository ([Github forking instructions]( https://docs.github.com/en/get-started/quickstart/fork-a-repo))
      - A fork is recommended for translators as you can check in your changes to github. It also allows you to use Github for building and hosting assets
 3. Clone the repository (either this repository, or the one you forked) to your computer
