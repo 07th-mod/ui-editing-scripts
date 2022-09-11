@@ -74,6 +74,8 @@ chapter_to_build_variants = {
         'rei 2019.4.4 win',
         'rei 2019.4.3 unix',
         'rei 2019.4.4 unix',
+        'rei 2019.4.3 mac',
+        'rei 2019.4.4 mac',
     ],
 }
 
