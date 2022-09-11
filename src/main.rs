@@ -36,7 +36,8 @@ fn main() {
     }
 
     let arc_number = chapters.get(&chapter[..]).unwrap().clone();
-    let assets = format!("assets/vanilla/{}/{}-{}{}/sharedassets0.assets", &chapter, &system, &unity, &format_checksum(checksum, "-"));
+    let assets_containing_folder = format!("assets/vanilla/{}/{}-{}{}", &chapter, &system, &unity, &format_checksum(checksum, "-"));
+    let assets = format!("{}/{}", assets_containing_folder, "sharedassets0.assets");
     println!("Looking for vanilla assets at [{}]", assets);
     let directory_assets = "output/assets";
     let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
@@ -165,7 +166,7 @@ fn main() {
     }
 
     // 4. copy assets
-    copy_files(format!("assets/vanilla/{}/{}-{}", &chapter, &system, &unity).as_ref(), &directory_data);
+    copy_files(assets_containing_folder.as_ref(), &directory_data);
 
     println!();
 
