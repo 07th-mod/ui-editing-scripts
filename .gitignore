@@ -3,3 +3,4 @@
 /target
 **/*.rs.bk
 /64bit
+lastModified.json
