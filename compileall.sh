@@ -25,6 +25,4 @@ cargo run matsuribayashi 2017.2.5 win && \
 cargo run rei 2019.4.3 win && \
 cargo run rei 2019.4.4 win && \
 cargo run rei 2019.4.3 unix && \
-cargo run rei 2019.4.4 unix && \
-cargo run rei 2019.4.3 mac && \
-cargo run rei 2019.4.4 mac
+cargo run rei 2019.4.4 unix
