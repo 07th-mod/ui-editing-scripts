@@ -1,7 +1,7 @@
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
-	print("Usage: \(CommandLine.arguments[0]) file [(e|j)]\nExtracts text from Higurashi script files.  Use e or j to specify English or Japanese, otherwise you'll get both")
+	print("Usage: \(CommandLine.arguments[0]) file [(e|j)][-name <name>]\nExtracts text from Higurashi script files.  Use e or j to specify English or Japanese, otherwise you'll get both.  Specify a name to extract only a specific character's speech (for use on mod scripts)")
 	exit(EXIT_FAILURE)
 }
 
@@ -11,6 +11,12 @@ if CommandLine.arguments.count >= 3 {
 	if CommandLine.arguments.contains(where: { $0.lowercased() == "e" }) { mode = 2 }
 	if CommandLine.arguments.contains(where: { $0.lowercased() == "j" }) { mode = 1 }
 	if CommandLine.arguments.contains(where: { $0.lowercased() == "-v" }) { verbose = true }
+}
+
+var searchName = ""
+
+if let arg = CommandLine.arguments.firstIndex(of: "-name"), arg <= CommandLine.arguments.count - 2 {
+	searchName = CommandLine.arguments[arg + 1]
 }
 
 var standardError = FileHandle.standardError
@@ -60,8 +66,6 @@ let commands = tokens.compactMap { tokens -> Command? in
 }
 
 let ignore: Set = ["FadeOutBGM", "DisableWindow", "DrawScene", "PlayBGM", "Wait", "SetValidityOfInput", "DrawSceneWithMask", "SetSpeedOfMessage", "DrawBustshot", "FadeBustshot", "DrawBustshotWithFiltering", "FadeBustshotWithFiltering", "PlaySE", "ShakeScreen", "DrawFilm", "FadeFilm", "FadeAllBustshots", "DrawSpriteWithFiltering", "MoveSprite", "DrawSprite", "FadeSprite", "TitleScreen", "SetLocalFlag", "ShowChapterPreview", "SetCharSpacing", "SetLineSpacing", "SetScreenAspect", "SetWindowPos", "SetWindowSize", "SetWindowMargins", "FadeBG", "SetValidityOfSkipping", "SetGUIPosition", "SetStyleOfMessageSwinging", "EnableJumpingOfReturnIcon", "SetValidityOfTextFade", "SetValidityOfInterface", "Negative", "CallScript", "SavePoint", "SetValidityOfWindowDisablingWhenGraphicsControl", "SetFontSize", "SetNameFormat", "SetFontId", "StopBGM", "SetGlobalFlag", "LanguagePrompt", "SetValidityOfSaving", "ShowTips", "CheckTipsAchievements", "if", "StoreValueToLocalWork", "DrawBG", "ChangeScene", "StopSE", "ShakeScreenSx", "StopSE", "GetAchievement", "CallSection", "JumpSection", "SetDrawingPointOfMessage"]
-var japanese = ""
-var english = ""
 
 func stringFromLiteral(literal: Token) -> String {
 	guard literal.type == .stringLiteral else { 
@@ -71,23 +75,40 @@ func stringFromLiteral(literal: Token) -> String {
 	return literal.value.replacingOccurrences(of: "\\\"", with: "\"").replacingOccurrences(of: "\\n", with: "\n")
 }
 
-for command in commands {
-	if ignore.contains(command.name) { continue }
-	
-	switch command.name {
-	case "OutputLine":
-		japanese += stringFromLiteral(literal: command.arguments[1])
-		english += stringFromLiteral(literal: command.arguments[3])
-	case "OutputLineAll":
-		let line = stringFromLiteral(literal: command.arguments[1])
-		japanese += line
-		english += line
-	case "ClearMessage":
-		japanese += "\n\n"
-		english += "\n\n"
-	default: if verbose { print(command, to: &standardError) }
-	}
-}
+do {
+	var japanese = ""
+	var english = ""
+	var enable = false
 
-if mode & 1 > 0 { print(japanese) }
-if mode & 2 > 0 { print(english) }
+	for command in commands {
+		if ignore.contains(command.name) { continue }
+
+		switch command.name {
+		case "OutputLine":
+			if command.arguments[0].value != "NULL" {
+				enable = searchName.isEmpty || command.arguments[0].value.contains(searchName) || command.arguments[2].value.contains(searchName)
+			}
+			if enable {
+				japanese += stringFromLiteral(literal: command.arguments[1])
+				english += stringFromLiteral(literal: command.arguments[3])
+			}
+		case "OutputLineAll":
+			if command.arguments[0].value != "NULL" {
+				enable = searchName.isEmpty || command.arguments[0].value.contains(searchName) || command.arguments[2].value.contains(searchName)
+			}
+			if enable {
+				let line = stringFromLiteral(literal: command.arguments[1])
+				japanese += line
+				english += line
+			}
+		case "ClearMessage":
+			if !japanese.hasSuffix("\n") { japanese += "\n" }
+			if !english.hasSuffix("\n") { english += "\n" }
+			break
+		default: if verbose { print(command, to: &standardError) }
+		}
+	}
+
+	if mode & 1 > 0 { print(japanese) }
+	if mode & 2 > 0 { print(english) }
+}
