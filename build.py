@@ -17,6 +17,35 @@ if GIT_REF is not None:
     GIT_TAG = GIT_REF.split("/")[-1]
     print(f"--- Git Ref: {GIT_REF} Git Tag: {GIT_TAG} ---")
 
+chapter_to_chapter_number = {
+    "onikakushi": 1,
+    "watanagashi": 2,
+    "tatarigoroshi": 3,
+    "himatsubushi": 4,
+    "meakashi": 5,
+    "tsumihoroboshi": 6,
+    "minagoroshi": 7,
+    "matsuribayashi": 8,
+    "rei": 9,
+}
+
+class BuildVariant:
+    def __init__(self,chapter, unity, system, target_crc32=None):
+        self.chapter = chapter
+        self.unity = unity
+        self.system = system
+        self.target_crc32 = target_crc32
+        self.chapter_number = chapter_to_chapter_number[chapter]
+        self.data_dir = f"HigurashiEp{self.chapter_number}_Data"
+
+    def get_build_command(self) -> str:
+        args = [self.chapter, self.unity, self.system]
+
+        if self.target_crc32 is not None:
+            args.append(self.target_crc32)
+
+        return " ".join(args)
+
 # List of build variants for any given chapter
 #
 # There must be a corresponding vanilla sharedassets0.assets file located at:
@@ -24,56 +53,56 @@ if GIT_REF is not None:
 # for each entry.
 chapter_to_build_variants = {
     "onikakushi": [
-        "onikakushi 5.2.2f1 win",
-        "onikakushi 5.2.2f1 unix",
+        BuildVariant("onikakushi", "5.2.2f1", "win"),
+        BuildVariant("onikakushi", "5.2.2f1", "unix"),
     ],
     "watanagashi": [
-        "watanagashi 5.2.2f1 win",
-        "watanagashi 5.2.2f1 unix"
+        BuildVariant("watanagashi", "5.2.2f1", "win"),
+        BuildVariant("watanagashi", "5.2.2f1", "unix"),
     ],
     "tatarigoroshi": [
-        "tatarigoroshi 5.4.0f1 win",
-        "tatarigoroshi 5.4.0f1 unix",
-        "tatarigoroshi 5.3.5f1 win",
-        "tatarigoroshi 5.3.4p1 win",
-        "tatarigoroshi 5.3.4p1 unix",
+        BuildVariant("tatarigoroshi", "5.4.0f1", "win"),
+        BuildVariant("tatarigoroshi", "5.4.0f1", "unix"),
+        BuildVariant("tatarigoroshi", "5.3.5f1", "win"),
+        BuildVariant("tatarigoroshi", "5.3.4p1", "win"),
+        BuildVariant("tatarigoroshi", "5.3.4p1", "unix"),
     ],
     "himatsubushi": [
-        "himatsubushi 5.4.1f1 win",
-        "himatsubushi 5.4.1f1 unix"
+        BuildVariant("himatsubushi", "5.4.1f1", "win"),
+        BuildVariant("himatsubushi", "5.4.1f1", "unix"),
     ],
     "meakashi": [
-        "meakashi 5.5.3p3 win",
-        "meakashi 5.5.3p3 unix",
-        "meakashi 5.5.3p1 win",
-        "meakashi 5.5.3p1 unix",
+        BuildVariant("meakashi", "5.5.3p3", "win"),
+        BuildVariant("meakashi", "5.5.3p3", "unix"),
+        BuildVariant("meakashi", "5.5.3p1", "win"),
+        BuildVariant("meakashi", "5.5.3p1", "unix"),
     ],
     "tsumihoroboshi": [
-        "tsumihoroboshi 5.5.3p3 win",
-        "tsumihoroboshi 5.5.3p3 unix"
+        BuildVariant("tsumihoroboshi", "5.5.3p3", "win"),
+        BuildVariant("tsumihoroboshi", "5.5.3p3", "unix"),
         # While GOG Windows is ver 5.6.7f1, we actually downgrade back to 5.5.3p3 in the installer, so we don't need this version.
         #'tsumihoroboshi 5.6.7f1 win'
     ],
     "minagoroshi": [
-        "minagoroshi 5.6.7f1 win",
-        "minagoroshi 5.6.7f1 unix"
+        BuildVariant("minagoroshi", "5.6.7f1", "win"),
+        BuildVariant("minagoroshi", "5.6.7f1", "unix"),
         # While GOG Windows is ver 5.6.7f1, we actually downgrade back to 5.5.3p3 in the installer, so we don't need this version.
         # 'matsuribayashi 5.6.7f1 win'
         # 'matsuribayashi 5.6.7f1 unix'
     ],
     "matsuribayashi": [
-        "matsuribayashi 2017.2.5 unix",
+        BuildVariant("matsuribayashi", "2017.2.5", "unix"),
         # Special version for GOG/Mangagamer Linux with SHA256:
         # A200EC2A85349BC03B59C8E2F106B99ED0CBAAA25FC50928BB8BA2E2AA90FCE9
         # CRC32L 51100D6D
-        "matsuribayashi 2017.2.5 unix 51100D6D",
-        "matsuribayashi 2017.2.5 win",
+        BuildVariant("matsuribayashi", "2017.2.5", "unix", "51100D6D"),
+        BuildVariant("matsuribayashi", "2017.2.5", "win"),
     ],
     'rei': [
-        'rei 2019.4.3 win',
-        'rei 2019.4.4 win',
-        'rei 2019.4.3 unix',
-        'rei 2019.4.4 unix',
+       BuildVariant("rei", "2019.4.3", "win"),
+       BuildVariant("rei", "2019.4.4", "win"),
+       BuildVariant("rei", "2019.4.3", "unix"),
+       BuildVariant("rei", "2019.4.4", "unix"),
     ],
 }
 
@@ -122,7 +151,7 @@ def get_chapter_name_from_git_tag():
     return None
 
 
-def get_build_variants(selected_chapter: str) -> List[str]:
+def get_build_variants(selected_chapter: str) -> List[BuildVariant]:
     if selected_chapter == "all":
         commands = []
         for command in chapter_to_build_variants.values():
@@ -275,9 +304,9 @@ except:
     )
 
 # Build all the requested variants
-for command in build_variants:
-    print(f"Building .assets for {command}...")
+for build_variant in build_variants:
+    print(f"Building .assets for {build_variant.get_build_command()}...")
     if working_cargo:
-        call(f"cargo run {command}")
+        call(f"cargo run {build_variant.get_build_command()}")
     else:
-        call(f"ui-compiler.exe {command}")
+        call(f"ui-compiler.exe {build_variant.get_build_command()}")
