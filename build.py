@@ -30,13 +30,15 @@ chapter_to_chapter_number = {
 }
 
 class BuildVariant:
-    def __init__(self,chapter, unity, system, target_crc32=None):
+    def __init__(self, short_description, chapter, unity, system, target_crc32=None, translation_default=False):
         self.chapter = chapter
         self.unity = unity
         self.system = system
         self.target_crc32 = target_crc32
         self.chapter_number = chapter_to_chapter_number[chapter]
-        self.data_dir = f"HigurashiEp{self.chapter_number}_Data"
+        self.data_dir = f"HigurashiEp{self.chapter_number:02}_Data"
+        self.translation_default = translation_default
+        self.short_description = short_description
 
     def get_build_command(self) -> str:
         args = [self.chapter, self.unity, self.system]
@@ -46,6 +48,26 @@ class BuildVariant:
 
         return " ".join(args)
 
+    def get_translation_sharedassets_name(self) -> str:
+        operatingSystem = None
+        if self.system == "win":
+            operatingSystem = "Windows"
+        elif self.system == "unix":
+            operatingSystem = "LinuxMac"
+        elif self.system == "mac":
+            operatingSystem = "Mac"
+        else:
+            raise Exception(f"Unknown system {self.system}")
+
+        args = [operatingSystem, self.short_description, self.unity]
+
+        if self.target_crc32 is not None:
+            args.append(self.target_crc32)
+
+        name_no_ext = "-".join(args)
+
+        return f"{name_no_ext}.languagespecificassets"
+
 # List of build variants for any given chapter
 #
 # There must be a corresponding vanilla sharedassets0.assets file located at:
@@ -53,56 +75,56 @@ class BuildVariant:
 # for each entry.
 chapter_to_build_variants = {
     "onikakushi": [
-        BuildVariant("onikakushi", "5.2.2f1", "win"),
-        BuildVariant("onikakushi", "5.2.2f1", "unix"),
+        BuildVariant("GOG-MG-Steam",        "onikakushi", "5.2.2f1", "win", translation_default=True),
+        BuildVariant("GOG-MG-Steam",        "onikakushi", "5.2.2f1", "unix"),
     ],
     "watanagashi": [
-        BuildVariant("watanagashi", "5.2.2f1", "win"),
-        BuildVariant("watanagashi", "5.2.2f1", "unix"),
+        BuildVariant("GOG-MG-Steam",        "watanagashi", "5.2.2f1", "win", translation_default=True),
+        BuildVariant("GOG-MG-Steam",        "watanagashi", "5.2.2f1", "unix"),
     ],
     "tatarigoroshi": [
-        BuildVariant("tatarigoroshi", "5.4.0f1", "win"),
-        BuildVariant("tatarigoroshi", "5.4.0f1", "unix"),
-        BuildVariant("tatarigoroshi", "5.3.5f1", "win"),
-        BuildVariant("tatarigoroshi", "5.3.4p1", "win"),
-        BuildVariant("tatarigoroshi", "5.3.4p1", "unix"),
+        BuildVariant("GOG-Steam",           "tatarigoroshi", "5.4.0f1", "win", translation_default=True),
+        BuildVariant("GOG-Steam",           "tatarigoroshi", "5.4.0f1", "unix"),
+        BuildVariant("MG",                  "tatarigoroshi", "5.3.5f1", "win"),
+        BuildVariant("Legacy",              "tatarigoroshi", "5.3.4p1", "win"),
+        BuildVariant("MG",                  "tatarigoroshi", "5.3.4p1", "unix"),
     ],
     "himatsubushi": [
-        BuildVariant("himatsubushi", "5.4.1f1", "win"),
-        BuildVariant("himatsubushi", "5.4.1f1", "unix"),
+        BuildVariant("GOG-MG-Steam",        "himatsubushi", "5.4.1f1", "win", translation_default=True),
+        BuildVariant("GOG-MG-Steam",        "himatsubushi", "5.4.1f1", "unix"),
     ],
     "meakashi": [
-        BuildVariant("meakashi", "5.5.3p3", "win"),
-        BuildVariant("meakashi", "5.5.3p3", "unix"),
-        BuildVariant("meakashi", "5.5.3p1", "win"),
-        BuildVariant("meakashi", "5.5.3p1", "unix"),
+        BuildVariant("MG-Steam-GOG_old",    "meakashi", "5.5.3p3", "win", translation_default=True), #also used by GOG old?
+        BuildVariant("MG-Steam-GOG_old",    "meakashi", "5.5.3p3", "unix"), #also used by GOG old?
+        BuildVariant("GOG",                 "meakashi", "5.5.3p1", "win"),
+        BuildVariant("GOG",                 "meakashi", "5.5.3p1", "unix"),
     ],
     "tsumihoroboshi": [
-        BuildVariant("tsumihoroboshi", "5.5.3p3", "win"),
-        BuildVariant("tsumihoroboshi", "5.5.3p3", "unix"),
+        BuildVariant("GOG-MG-Steam",        "tsumihoroboshi", "5.5.3p3", "win", translation_default=True),
+        BuildVariant("GOG-MG-Steam",        "tsumihoroboshi", "5.5.3p3", "unix"),
         # While GOG Windows is ver 5.6.7f1, we actually downgrade back to 5.5.3p3 in the installer, so we don't need this version.
         #'tsumihoroboshi 5.6.7f1 win'
     ],
     "minagoroshi": [
-        BuildVariant("minagoroshi", "5.6.7f1", "win"),
-        BuildVariant("minagoroshi", "5.6.7f1", "unix"),
+        BuildVariant("GOG-MG-Steam",        "minagoroshi", "5.6.7f1", "win", translation_default=True),
+        BuildVariant("GOG-MG-Steam",        "minagoroshi", "5.6.7f1", "unix"),
         # While GOG Windows is ver 5.6.7f1, we actually downgrade back to 5.5.3p3 in the installer, so we don't need this version.
         # 'matsuribayashi 5.6.7f1 win'
         # 'matsuribayashi 5.6.7f1 unix'
     ],
     "matsuribayashi": [
-        BuildVariant("matsuribayashi", "2017.2.5", "unix"),
+        BuildVariant("M_GOG-M_MG-Steam",    "matsuribayashi", "2017.2.5", "unix"),
         # Special version for GOG/Mangagamer Linux with SHA256:
         # A200EC2A85349BC03B59C8E2F106B99ED0CBAAA25FC50928BB8BA2E2AA90FCE9
         # CRC32L 51100D6D
-        BuildVariant("matsuribayashi", "2017.2.5", "unix", "51100D6D"),
-        BuildVariant("matsuribayashi", "2017.2.5", "win"),
+        BuildVariant("L_GOG-L_MG",          "matsuribayashi", "2017.2.5", "unix", "51100D6D"),
+        BuildVariant("GOG-MG-Steam",        "matsuribayashi", "2017.2.5", "win", translation_default=True),
     ],
     'rei': [
-       BuildVariant("rei", "2019.4.3", "win"),
-       BuildVariant("rei", "2019.4.4", "win"),
-       BuildVariant("rei", "2019.4.3", "unix"),
-       BuildVariant("rei", "2019.4.4", "unix"),
+       BuildVariant("GOG-Steam-MG_old",     "rei", "2019.4.3", "win", translation_default=True),
+       BuildVariant("MG",                   "rei", "2019.4.4", "win"),
+       BuildVariant("GOG-Steam-MG_old",     "rei", "2019.4.3", "unix"),
+       BuildVariant("MG",                   "rei", "2019.4.4", "unix"),
     ],
 }
 
@@ -218,9 +240,11 @@ parser.add_argument(
     choices=["all", "github_actions"] + list(chapter_to_build_variants.keys()),
 )
 parser.add_argument("--force-download", default=False, action='store_true')
+parser.add_argument("--translation", default=False, action='store_true')
 args = parser.parse_args()
 
 force_download = args.force_download
+translation = args.translation
 
 # Get chapter name from git tag if "github_actions" specified as the chapter
 chapter_name = args.chapter
@@ -234,7 +258,8 @@ if chapter_name == "github_actions":
 
 # Get a list of build variants (like 'onikakushi 5.2.2f1 win') depending on commmand line arguments
 build_variants = get_build_variants(chapter_name)
-print(f"For chapter '{chapter_name}' building: {build_variants}")
+build_variants_list = "\n - ".join([b.get_build_command() for b in build_variants])
+print(f"For chapter '{chapter_name}' building:\n - {build_variants_list}")
 
 # Install python dependencies
 print("Installing python dependencies")
@@ -310,3 +335,15 @@ for build_variant in build_variants:
         call(f"cargo run {build_variant.get_build_command()}")
     else:
         call(f"ui-compiler.exe {build_variant.get_build_command()}")
+
+    if translation:
+        source_sharedassets = os.path.join("output", build_variant.data_dir, "sharedassets0.assets")
+        translation_data_dir = os.path.join("output/translation", build_variant.data_dir)
+        destination_sharedassets = os.path.join(translation_data_dir, build_variant.get_translation_sharedassets_name())
+
+        os.makedirs(translation_data_dir, exist_ok=True)
+        shutil.copyfile(source_sharedassets, destination_sharedassets)
+
+        if build_variant.translation_default:
+            destination_default_sharedassets = os.path.join(translation_data_dir, "sharedassets0.assets")
+            shutil.copyfile(source_sharedassets, destination_default_sharedassets)
