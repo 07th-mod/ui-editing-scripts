@@ -14,7 +14,15 @@ Please note that documentation is in two places:
 
 ----
 
-## Usage instructions for translators and dev team
+## Instructions for Translators
+
+Overall, the workflow for translators is:
+
+1. Setup your computer to run our tool, including cloning or forking this repo
+2. Modify/replace the files in the repo with your translated versions
+3. Run our tool to generate the `.assets` and `.languageSpecificAssets` files you can include in your release
+
+Please continue with detailed instructions below.
 
 ### Setup (Windows Only)
 
@@ -28,27 +36,78 @@ The below instructions only work on Windows!
      - A fork is recommended for translators as you can check in your changes to github. It also allows you to use Github for building and hosting assets
 3. Clone the repository (either this repository, or the one you forked) to your computer
 
-### Using the tool to generate sharedassets0.assets (Windows Only)
+### Modifying images, text, and fonts
+
+#### To modify images
+
+To modify images, replace the image files in the `assets/images` folder.
+
+Folder info:
+
+- `images/shared`: images common to all chapters
+- `images/question_arcs`: images specific to chapters 1-4
+- `images/answer_arcs`: images specific to chapters 5-8
+- `images/specific/[CHAPTER_NAME]`: images specific to a particular chapter
+- `images/version-specific/[CHAPTER_NAME]`: images specific to a particular chapter + unity version combo
+
+Make sure have a quick look at all the folders before starting work, so you don't miss any images by accident.
+
+#### To modify text
+
+The game contains various text which is not contained in the game script or the DLL (it is stored directly in the .assets file). This text is also not stored as image files, so you can't edit an image to change it.
+
+To edit these text files, edit the `assets/text-edits.json` file. **Please read <https://07th-mod.com/wiki/developer/sharedassets/ui-editing-scripts/#unitytextmodifier> for more details on how to edit this file.**
+
+#### To modify fonts
+
+To modify fonts, see
+ - For Chapters 1-8: <https://07th-mod.com/wiki/developer/sharedassets/ui-editing-scripts/#adding-font-support-for-a-new-language-chapters-1-8-only>
+    - Note: Due to some Unity plugins being no longer supported, you may have trouble following these instructions. Please let us know if you have problems and we'll try to sort it out.
+ - For Chapter 9 <https://07th-mod.com/wiki/developer/sharedassets/ui-editing-scripts/#adding-font-support-for-a-new-language-higurashi-rei-onwards-only>
+
+Fonts are stored in the `assets/fonts` folder as `*.dat` files, with the exception of Rei where fonts are stored in the `assets/files-2019.4` folder.
+
+#### To modify other files
+
+The `assets/files-[UNITY_VERSION]` folders contain files applied to a particular Unity version, regardless of chapter. You normally don't need to modify these files.
+
+Currently these folders contain higher quality caret sprites (the little cursor/triangle displayed at the end of a text line), with the exception of the `assets/files-2019.4` folder which also contains fonts for Higurashi Rei.
+
+### Generating .assets and .languageSpecificAssets files (Windows Only)
 
 To list the supported Higurashi chapters for this tool, run
 
 ```python build.py```
 
-which should show an error message complaining about a missing `chapter` argument
+which should show an error message and list available chapters
 
 Then run
 
-```python build.py onikakushi```
+```python build.py onikakushi --translation```
 
-for example, to build the sharedassets required for onikakushi. You can also run `python build.py all` to build all chapters.
+Then the output files will be located in the `output/translation` folder. You can then merge the `HigurashiEp0X_Data` folder with the one in your release. **Please include all the files (not just the `sharedassets0.assets` file), so the installer can select the correct file at install time.**
 
-**NOTE: The script should automatically detect if the vanilla assets or UABE has changed, and re-download them. But if that doesn't work, use the '--force-download' option like so:**
+If you want to rebuild all chapters, run `python build.py all --translation` to build all chapters.
 
-```python build.py rei --force-download```
+### Common Problems
 
 You may encounter the following problems:
 - Windows Defender may block/delete our precompiled `ui-compiler.exe`. In this case, you can either try to unblock it, or install Rust to make the script compile it on your own computer. Contact us if you have this issue.
 - For any other error, likely we just need to update the build script, so please contact us.
+
+### Updating dependencies
+
+**NOTE: The script should automatically detect if the vanilla assets or UABE has changed, and re-download them. But if that doesn't work, use the '--force-download' option like so:**
+
+```python build.py rei --translation --force-download```
+
+## Instructions for Dev Team
+
+For our dev team, the instructions are nearly the same, just remove the `--translation` argument.
+
+```python build.py onikakushi```
+
+Archive files will be automatically created in the `output` folder
 
 ----
 
