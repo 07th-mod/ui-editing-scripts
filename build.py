@@ -153,24 +153,36 @@ def seven_zip_extract(input_path, outputDir=None):
 
     call(args)
 
+def seven_zip_compress(input_path, output_path):
+    args = ["7z", "a", "-md=512m", output_path, input_path, "-y"]
 
-def get_chapter_name_from_git_tag():
+    call(args)
+
+
+def get_chapter_name_and_translation_from_git_tag():
+    returned_chapter_name = None
+    translation = False
+
     if GIT_TAG is None:
         raise Exception(
-            "'github_actions' was selected, but environment variable GIT_REF was not set - are you sure you're running this script from Github Actions?"
+            "'github_actions' was selected, but environment variable GITHUB_REF was not set - are you sure you're running this script from Github Actions?"
         )
     else:
         # Look for the chapter name to build in the git tag
         tag_fragments = [x.lower() for x in re.split("[\W_]", GIT_REF)]
 
         if "all" in tag_fragments:
-            return "all"
+            returned_chapter_name = "all"
         else:
             for chapter_name in chapter_to_build_variants.keys():
                 if chapter_name.lower() in tag_fragments:
-                    return chapter_name
+                    returned_chapter_name = chapter_name
+                    break
 
-    return None
+        if "translation" in tag_fragments:
+            translation = True
+
+    return returned_chapter_name, translation
 
 
 def get_build_variants(selected_chapter: str) -> List[BuildVariant]:
@@ -244,17 +256,22 @@ parser.add_argument("--translation", default=False, action='store_true')
 args = parser.parse_args()
 
 force_download = args.force_download
+
+# NOTE: For now, translation archive output is always enabled, as most of the time this script will be used for translators
 translation = args.translation
 
 # Get chapter name from git tag if "github_actions" specified as the chapter
 chapter_name = args.chapter
 if chapter_name == "github_actions":
-    chapter_name = get_chapter_name_from_git_tag()
+    chapter_name, translation = get_chapter_name_and_translation_from_git_tag()
     if chapter_name is None:
         print(
             f">>>> WARNING: No chapter name (or 'all') was found in git tag {GIT_TAG} - skipping building .assets"
         )
         exit(0)
+
+# NOTE: For now, translation archive output is always enabled, as most of the time this script will be used for translators
+translation = True
 
 # Get a list of build variants (like 'onikakushi 5.2.2f1 win') depending on commmand line arguments
 build_variants = get_build_variants(chapter_name)
@@ -347,3 +364,11 @@ for build_variant in build_variants:
         if build_variant.translation_default:
             destination_default_sharedassets = os.path.join(translation_data_dir, "sharedassets0.assets")
             shutil.copyfile(source_sharedassets, destination_default_sharedassets)
+
+if translation:
+    containing_folder = "output"
+    output_path = "output/translation.7z"
+    if os.path.exists(output_path):
+        os.remove(output_path)
+
+    seven_zip_compress('output/translation', output_path)
