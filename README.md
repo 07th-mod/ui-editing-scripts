@@ -83,11 +83,11 @@ which should show an error message and list available chapters
 
 Then run
 
-```python build.py onikakushi --translation```
+```python build.py onikakushi```
 
 Then the output files will be located in the `output/translation` folder. You can then merge the `HigurashiEp0X_Data` folder with the one in your release. **Please include all the files (not just the `sharedassets0.assets` file), so the installer can select the correct file at install time.**
 
-If you want to rebuild all chapters, run `python build.py all --translation` to build all chapters.
+If you want to rebuild all chapters, run `python build.py all` to build all chapters.
 
 ### Common Problems
 
@@ -99,15 +99,11 @@ You may encounter the following problems:
 
 **NOTE: The script should automatically detect if the vanilla assets or UABE has changed, and re-download them. But if that doesn't work, use the '--force-download' option like so:**
 
-```python build.py rei --translation --force-download```
+```python build.py rei --force-download```
 
 ## Instructions for Dev Team
 
-For our dev team, the instructions are nearly the same, just remove the `--translation` argument.
-
-```python build.py onikakushi```
-
-Archive files will be automatically created in the `output` folder
+Instructions are the same as for translators, but archive files will be automatically created in the `output` folder
 
 ----
 
@@ -132,6 +128,8 @@ To use Github Actions to build a release, create a tag like `v1.0.6_onikakushi` 
 Click on the 'Actions' tab to observe the build process.
 
 Once the build is complete, go to the 'Releases' page, and a new draft release should appear. You can check everything is OK before publishing the release, or just download the files without publishing the release.
+
+Note that doing this will build both the `translation.7z` file for translators to use, and also the individual archives for the 07th-mod developers to use.
 
 ### Building `ui-compiler.exe` using Github Actions
 
