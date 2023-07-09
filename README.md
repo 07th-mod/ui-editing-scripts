@@ -143,6 +143,12 @@ The following information is only used when adding support for a new episode.
 
 Please look through the detailed documentation, especially if you're working on a new chapter, new language, or using UABE - this file does not contain information on those topics.
 
+### WARNING about Unix/MacOS `sharedassets0.assets`
+
+We've found that the MacOS sharedassets can be used on Linux, **but the Linux sharedassets CANNOT be used on MacOS in certain cases**, giving you the "purple text" issue.
+
+For this reason, whenever a new chapter is prepared, the 'vanilla' unix `sharedassets0.assets` should be taken from the MacOS version.
+
 ### Preparing font files
 
 You'll need to extract the 'msgothic' font files from the stock `.assets` file before starting:
