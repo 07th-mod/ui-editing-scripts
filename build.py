@@ -113,11 +113,19 @@ chapter_to_build_variants = {
         # 'matsuribayashi 5.6.7f1 unix'
     ],
     "matsuribayashi": [
-        BuildVariant("M_GOG-M_MG-Steam",    "matsuribayashi", "2017.2.5", "unix"),
+        # Based on the GOG MacOS sharedassets, but works on Linux too.
+        # Working on:
+        # - Linux Steam (2023-07-09)
+        # - Linux GOG (2023-07-09)
+        # - MacOS GOG  (2023-07-09)
+        BuildVariant("GOG-MG-Steam",    "matsuribayashi", "2017.2.5", "unix"),
+
+        # NOTE: I'm 99% certain this file is no longer used, as we just upgrade the entire GOG/Mangagamer game
         # Special version for GOG/Mangagamer Linux with SHA256:
         # A200EC2A85349BC03B59C8E2F106B99ED0CBAAA25FC50928BB8BA2E2AA90FCE9
         # CRC32L 51100D6D
-        BuildVariant("L_GOG-L_MG",          "matsuribayashi", "2017.2.5", "unix", "51100D6D"),
+        # BuildVariant("GOG-MG",              "matsuribayashi", "2017.2.5", "unix", "51100D6D"), # TO BE REMOVED
+
         BuildVariant("GOG-MG-Steam",        "matsuribayashi", "2017.2.5", "win", translation_default=True),
     ],
     'rei': [
