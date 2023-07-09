@@ -240,6 +240,13 @@ class LastModifiedManager:
         with open(LastModifiedManager.savePath, 'w') as handle:
             json.dump(self.lastModifiedDict, handle)
 
+if sys.version_info < (2, 7):
+    print(">>>> ERROR: This script does not work on Python 2.7")
+    exit(-1)
+
+if sys.version_info > (3, 10):
+    print(">>>> WARNING: This script probably does not work on Python 3.11 because unitypack uses old version of decrunch which does not build. Use Python 3.10 or below if you have this error.")
+
 lastModifiedManager = LastModifiedManager()
 
 # Parse command line arguments
