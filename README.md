@@ -4,6 +4,10 @@ Scripts for easier editing of Unity assets for Higurashi.
 
 The main rust script will generate a new emip file, apply it to the assets and pack the assets into 7zip archive we need for a release.
 
+## French version notes
+
+The `s_jump_back.png` image is different to the one that we normally use in our mod (it is a picture with logo, instead of two red stripes with logo). Also, different images are used for Question and Answer arcs (our mod uses the same `s_jump_back.png` for all chapters)
+
 ## Documentation Notes
 
 Please note that documentation is in two places:
