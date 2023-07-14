@@ -1,80 +1,1132 @@
 [
     {
-        "CurrentEnglish": "Updated",
-        "CurrentJapanese": "新規",
-        "NewEnglish": "Remake",
-        "NewJapanese": "リメーク"
-    },
-    {
-        "CurrentEnglish": "Original",
-        "CurrentJapanese": "オリジナル",
-        "NewEnglish": "Console",
-        "NewJapanese": "ゲーム機"
-    },
-    {
-        "CurrentEnglish": "Standard 640x480",
-        "CurrentJapanese": "標準 640x480",
-        "NewEnglish": "Standard 1280x720",
-        "NewJapanese": "標準 1280x720"
-    },
-    {
-        "CurrentEnglish": "800x600",
-        "CurrentJapanese": "800x600",
-        "NewEnglish": "1920x1080",
-        "NewJapanese": "1920x1080"
-    },
-    {
-        "CurrentEnglish": "1024x768",
-        "CurrentJapanese": "1024x768",
-        "NewEnglish": "2560x1440",
-        "NewJapanese": "2560x1440"
-    },
-    {
         "CurrentEnglish": "All-Cast Review Session",
         "CurrentJapanese": "お疲れさま会",
-        "NewEnglish": "All-Cast Review Session",
+        "NewEnglish": "Rencontre",
         "NewJapanese": "お疲れさま会"
     },
     {
         "CurrentEnglish": "Chapter Jump",
         "CurrentJapanese": "シナリオジャンプモード",
-        "NewEnglish": "Chapter Jump",
+        "NewEnglish": "Saut de chapitre",
         "NewJapanese": "シナリオジャンプモード"
     },
     {
         "CurrentEnglish": "View TIPS",
         "CurrentJapanese": "TIPSを読む",
-        "NewEnglish": "View TIPS",
+        "NewEnglish": "Voir indices",
         "NewJapanese": "TIPSを読む"
     },
     {
         "CurrentEnglish": "Back",
         "CurrentJapanese": "戻る",
-        "NewEnglish": "Back",
+        "NewEnglish": "Retour",
         "NewJapanese": "戻る"
+    },
+    {
+        "CurrentEnglish": "English",
+        "CurrentJapanese": "English",
+        "NewEnglish": "Français",
+        "NewJapanese": "Français"
+    },
+    {
+        "CurrentEnglish": "Fullscreen",
+        "CurrentJapanese": "フルスクリーン",
+        "NewEnglish": "Plein écran",
+        "NewJapanese": "フルスクリーン"
+    },
+    {
+        "CurrentEnglish": "Show Menu",
+        "CurrentJapanese": "メニュー表示",
+        "NewEnglish": "Afficher menu",
+        "NewJapanese": "メニュー表示"
+    },
+    {
+        "CurrentEnglish": "Return to Extras Screen",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Retour",
+        "NewJapanese": "戻る"
+    },
+    {
+        "CurrentEnglish": "ON",
+        "CurrentJapanese": "全て",
+        "NewEnglish": "Autoriser",
+        "NewJapanese": "全て"
+    },
+    {
+        "CurrentEnglish": "OFF",
+        "CurrentJapanese": "既読のみ",
+        "NewEnglish": "Bloquer",
+        "NewJapanese": "既読のみ"
+    },
+    {
+        "CurrentEnglish": "View New TIPS",
+        "CurrentJapanese": "新規TIPSを読む",
+        "NewEnglish": "Voir les nouveaux indices",
+        "NewJapanese": "新規TIPSを読む"
+    },
+    {
+        "CurrentEnglish": "View All TIPS",
+        "CurrentJapanese": "TIPSをすべて読む",
+        "NewEnglish": "Voir tous les indices",
+        "NewJapanese": "TIPSをすべて読む"
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Sauv./Charger",
+        "NewJapanese": "Save & Load"
+    },
+    {
+        "CurrentEnglish": "Continue",
+        "CurrentJapanese": "ゲームを進める",
+        "NewEnglish": "Continuer",
+        "NewJapanese": "ゲームを進める"
+    },
+    {
+        "CurrentEnglish": "Hide Window",
+        "CurrentJapanese": "ウィンドウ非表示",
+        "NewEnglish": "Cacher le texte",
+        "NewJapanese": "ウィンドウ非表示"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 1",
+        "CurrentJapanese": "鬼隠し編１日目",
+        "NewEnglish": "Hinamizawa",
+        "NewJapanese": "鬼隠し編１日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 2",
+        "CurrentJapanese": "鬼隠し編２日目",
+        "NewEnglish": "Pique-nique entre amis",
+        "NewJapanese": "鬼隠し編２日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 3",
+        "CurrentJapanese": "鬼隠し編３日目",
+        "NewEnglish": "Le club",
+        "NewJapanese": "鬼隠し編３日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 4",
+        "CurrentJapanese": "鬼隠し編４日目",
+        "NewEnglish": "L'attaque des chats zombies",
+        "NewJapanese": "鬼隠し編４日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 5",
+        "CurrentJapanese": "鬼隠し編５日目",
+        "NewEnglish": "Paradis sur terre",
+        "NewJapanese": "鬼隠し編５日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 9",
+        "CurrentJapanese": "鬼隠し編９日目",
+        "NewEnglish": "La purification du coton (1)",
+        "NewJapanese": "鬼隠し編９日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 9-2",
+        "CurrentJapanese": "鬼隠し編９日目２",
+        "NewEnglish": "La purification du coton (2)",
+        "NewJapanese": "鬼隠し編９日目２"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 10",
+        "CurrentJapanese": "鬼隠し編１０日目",
+        "NewEnglish": "L'inspecteur Ôishi",
+        "NewJapanese": "鬼隠し編１０日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 11",
+        "CurrentJapanese": "鬼隠し編１１日目",
+        "NewEnglish": "Menteur",
+        "NewJapanese": "鬼隠し編１１日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 12",
+        "CurrentJapanese": "鬼隠し編１２日目",
+        "NewEnglish": "Lequel est le bon ?",
+        "NewJapanese": "鬼隠し編１２日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 13",
+        "CurrentJapanese": "鬼隠し編１３日目",
+        "NewEnglish": "Soupçons",
+        "NewJapanese": "鬼隠し編１３日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 14",
+        "CurrentJapanese": "鬼隠し編１４日目",
+        "NewEnglish": "Baseball",
+        "NewJapanese": "鬼隠し編１４日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 14-2",
+        "CurrentJapanese": "鬼隠し編１４日目２",
+        "NewEnglish": "Tu m'ouvres ?",
+        "NewJapanese": "鬼隠し編１４日目２"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 15",
+        "CurrentJapanese": "鬼隠し編１５日目",
+        "NewEnglish": "Machette",
+        "NewJapanese": "鬼隠し編１５日目"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 15-2",
+        "CurrentJapanese": "鬼隠し編１５日目２",
+        "NewEnglish": "La déesse Yashiro",
+        "NewJapanese": "鬼隠し編１５日目２"
+    },
+    {
+        "CurrentEnglish": "Onikakushi Day 15-3",
+        "CurrentJapanese": "鬼隠し編１５日目３",
+        "NewEnglish": "Epilogue",
+        "NewJapanese": "鬼隠し編１５日目３"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 1",
+        "CurrentJapanese": "綿流し編　１日目",
+        "NewEnglish": "Le tournoi",
+        "NewJapanese": "綿流し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 2",
+        "CurrentJapanese": "綿流し編　２日目",
+        "NewEnglish": "Shion ?",
+        "NewJapanese": "綿流し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 3",
+        "CurrentJapanese": "綿流し編　３日目",
+        "NewEnglish": "L'art du curry",
+        "NewJapanese": "綿流し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 4",
+        "CurrentJapanese": "綿流し編　４日目",
+        "NewEnglish": "Le “bloc” d'Hinamizawa",
+        "NewJapanese": "綿流し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 5",
+        "CurrentJapanese": "綿流し編　５日目",
+        "NewEnglish": "Journée spéciale des desserts",
+        "NewJapanese": "綿流し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 6",
+        "CurrentJapanese": "綿流し編　６日目",
+        "NewEnglish": "Regrets",
+        "NewJapanese": "綿流し編　６日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 7",
+        "CurrentJapanese": "綿流し編　７日目",
+        "NewEnglish": "Les préparitifs de la fête",
+        "NewJapanese": "綿流し編　７日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 8",
+        "CurrentJapanese": "綿流し編　８日目",
+        "NewEnglish": "Le temple des reliques sacrées",
+        "NewJapanese": "綿流し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 9",
+        "CurrentJapanese": "綿流し編　９日目",
+        "NewEnglish": "Tu as vu Shion ?",
+        "NewJapanese": "綿流し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 9-2",
+        "CurrentJapanese": "綿流し編　９日目２",
+        "NewEnglish": "Coup de fil",
+        "NewJapanese": "綿流し編　９日目２"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 10",
+        "CurrentJapanese": "綿流し編　１０日目",
+        "NewEnglish": "Des chats et des chiens",
+        "NewJapanese": "綿流し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 10-2",
+        "CurrentJapanese": "綿流し編　１０日目２",
+        "NewEnglish": "Coup de fil n°2",
+        "NewJapanese": "綿流し編　１０日目２"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 10-3",
+        "CurrentJapanese": "綿流し編　１０日目３",
+        "NewEnglish": "Un mauvais pressentiment",
+        "NewJapanese": "綿流し編　１０日目３"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 10-4",
+        "CurrentJapanese": "綿流し編　１０日目４",
+        "NewEnglish": "Escorte nocture",
+        "NewJapanese": "綿流し編　１０日目４"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 11",
+        "CurrentJapanese": "綿流し編　１１日目",
+        "NewEnglish": "Indices",
+        "NewJapanese": "綿流し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 11-2",
+        "CurrentJapanese": "綿流し編　１１日目２",
+        "NewEnglish": "L'imposteur",
+        "NewJapanese": "綿流し編　１１日目２"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 12",
+        "CurrentJapanese": "綿流し編　１２日目",
+        "NewEnglish": "Appât",
+        "NewJapanese": "綿流し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 12-2",
+        "CurrentJapanese": "綿流し編　１２日目２",
+        "NewEnglish": "Confrontation",
+        "NewJapanese": "綿流し編　１２日目２"
+    },
+    {
+        "CurrentEnglish": "Watanagashi Day 12-3",
+        "CurrentJapanese": "綿流し編　１２日目３",
+        "NewEnglish": "Le démon",
+        "NewJapanese": "綿流し編　１２日目３"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 1",
+        "CurrentJapanese": "祟殺し編　１日目",
+        "NewEnglish": "Derrière les fourneaux",
+        "NewJapanese": "祟殺し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 2",
+        "CurrentJapanese": "祟殺し編　２日目",
+        "NewEnglish": "Joute culinaire",
+        "NewJapanese": "祟殺し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 3",
+        "CurrentJapanese": "祟殺し編　３日目",
+        "NewEnglish": "Baseball et gâteaux",
+        "NewJapanese": "祟殺し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 4",
+        "CurrentJapanese": "祟殺し編　４日目",
+        "NewEnglish": "Barbecue",
+        "NewJapanese": "祟殺し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 5",
+        "CurrentJapanese": "祟殺し編　５日目",
+        "NewEnglish": "Où est Satoko ?",
+        "NewJapanese": "祟殺し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 8",
+        "CurrentJapanese": "祟殺し編　８日目",
+        "NewEnglish": "Impasse...",
+        "NewJapanese": "祟殺し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 8-2",
+        "CurrentJapanese": "祟殺し編　８日目２",
+        "NewEnglish": "Impuissance",
+        "NewJapanese": "祟殺し編　８日目２"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 9",
+        "CurrentJapanese": "祟殺し編　９日目",
+        "NewEnglish": "Les victimes de la malédiction",
+        "NewJapanese": "祟殺し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 9-2",
+        "CurrentJapanese": "祟殺し編　９日目２",
+        "NewEnglish": "Une cible de choix",
+        "NewJapanese": "祟殺し編　９日目２"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 10",
+        "CurrentJapanese": "祟殺し編　１０日目",
+        "NewEnglish": "À force de crier au loup...",
+        "NewJapanese": "祟殺し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 10-2",
+        "CurrentJapanese": "祟殺し編　１０日目２",
+        "NewEnglish": "Intentions meurtrières",
+        "NewJapanese": "祟殺し編　１０日目２"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 10-3",
+        "CurrentJapanese": "祟殺し編　１０日目３",
+        "NewEnglish": "Le crime parfait",
+        "NewJapanese": "祟殺し編　１０日目３"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 10-4",
+        "CurrentJapanese": "祟殺し編　１０日目４",
+        "NewEnglish": "Déjà-vu",
+        "NewJapanese": "祟殺し編　１０日目４"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 11",
+        "CurrentJapanese": "祟殺し編　１１日目",
+        "NewEnglish": "Préparations macabres",
+        "NewJapanese": "祟殺し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 11-2",
+        "CurrentJapanese": "祟殺し編　１１日目２",
+        "NewEnglish": "Le 5ème meurtre",
+        "NewJapanese": "祟殺し編　１１日目２"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 11-3",
+        "CurrentJapanese": "祟殺し編　１１日目３",
+        "NewEnglish": "Une odeur... de pourriture",
+        "NewJapanese": "祟殺し編　１１日目３"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 12",
+        "CurrentJapanese": "祟殺し編　１２日目",
+        "NewEnglish": "Mort-vivant ?",
+        "NewJapanese": "祟殺し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 13",
+        "CurrentJapanese": "祟殺し編　１３日目",
+        "NewEnglish": "Coup de chaud",
+        "NewJapanese": "祟殺し編　１３日目"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 13-2",
+        "CurrentJapanese": "祟殺し編　１３日目２",
+        "NewEnglish": "Adieu, Hinamizawa",
+        "NewJapanese": "祟殺し編　１３日目２"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi Day 14",
+        "CurrentJapanese": "祟殺し編　１４日目",
+        "NewEnglish": "Le survivant",
+        "NewJapanese": "祟殺し編　１４日目"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 1",
+        "CurrentJapanese": "暇潰し編　１日目",
+        "NewEnglish": "Le dossier Hinamizawa",
+        "NewJapanese": "暇潰し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 2",
+        "CurrentJapanese": "暇潰し編　２日目",
+        "NewEnglish": "Ni… Nipah ???",
+        "NewJapanese": "暇潰し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 2-2",
+        "CurrentJapanese": "暇潰し編　２日目２",
+        "NewEnglish": "Rentre à Tôkyô.",
+        "NewJapanese": "暇潰し編　２日目２"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 2-3",
+        "CurrentJapanese": "暇潰し編　２日目３",
+        "NewEnglish": "Mah jong",
+        "NewJapanese": "暇潰し編　２日目３"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 3",
+        "CurrentJapanese": "暇潰し編　３日目",
+        "NewEnglish": "L'étau se resserre",
+        "NewJapanese": "暇潰し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 3-2",
+        "CurrentJapanese": "暇潰し編　３日目２",
+        "NewEnglish": "Manifestations",
+        "NewJapanese": "暇潰し編　３日目２"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 3-3",
+        "CurrentJapanese": "暇潰し編　３日目３",
+        "NewEnglish": "Course-poursuite",
+        "NewJapanese": "暇潰し編　３日目３"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 3-4",
+        "CurrentJapanese": "暇潰し編　３日目４",
+        "NewEnglish": "Le téléphone ne sonne pas...",
+        "NewJapanese": "暇潰し編　３日目４"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 3-5",
+        "CurrentJapanese": "暇潰し編　３日目５",
+        "NewEnglish": "Prémonitions",
+        "NewJapanese": "暇潰し編　３日目５"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi Day 4",
+        "CurrentJapanese": "暇潰し編　４日目",
+        "NewEnglish": "7 ans plus tard",
+        "NewJapanese": "暇潰し編　４日目"
     },
     {
         "CurrentEnglish": "Staff Room",
         "CurrentJapanese": "スタッフルーム",
-        "NewEnglish": "Staff Room",
+        "NewEnglish": "Les coulisses",
         "NewJapanese": "スタッフルーム"
     },
     {
-        "CurrentEnglish": "Watanagashi 12-3",
-        "CurrentJapanese": "綿流し編　１２日目３",
-        "NewEnglish": "Watanagashi Day 12-3",
-        "NewJapanese": "綿流し編　１２日目３"
+        "CurrentEnglish": "Meakashi Day 1",
+        "CurrentJapanese": "目明し編　１日目",
+        "NewEnglish": "Évasion",
+        "NewJapanese": "目明し編　１日目"
     },
     {
-        "CurrentEnglish": "Himatsubushi 2-2",
-        "CurrentJapanese": "暇潰し編　２日目２",
-        "NewEnglish": "Himatsubushi Day 2-2",
-        "NewJapanese": "暇潰し編　２日目２"
+        "CurrentEnglish": "Meakashi Day 2",
+        "CurrentJapanese": "目明し編　２日目",
+        "NewEnglish": "Indépendance",
+        "NewJapanese": "目明し編　２日目"
     },
     {
-        "CurrentEnglish": "Himatsubushi 2-3",
-        "CurrentJapanese": "暇潰し編　２日目３",
-        "NewEnglish": "Himatsubushi Day 2-3",
-        "NewJapanese": "暇潰し編　２日目３"
+        "CurrentEnglish": "Meakashi Day 3",
+        "CurrentJapanese": "目明し編　３日目",
+        "NewEnglish": "Sœurs",
+        "NewJapanese": "目明し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 4",
+        "CurrentJapanese": "目明し編　４日目",
+        "NewEnglish": "La rencontre",
+        "NewJapanese": "目明し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 5",
+        "CurrentJapanese": "目明し編　５日目",
+        "NewEnglish": "Courses avec Satoshi",
+        "NewJapanese": "目明し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 6",
+        "CurrentJapanese": "目明し編　６日目",
+        "NewEnglish": "Fighters VS Titans",
+        "NewJapanese": "目明し編　６日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 7",
+        "CurrentJapanese": "目明し編　７日目",
+        "NewEnglish": "Les signes de la malédiction",
+        "NewJapanese": "目明し編　７日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 8",
+        "CurrentJapanese": "目明し編　８日目",
+        "NewEnglish": "Haine",
+        "NewJapanese": "目明し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 9",
+        "CurrentJapanese": "目明し編　９日目",
+        "NewEnglish": "Requête suspecte",
+        "NewJapanese": "目明し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 10",
+        "CurrentJapanese": "目明し編　１０日目",
+        "NewEnglish": "Le soir de la purification du coton",
+        "NewJapanese": "目明し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 11",
+        "CurrentJapanese": "目明し編　１１日目",
+        "NewEnglish": "Alibi",
+        "NewJapanese": "目明し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 12",
+        "CurrentJapanese": "目明し編　１２日目",
+        "NewEnglish": "Trois ongles",
+        "NewJapanese": "目明し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 13",
+        "CurrentJapanese": "目明し編　１３日目",
+        "NewEnglish": "La disparition de Satoshi",
+        "NewJapanese": "目明し編　１３日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 14",
+        "CurrentJapanese": "目明し編　１４日目",
+        "NewEnglish": "Recherches",
+        "NewJapanese": "目明し編　１４日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 15",
+        "CurrentJapanese": "目明し編　１５日目",
+        "NewEnglish": "Déjà-vu",
+        "NewJapanese": "目明し編　１５日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 16",
+        "CurrentJapanese": "目明し編　１６日目",
+        "NewEnglish": "Les bruits de pas",
+        "NewJapanese": "目明し編　１６日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 17",
+        "CurrentJapanese": "目明し編　１７日目",
+        "NewEnglish": "La naissance d'une vengeance",
+        "NewJapanese": "目明し編　１７日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 18",
+        "CurrentJapanese": "目明し編　１８日目",
+        "NewEnglish": "Les morts ne parlent pas",
+        "NewJapanese": "目明し編　１８日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 19",
+        "CurrentJapanese": "目明し編　１９日目",
+        "NewEnglish": "Supercherie",
+        "NewJapanese": "目明し編　１９日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 20",
+        "CurrentJapanese": "目明し編　２０日目",
+        "NewEnglish": "La réunion",
+        "NewJapanese": "目明し編　２０日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 21",
+        "CurrentJapanese": "目明し編　２１日目",
+        "NewEnglish": "Duel démoniaque",
+        "NewJapanese": "目明し編　２１日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 22",
+        "CurrentJapanese": "目明し編　２２日目",
+        "NewEnglish": "Satoko est une fille maudite",
+        "NewJapanese": "目明し編　２２日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 23",
+        "CurrentJapanese": "目明し編　２３日目",
+        "NewEnglish": "La naissance du démon",
+        "NewJapanese": "目明し編　２３日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 24",
+        "CurrentJapanese": "目明し編　２４日目",
+        "NewEnglish": "Dénouement",
+        "NewJapanese": "目明し編　２４日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 1",
+        "CurrentJapanese": "罪滅し編　１日目",
+        "NewEnglish": "Affrontement humide",
+        "NewJapanese": "罪滅し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 2",
+        "CurrentJapanese": "罪滅し編　２日目",
+        "NewEnglish": "Un Dimanche de gagnant",
+        "NewJapanese": "罪滅し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 3",
+        "CurrentJapanese": "罪滅し編　３日目",
+        "NewEnglish": "Angel Mort",
+        "NewJapanese": "罪滅し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 4",
+        "CurrentJapanese": "罪滅し編　４日目",
+        "NewEnglish": "La cabane secrète",
+        "NewJapanese": "罪滅し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 5",
+        "CurrentJapanese": "罪滅し編　５日目",
+        "NewEnglish": "Problèmes familiaux",
+        "NewJapanese": "罪滅し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 6",
+        "CurrentJapanese": "罪滅し編　６日目",
+        "NewEnglish": "Où est ma place ?",
+        "NewJapanese": "罪滅し編　６日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 7",
+        "CurrentJapanese": "罪滅し編　７日目",
+        "NewEnglish": "Arnaque",
+        "NewJapanese": "罪滅し編　７日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 8",
+        "CurrentJapanese": "罪滅し編　８日目",
+        "NewEnglish": "Le prix du bonheur (1)",
+        "NewJapanese": "罪滅し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 9",
+        "CurrentJapanese": "罪滅し編　９日目",
+        "NewEnglish": "Le prix du bonheur (2)",
+        "NewJapanese": "罪滅し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 10",
+        "CurrentJapanese": "罪滅し編　１０日目",
+        "NewEnglish": "Nouveau départ",
+        "NewJapanese": "罪滅し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 11",
+        "CurrentJapanese": "罪滅し編　１１日目",
+        "NewEnglish": "Ensemble",
+        "NewJapanese": "罪滅し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 12",
+        "CurrentJapanese": "罪滅し編　１２日目",
+        "NewEnglish": "Le 5ème meurtre",
+        "NewJapanese": "罪滅し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 13",
+        "CurrentJapanese": "罪滅し編　１３日目",
+        "NewEnglish": "Rencontre à la bibliothèque",
+        "NewJapanese": "罪滅し編　１３日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 14",
+        "CurrentJapanese": "罪滅し編　１４日目",
+        "NewEnglish": "Les recherches de Miyo Takano",
+        "NewJapanese": "罪滅し編　１４日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 15",
+        "CurrentJapanese": "罪滅し編　１５日目",
+        "NewEnglish": "Conspiration",
+        "NewJapanese": "罪滅し編　１５日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 16",
+        "CurrentJapanese": "罪滅し編　１６日目",
+        "NewEnglish": "La théorie",
+        "NewJapanese": "罪滅し編　１６日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 17",
+        "CurrentJapanese": "罪滅し編　１７日目",
+        "NewEnglish": "Lucidité",
+        "NewJapanese": "罪滅し編　１７日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 18",
+        "CurrentJapanese": "罪滅し編　１８日目",
+        "NewEnglish": "Les corps ont disparu ?",
+        "NewJapanese": "罪滅し編　１８日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 19",
+        "CurrentJapanese": "罪滅し編　１９日目",
+        "NewEnglish": "Chasse à l'homme",
+        "NewJapanese": "罪滅し編　１９日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 20",
+        "CurrentJapanese": "罪滅し編　２０日目",
+        "NewEnglish": "La proposition de Rika",
+        "NewJapanese": "罪滅し編　２０日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 21",
+        "CurrentJapanese": "罪滅し編　２１日目",
+        "NewEnglish": "Confiance brisée",
+        "NewJapanese": "罪滅し編　２１日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 22",
+        "CurrentJapanese": "罪滅し編　２２日目",
+        "NewEnglish": "Rédemption",
+        "NewJapanese": "罪滅し編　２２日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 23",
+        "CurrentJapanese": "罪滅し編　２３日目",
+        "NewEnglish": "Visites nocturnes",
+        "NewJapanese": "罪滅し編　２３日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 24",
+        "CurrentJapanese": "罪滅し編　２４日目",
+        "NewEnglish": "Prise d'otages",
+        "NewJapanese": "罪滅し編　２４日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 25",
+        "CurrentJapanese": "罪滅し編　２５日目",
+        "NewEnglish": "Situation instable",
+        "NewJapanese": "罪滅し編　２５日目"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi Day 26",
+        "CurrentJapanese": "罪滅し編　２６日目",
+        "NewEnglish": "Tombée de rideaux au clair de lune",
+        "NewJapanese": "罪滅し編　２６日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 1",
+        "CurrentJapanese": "皆殺し編　１日目",
+        "NewEnglish": "Recommencer",
+        "NewJapanese": "皆殺し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 2",
+        "CurrentJapanese": "皆殺し編　２日目",
+        "NewEnglish": "Le Destin",
+        "NewJapanese": "皆殺し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 3",
+        "CurrentJapanese": "皆殺し編　３日目",
+        "NewEnglish": "Réminiscences (1)",
+        "NewJapanese": "皆殺し編　３日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 4",
+        "CurrentJapanese": "皆殺し編　４日目",
+        "NewEnglish": "Réminiscences (2)",
+        "NewJapanese": "皆殺し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 5",
+        "CurrentJapanese": "皆殺し編　５日目",
+        "NewEnglish": "Réflexion nocturne",
+        "NewJapanese": "皆殺し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 6",
+        "CurrentJapanese": "皆殺し編　６日目",
+        "NewEnglish": "Visite guidée",
+        "NewJapanese": "皆殺し編　６日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 7",
+        "CurrentJapanese": "皆殺し編　７日目",
+        "NewEnglish": "Réunion privée",
+        "NewJapanese": "皆殺し編　７日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 8",
+        "CurrentJapanese": "皆殺し編　８日目",
+        "NewEnglish": "Mah jong",
+        "NewJapanese": "皆殺し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 9",
+        "CurrentJapanese": "皆殺し編　９日目",
+        "NewEnglish": "Désespoir",
+        "NewJapanese": "皆殺し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 10",
+        "CurrentJapanese": "皆殺し編　１０日目",
+        "NewEnglish": "“De toute façon”",
+        "NewJapanese": "皆殺し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 11",
+        "CurrentJapanese": "皆殺し編　１１日目",
+        "NewEnglish": "Joindre ses forces",
+        "NewJapanese": "皆殺し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 12",
+        "CurrentJapanese": "皆殺し編　１２日目",
+        "NewEnglish": "Le centre des services de l'enfance",
+        "NewJapanese": "皆殺し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 13",
+        "CurrentJapanese": "皆殺し編　１３日目",
+        "NewEnglish": "Une bataille juste et loyale",
+        "NewJapanese": "皆殺し編　１３日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 14",
+        "CurrentJapanese": "皆殺し編　１４日目",
+        "NewEnglish": "Mise en garde",
+        "NewJapanese": "皆殺し編　１４日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 15",
+        "CurrentJapanese": "皆殺し編　１５日目",
+        "NewEnglish": "Satoko est malade ?",
+        "NewJapanese": "皆殺し編　１５日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 16",
+        "CurrentJapanese": "皆殺し編　１６日目",
+        "NewEnglish": "Ségrégation",
+        "NewJapanese": "皆殺し編　１６日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 17",
+        "CurrentJapanese": "皆殺し編　１７日目",
+        "NewEnglish": "Réunir le village",
+        "NewJapanese": "皆殺し編　１７日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 18",
+        "CurrentJapanese": "皆殺し編　１８日目",
+        "NewEnglish": "Entretien avec Oryô Sonozaki",
+        "NewJapanese": "皆殺し編　１８日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 19",
+        "CurrentJapanese": "皆殺し編　１９日目",
+        "NewEnglish": "Sauver Satoko",
+        "NewJapanese": "皆殺し編　１９日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 20",
+        "CurrentJapanese": "皆殺し編　２０日目",
+        "NewEnglish": "Le soir de la purification du coton",
+        "NewJapanese": "皆殺し編　２０日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 21",
+        "CurrentJapanese": "皆殺し編　２１日目",
+        "NewEnglish": "Lutter contre l'inévitable",
+        "NewJapanese": "皆殺し編　２１日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 22",
+        "CurrentJapanese": "皆殺し編　２２日目",
+        "NewEnglish": "L'heure fatidique",
+        "NewJapanese": "皆殺し編　２２日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 23",
+        "CurrentJapanese": "皆殺し編　２３日目",
+        "NewEnglish": "Sous protection",
+        "NewJapanese": "皆殺し編　２３日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 24",
+        "CurrentJapanese": "皆殺し編　２４日目",
+        "NewEnglish": "Souffrir en silence",
+        "NewJapanese": "皆殺し編　２４日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 25",
+        "CurrentJapanese": "皆殺し編　２５日目",
+        "NewEnglish": "Policiers et chiens de montagne",
+        "NewJapanese": "皆殺し編　２５日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 26",
+        "CurrentJapanese": "皆殺し編　２６日目",
+        "NewEnglish": "Confidence",
+        "NewJapanese": "皆殺し編　２６日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 27",
+        "CurrentJapanese": "皆殺し編　２７日目",
+        "NewEnglish": "Ôishi est en retard...",
+        "NewJapanese": "皆殺し編　２７日目"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi Day 28",
+        "CurrentJapanese": "皆殺し編　２８日目",
+        "NewEnglish": "La déesse Yashiro",
+        "NewJapanese": "皆殺し編　２８日目"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 1",
+        "CurrentJapanese": "祭囃し編　１",
+        "NewEnglish": "La mort des parents",
+        "NewJapanese": "祭囃し編　１"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 2",
+        "CurrentJapanese": "祭囃し編　２",
+        "NewEnglish": "La grande évasion",
+        "NewJapanese": "祭囃し編　２"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 3",
+        "CurrentJapanese": "祭囃し編　３",
+        "NewEnglish": "Takano et les anciens",
+        "NewJapanese": "祭囃し編　３"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 4",
+        "CurrentJapanese": "祭囃し編　４",
+        "NewEnglish": "Le restaurant de luxe",
+        "NewJapanese": "祭囃し編　４"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 5",
+        "CurrentJapanese": "祭囃し編　５",
+        "NewEnglish": "La nomination d'Irie",
+        "NewJapanese": "祭囃し編　５"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 6",
+        "CurrentJapanese": "祭囃し編　６",
+        "NewEnglish": "Dans la forêt sous la pluie",
+        "NewJapanese": "祭囃し編　６"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 7",
+        "CurrentJapanese": "祭囃し編　７",
+        "NewEnglish": "Miyo Takano",
+        "NewJapanese": "祭囃し編　７"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 9",
+        "CurrentJapanese": "祭囃し編　９",
+        "NewEnglish": "Juin 1983",
+        "NewJapanese": "祭囃し編　９"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 10",
+        "CurrentJapanese": "祭囃し編　１０",
+        "NewEnglish": "L'enquête secrète",
+        "NewJapanese": "祭囃し編　１０"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 11",
+        "CurrentJapanese": "祭囃し編　１１",
+        "NewEnglish": "Hanyû et les autres",
+        "NewJapanese": "祭囃し編　１１"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 12",
+        "CurrentJapanese": "祭囃し編　１２",
+        "NewEnglish": "Le retour d'Akasaka",
+        "NewJapanese": "祭囃し編　１２"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 13",
+        "CurrentJapanese": "祭囃し編　１３",
+        "NewEnglish": "Discussion avec Irie",
+        "NewJapanese": "祭囃し編　１３"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 14",
+        "CurrentJapanese": "祭囃し編　１４",
+        "NewEnglish": "Tractations secrètes",
+        "NewJapanese": "祭囃し編　１４"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 15",
+        "CurrentJapanese": "祭囃し編　１５",
+        "NewEnglish": "Le 17 juin",
+        "NewJapanese": "祭囃し編　１５"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 16",
+        "CurrentJapanese": "祭囃し編　１６",
+        "NewEnglish": "Réunion du club",
+        "NewJapanese": "祭囃し編　１６"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 17",
+        "CurrentJapanese": "祭囃し編　１７",
+        "NewEnglish": "Le 18 juin",
+        "NewJapanese": "祭囃し編　１７"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 18",
+        "CurrentJapanese": "祭囃し編　１８",
+        "NewEnglish": "Takano",
+        "NewJapanese": "祭囃し編　１８"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 19",
+        "CurrentJapanese": "祭囃し編　１９",
+        "NewEnglish": "Le 19 juin",
+        "NewJapanese": "祭囃し編　１９"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 20",
+        "CurrentJapanese": "祭囃し編　２０",
+        "NewEnglish": "Tomitake",
+        "NewJapanese": "祭囃し編　２０"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 21",
+        "CurrentJapanese": "祭囃し編　２１",
+        "NewEnglish": "Je suis venu te sauver !",
+        "NewJapanese": "祭囃し編　２１"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 22",
+        "CurrentJapanese": "祭囃し編　２２",
+        "NewEnglish": "La contre  attaque",
+        "NewJapanese": "祭囃し編　２２"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 23",
+        "CurrentJapanese": "祭囃し編　２３",
+        "NewEnglish": "Guérilla en montagne",
+        "NewJapanese": "祭囃し編　２３"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 24",
+        "CurrentJapanese": "祭囃し編　２４",
+        "NewEnglish": "Le grand final",
+        "NewJapanese": "祭囃し編　２４"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi 25",
+        "CurrentJapanese": "祭囃し編　２５",
+        "NewEnglish": "La purification du coton",
+        "NewJapanese": "祭囃し編　２５"
+    },
+    {
+        "CurrentEnglish": "Connecting Fragments",
+        "CurrentJapanese": "カケラ紡ぎ",
+        "NewEnglish": "Le puzzle",
+        "NewJapanese": "カケラ紡ぎ"
+    },
+    {
+        "CurrentEnglish": "No new tips available.",
+        "CurrentJapanese": "入手ＴＩＰＳはありません",
+        "NewEnglish": "Aucun indice disponible.",
+        "NewJapanese": "入手ＴＩＰＳはありません"
+    },
+    {
+        "CurrentEnglish": "Connecting Fragments",
+        "CurrentJapanese": "カケラ紡ぎをする",
+        "NewEnglish": "Enchâsser les fragments",
+        "NewJapanese": "カケラ紡ぎをする"
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Sauv./Charger",
+        "NewJapanese": "Save & Load",
+        "Discriminator": 0
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Sauv./Charger",
+        "NewJapanese": "Save & Load",
+        "Discriminator": 1
     }
 ]
