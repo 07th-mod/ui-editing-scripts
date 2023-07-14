@@ -252,7 +252,7 @@ if sys.version_info < (2, 7):
     print(">>>> ERROR: This script does not work on Python 2.7")
     exit(-1)
 
-if sys.version_info > (3, 10):
+if not (sys.version_info < (3, 11)):
     print(">>>> WARNING: This script probably does not work on Python 3.11 because unitypack uses old version of decrunch which does not build. Use Python 3.10 or below if you have this error.")
 
 lastModifiedManager = LastModifiedManager()
@@ -267,13 +267,10 @@ parser.add_argument(
     choices=["all", "github_actions"] + list(chapter_to_build_variants.keys()),
 )
 parser.add_argument("--force-download", default=False, action='store_true')
-parser.add_argument("--translation", default=False, action='store_true')
+parser.add_argument("--disable-translation", default=False, action='store_true')
 args = parser.parse_args()
 
 force_download = args.force_download
-
-# NOTE: For now, translation archive output is always enabled, as most of the time this script will be used for translators
-translation = args.translation
 
 # Get chapter name from git tag if "github_actions" specified as the chapter
 chapter_name = args.chapter
@@ -285,13 +282,21 @@ if chapter_name == "github_actions":
         )
         exit(0)
 
-# NOTE: For now, translation archive output is always enabled, as most of the time this script will be used for translators
+# NOTE: For now, translation archive output is enabled by default, as most of the time this script will be used for translators
 translation = True
+
+if args.disable_translation:
+    translation = False
 
 # Get a list of build variants (like 'onikakushi 5.2.2f1 win') depending on commmand line arguments
 build_variants = get_build_variants(chapter_name)
 build_variants_list = "\n - ".join([b.get_build_command() for b in build_variants])
-print(f"For chapter '{chapter_name}' building:\n - {build_variants_list}")
+print(f"-------- Build Started --------")
+print(f"Chapter: [{chapter_name}] | Translation Archive Output: [{('Enabled' if translation else 'Disabled')}]")
+print(f"Variants:")
+print(f" - {build_variants_list}")
+print(f"-------------------------------")
+print()
 
 # Install python dependencies
 print("Installing python dependencies")
