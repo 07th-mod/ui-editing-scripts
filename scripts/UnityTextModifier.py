@@ -72,14 +72,14 @@ class ScriptEdit:
 			offsets.append(offset)
 			start = offset + 1
 		if len(offsets) == 0:
-			raise IndexError(f"No asset found for {self.shortString}")
+			raise IndexError(f"WARNING: No asset found for {self.shortString}")
 		if self.discriminator == None:
 			if len(offsets) > 1:
-				raise IndexError(f"Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ". Please add a field like 'Discriminator: 0' to indicate which block should apply to which asset (do NOT use quotes around the number, do not use the raw address). For an example, see https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts#unitytextmodifier")
+				raise IndexError(f"WARNING: Multiple assets found for {self.shortString}, candidates are " + ", ".join(f"{index}: 0x{offset:x}" for index, offset in enumerate(offsets)) + ". Please add a field like 'Discriminator: 0' to indicate which block should apply to which asset (do NOT use quotes around the number, do not use the raw address). For an example, see https://github.com/07th-mod/higurashi-dev-guides/wiki/UI-editing-scripts#unitytextmodifier")
 			self.offset = offsets[0]
 		else:
 			if len(offsets) <= self.discriminator:
-				raise IndexError(f"Not enough offsets found for ${self.trimmedE} / {self.trimmedJ} to meet request for #{self.discriminator}, there were only {len(offsets)}")
+				raise IndexError(f"WARNING: Not enough offsets found for {self.shortString} to meet request for #{self.discriminator}, there were only {len(offsets)}")
 			self.offset = offsets[self.discriminator]
 
 	def checkObject(self, id, object, bundle):
@@ -113,6 +113,7 @@ class ScriptEdit:
 		try: return f"<ScriptEdit for position 0x{self.offset:x}>"
 		except: return "<ScriptEdit for unknown position>"
 
+warning_count = 0
 
 with open(sys.argv[2], encoding="utf-8") as jsonFile:
 	edits = [ScriptEdit.fromJSON(x) for x in json.load(jsonFile)]
@@ -127,6 +128,8 @@ with open(sys.argv[1], "rb") as assetsFile:
 			print(f"Found {edit.shortString} at offset 0x{edit.offset:x}")
 		except IndexError as e:
 			print(e)
+			warning_count =+ 1
+
 	edits = newEdits
 
 	assetsFile.seek(0)
@@ -136,3 +139,6 @@ with open(sys.argv[1], "rb") as assetsFile:
 			edit.checkObject(id, obj, bundle)
 	for edit in edits:
 		edit.write(sys.argv[3])
+
+if warning_count > 0:
+	print(">>>>>>>> ONE OR MORE WARNINGS OCCURRED, please check logs! <<<<<<<<<")
