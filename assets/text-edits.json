@@ -1114,5 +1114,19 @@
         "CurrentJapanese": "カケラ紡ぎをする",
         "NewEnglish": "Collegare i Frammenti",
         "NewJapanese": "カケラ紡ぎをする"
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Salva & Carica",
+        "NewJapanese": "Save & Load",
+        "Discriminator": 0
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Salva & Carica",
+        "NewJapanese": "Save & Load",
+        "Discriminator": 1
     }
 ]
