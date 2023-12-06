@@ -149,6 +149,23 @@ We've found that the MacOS sharedassets can be used on Linux, **but the Linux sh
 
 For this reason, whenever a new chapter is prepared, the 'vanilla' unix `sharedassets0.assets` should be taken from the MacOS version.
 
+### Initial dumping of textures
+
+You will initially want to inspect all the textures in the UI file to see if any new images need to be added to the `assets/images/*` folders.
+
+1. Open and select the `sharedassets0.assets` from the new episode in UABE
+2. Click the "Type" column to sort by "Type"
+3. Scroll down until you see "Texture2D"
+4. Hold shift, then click the first "Texture2D" item
+5. Continue holding shift, then click the last "Texture2D" item. This should highlight all the "Texture2D" items.
+6. On the right hand side, click "Plugins"->"Export to .png"
+
+The textures will be dumped as images in the selected folder. However please note:
+
+1. You will need to rename them by keeping the first part of the name only - for example `ChapterPreview-sharedassets0.assets-27.png` becomes `ChapterPreview.png`
+2. It is also possible to use the number (Path ID), but usually you won't do this. In the above example, rename as `27_ChapterPreview.png` (the part after the number is not used, only to describe the file for humans)
+3. Make sure you put them in the right subfolder in `assets/images`, refer to "To modify images" section for details
+
 ### Preparing font files
 
 You'll need to extract the 'msgothic' font files from the stock `.assets` file before starting:
