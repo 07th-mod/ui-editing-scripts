@@ -10,6 +10,28 @@ from typing import List
 from urllib.request import Request, urlopen
 from warnings import catch_warnings
 
+class Globals:
+    SEVEN_ZIP_EXECUTABLE = None
+
+def findWorkingExecutablePath(executable_paths, flags):
+	#type: (List[str], List[str]) -> str
+	"""
+	Try to execute each path in executable_paths to see which one can be called and returns exit code 0
+	The 'flags' argument is any extra flags required to make the executable return 0 exit code
+	:param executable_paths: a list [] of possible executable paths (eg. "./7za", "7z")
+	:param flags: a list [] of any extra flags like "-h" required to make the executable have a 0 exit code
+	:return: the path of the valid executable, or None if no valid executables found
+	"""
+	with open(os.devnull, 'w') as os_devnull:
+		for path in executable_paths:
+			try:
+				if subprocess.call([path] + flags, stdout=os_devnull, stderr=os_devnull) == 0:
+					return path
+			except:
+				pass
+
+	return None
+
 # Get the github ref
 GIT_TAG = None
 GIT_REF = os.environ.get("GITHUB_REF")  # Github Tag / Version info
@@ -155,14 +177,14 @@ def download(url):
 
 
 def seven_zip_extract(input_path, outputDir=None):
-    args = ["7z", "x", input_path, "-y"]
+    args = [Globals.SEVEN_ZIP_EXECUTABLE, "x", input_path, "-y"]
     if outputDir:
         args.append("-o" + outputDir)
 
     call(args)
 
 def seven_zip_compress(input_path, output_path):
-    args = ["7z", "a", "-md=512m", output_path, input_path, "-y"]
+    args = [Globals.SEVEN_ZIP_EXECUTABLE, "a", "-md=512m", output_path, input_path, "-y"]
 
     call(args)
 
@@ -254,6 +276,11 @@ if sys.version_info < (2, 7):
 
 if not (sys.version_info < (3, 11)):
     print(">>>> WARNING: This script probably does not work on Python 3.11 because unitypack uses old version of decrunch which does not build. Use Python 3.10 or below if you have this error.")
+
+Globals.SEVEN_ZIP_EXECUTABLE = findWorkingExecutablePath(["7za", "7z"], ['-h'])
+if Globals.SEVEN_ZIP_EXECUTABLE is None:
+    print(">>>> ERROR: Can't find 7zip as '7z' or '7za'")
+    exit(-1)
 
 lastModifiedManager = LastModifiedManager()
 
