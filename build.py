@@ -282,6 +282,24 @@ if Globals.SEVEN_ZIP_EXECUTABLE is None:
     print(">>>> ERROR: Can't find 7zip as '7z' or '7za'")
     exit(-1)
 
+# Check that 7zip is 64-bit
+seven_zip_bitness = None
+seven_zip_info = subprocess.check_output(Globals.SEVEN_ZIP_EXECUTABLE, text=True)
+for line in seven_zip_info.splitlines():
+    if line.strip().startswith('7-Zip'):
+        if 'x64' in line:
+            seven_zip_bitness = 64
+        elif 'x86' in line:
+            seven_zip_bitness = 32
+        break
+
+if seven_zip_bitness == 64:
+    print("7zip is 64-bit - OK")
+else:
+    print(f">>>> ERROR: Unacceptable 7zip bitness '{seven_zip_bitness}' - need 64 bit.\n\n Please make sure your 7zip is 64-bit, or manually edit this script to use 128mb 7z dictionary size")
+    exit(-1)
+
+
 lastModifiedManager = LastModifiedManager()
 
 # Parse command line arguments
