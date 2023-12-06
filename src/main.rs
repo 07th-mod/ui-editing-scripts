@@ -1,14 +1,14 @@
 extern crate inflector;
 
 use std::env;
-use std::process::Command;
+use std::process::{Command, ExitCode};
 use std::fs;
 use std::path::Path;
 use std::collections::HashMap;
 use std::process;
 use inflector::Inflector;
 
-fn main() {
+fn main() -> ExitCode {
     let args: Vec<String> = env::args().collect();
     let chapter = &args[1];
     let unity = &args[2];
@@ -18,6 +18,19 @@ fn main() {
     } else {
         None
     };
+
+    // Check if python is correctly installed
+    println!("Running 'python --version' to check if python is correctly installed...");
+    let result = Command::new("python")
+        .arg("--version")
+        .status()
+        .expect("Failed to run python");
+
+    if !result.success()
+    {
+        println!("Failed to run python: {:?}", result);
+        return ExitCode::FAILURE;
+    }
 
     let mut chapters = HashMap::new();
     chapters.insert("onikakushi", 1);
@@ -32,7 +45,6 @@ fn main() {
 
     if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter, should be one of {:?}", chapters.keys());
-        process::exit(1);
     }
 
     let arc_number = chapters.get(&chapter[..]).unwrap().clone();
@@ -67,6 +79,8 @@ fn main() {
         .arg(&assets)
         .output()
         .expect("failed to execute UnityTextModifier.py");
+
+    assert!(output.status.success());
 
     let version = String::from_utf8_lossy(&output.stdout).into_owned();
 
@@ -220,6 +234,8 @@ fn main() {
     let exit_status = status.expect("failed to execute 7za or 7z");
 
     assert!(exit_status.success());
+
+    return ExitCode::SUCCESS;
 }
 
 fn format_checksum(checksum: Option<&String>, sep: &str) -> String
