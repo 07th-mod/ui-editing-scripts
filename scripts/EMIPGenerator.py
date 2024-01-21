@@ -64,6 +64,9 @@ class AssetEdit:
 
 	def loadTexture2DInfo(self, assets, bundle):
 		self.shouldDecode = True
+		print(f'Writing {self.file} with id {self.id}')
+		if self.id not in assets.objects:
+			raise Exception(f"ERROR: When loading Texture2D info for file {self.file} with id {self.id}, the id was not found. Are you sure the ID {self.id} is correct/exists in the sharedassets?")
 		obj = assets.objects[self.id]
 		data = bundle[obj.data_offset:(obj.data_offset + obj.size)]
 		length = int.from_bytes(data[0:4], byteorder='little')
@@ -162,6 +165,8 @@ def generateHeader(numEdits):
 	header += path # File path
 	header += numEdits.to_bytes(4, byteorder='little') # Number of file changes
 	return header
+
+print(f"Running EMPIGenerator in directory [{sys.argv[2]}]")
 
 edits = []
 
