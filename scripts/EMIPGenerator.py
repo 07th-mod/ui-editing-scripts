@@ -185,7 +185,7 @@ with open(sys.argv[1], "rb") as assetsFile:
 	bundle = assetsFile.read()
 	unityVersion = [int(x) for x in bundle[20:28].decode("utf-8").rstrip("\0").split(".")[:2]]
 	assetsFile.seek(0)
-	assets = Asset.from_file(assetsFile)
+	assets = Asset.from_file(assetsFile, legacy_mode=True)
 	for edit in edits:
 		edit.getAssetInfo(assets, bundle)
 	edits = [x for x in edits if x.id != None]

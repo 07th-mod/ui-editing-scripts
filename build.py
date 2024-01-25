@@ -274,9 +274,6 @@ if sys.version_info < (2, 7):
     print(">>>> ERROR: This script does not work on Python 2.7")
     exit(-1)
 
-if not (sys.version_info < (3, 11)):
-    print(">>>> WARNING: This script probably does not work on Python 3.11 because unitypack uses old version of decrunch which does not build. Use Python 3.10 or below if you have this error.")
-
 Globals.SEVEN_ZIP_EXECUTABLE = findWorkingExecutablePath(["7za", "7z"], ['-h'])
 if Globals.SEVEN_ZIP_EXECUTABLE is None:
     print(">>>> ERROR: Can't find 7zip as '7z' or '7za'")

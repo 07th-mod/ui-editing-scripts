@@ -133,7 +133,7 @@ with open(sys.argv[1], "rb") as assetsFile:
 	edits = newEdits
 
 	assetsFile.seek(0)
-	assets = Asset.from_file(assetsFile)
+	assets = Asset.from_file(assetsFile, legacy_mode=True)
 	for id, obj in assets.objects.items():
 		for edit in edits:
 			edit.checkObject(id, obj, bundle)
