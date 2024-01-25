@@ -13,6 +13,14 @@ if not os.path.isdir(sys.argv[2]):
 	print("Input folder " + sys.argv[2] + " must be a directory!")
 	exit()
 
+sharedassets_file = sys.argv[1]
+input_directory = sys.argv[2]
+output_file = sys.argv[3]
+
+# sharedassets_file = './output/HigurashiEp09_Data/sharedassets0.assets'
+# input_directory = 'output/assets'
+# output_file = 'out.emip'
+
 class AssetEdit:
 	def __init__(self, file, id, name, type):
 		self.file = file
@@ -23,7 +31,7 @@ class AssetEdit:
 
 	@property
 	def filePath(self):
-		return sys.argv[2] + "/" + self.file
+		return input_directory + "/" + self.file
 
 	def pngToTexture2D(self, pngData, unityVersion):
 		image = Image.open(self.filePath)
@@ -157,20 +165,20 @@ def generateHeader(numEdits):
 	header += b"\0" * 4 # Unknown
 	header += (1).to_bytes(4, byteorder='big') # Number of files
 	header += b"\0" * 4 # Unknown
-	if os.path.abspath(sys.argv[1])[1] == ":": # Windows paths will be read properly, UNIX paths won't since UABE will be run with wine, so use a relative path
-		path = os.path.abspath(sys.argv[1]).encode('utf-8')
+	if os.path.abspath(sharedassets_file)[1] == ":": # Windows paths will be read properly, UNIX paths won't since UABE will be run with wine, so use a relative path
+		path = os.path.abspath(sharedassets_file).encode('utf-8')
 	else:
-		path = sys.argv[1].encode('utf-8')
+		path = sharedassets_file.encode('utf-8')
 	header += len(path).to_bytes(2, byteorder='little') # Path length
 	header += path # File path
 	header += numEdits.to_bytes(4, byteorder='little') # Number of file changes
 	return header
 
-print(f"Running EMPIGenerator in directory [{sys.argv[2]}]")
+print(f"Running EMPIGenerator in directory [{input_directory}]")
 
 edits = []
 
-for file in os.listdir(sys.argv[2]):
+for file in os.listdir(input_directory):
 	if file[0] == ".": continue
 	matches = re.match(r"^(\d+).*", file)
 	if matches:
@@ -181,7 +189,7 @@ for file in os.listdir(sys.argv[2]):
 		if len(parts) < 2: continue
 		edits.append(AssetEdit(file, None, "_".join(parts[:-1]), parts[-1]))
 
-with open(sys.argv[1], "rb") as assetsFile:
+with open(sharedassets_file, "rb") as assetsFile:
 	bundle = assetsFile.read()
 	unityVersion = [int(x) for x in bundle[20:28].decode("utf-8").rstrip("\0").split(".")[:2]]
 	assetsFile.seek(0)
@@ -192,7 +200,7 @@ with open(sys.argv[1], "rb") as assetsFile:
 
 edits = sorted(edits, key=lambda x: x.id)
 
-with open(sys.argv[3], "wb") as outputFile:
+with open(output_file, "wb") as outputFile:
 	outputFile.write(generateHeader(len(edits)))
 	for edit in edits:
 		outputFile.write(edit.bytes(unityVersion))
