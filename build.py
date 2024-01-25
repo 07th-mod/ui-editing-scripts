@@ -199,7 +199,7 @@ def get_chapter_name_and_translation_from_git_tag():
         )
     else:
         # Look for the chapter name to build in the git tag
-        tag_fragments = [x.lower() for x in re.split("[\W_]", GIT_REF)]
+        tag_fragments = [x.lower() for x in re.split(r"[\W_]", GIT_REF)]
 
         if "all" in tag_fragments:
             returned_chapter_name = "all"
