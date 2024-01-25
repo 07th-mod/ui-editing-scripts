@@ -73,6 +73,29 @@ The `assets/files-[UNITY_VERSION]` folders contain files applied to a particular
 
 Currently these folders contain higher quality caret sprites (the little cursor/triangle displayed at the end of a text line), with the exception of the `assets/files-2019.4` folder which also contains fonts for Higurashi Rei.
 
+### Avoiding installing python packages globally (optional)
+
+The `build.py` script will automatically install the packages in `requirements.txt` globally.
+
+If you do not wish to install globally, create virtual environment before running the program:
+
+```
+# Create a new virtual environment in the `venv` folder
+python -m venv venv
+
+# Activate the venv in cmd.exe
+venv\Scripts\activate.bat
+# OR Activate the venv in PowerShell
+venv\Scripts\Activate.ps1
+
+# Now your shell should be prefixed with `(venv)`
+
+# Run the script
+python build.py onikaushi
+```
+
+Make sure to activate the venv every time you want to run the script.
+
 ### Generating .assets and .languageSpecificAssets files (Windows Only)
 
 To list the supported Higurashi chapters for this tool, run
