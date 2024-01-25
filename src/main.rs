@@ -28,6 +28,9 @@ fn main() -> ExitCode {
 
     if !result.success()
     {
+        println!("Python not found! via `python`. Make sure you:");
+        println!("- ticked 'Add Python to environment variables' in the python installer.");
+        println!("- can run 'python' in the console and get no error/the Microsoft Store does NOT appear");
         println!("Failed to run python: {:?}", result);
         return ExitCode::FAILURE;
     }
