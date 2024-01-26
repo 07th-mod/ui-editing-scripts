@@ -49,6 +49,7 @@ chapter_to_chapter_number = {
     "minagoroshi": 7,
     "matsuribayashi": 8,
     "rei": 9,
+    "hou-plus": 10,
 }
 
 class BuildVariant:
@@ -155,6 +156,11 @@ chapter_to_build_variants = {
        BuildVariant("MG",                   "rei", "2019.4.4", "win"),
        BuildVariant("GOG-Steam-MG_old",     "rei", "2019.4.3", "unix"),
        BuildVariant("MG",                   "rei", "2019.4.4", "unix"),
+    ],
+
+    'hou-plus': [
+       BuildVariant("GOG-MG-Steam", "hou-plus", "2019.4.4", "win", translation_default=True),
+       BuildVariant("GOG-MG-Steam", "hou-plus", "2019.4.4", "unix"),
     ],
 }
 

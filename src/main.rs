@@ -45,6 +45,7 @@ fn main() -> ExitCode {
     chapters.insert("minagoroshi", 7);
     chapters.insert("matsuribayashi", 8);
     chapters.insert("rei", 9);
+    chapters.insert("hou-plus", 10);
 
     if !chapters.contains_key(&chapter[..]) {
         println!("Unknown chapter, should be one of {:?}", chapters.keys());
@@ -129,7 +130,8 @@ fn main() -> ExitCode {
         7     => "assets/files-5.6",
         8     => "assets/files-2017.2",
         9     => "assets/files-2019.4",
-        _     => panic!("Couldn't folder for text carets with arc {}", arc_number)
+        10    => "assets/files-hou-plus", // Both rei and hou-plus are 2019.4, but the rei caret/font doesn't work on hou-plus
+        _     => panic!("Couldn't determine folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
     println!();
@@ -261,7 +263,7 @@ fn copy_images(from: &str, to: &str) {
         println!("Path {} not found", from);
         return
     }
-    println!("Copying files from {}", from);
+    println!("Copying images from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
         fs::copy(&path, format!("{}/{}_Texture2D.png", to, path.file_stem().unwrap().to_str().unwrap())).expect("Unable to copy");
