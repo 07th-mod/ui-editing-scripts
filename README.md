@@ -176,7 +176,7 @@ For this reason, whenever a new chapter is prepared, the 'vanilla' unix `shareda
 
 You will initially want to inspect all the textures in the UI file to see if any new images need to be added to the `assets/images/*` folders.
 
-1. Open and select the `sharedassets0.assets` from the new episode in UABE
+1. Open and select the `sharedassets0.assets` **AND** the `sharedassets0.assets.resS` from the new episode in UABE
 2. Click the "Type" column to sort by "Type"
 3. Scroll down until you see "Texture2D"
 4. Hold shift, then click the first "Texture2D" item
