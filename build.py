@@ -198,6 +198,7 @@ def seven_zip_compress(input_path, output_path):
 def get_chapter_name_and_translation_from_git_tag():
     returned_chapter_name = None
     translation = False
+    tag_fragments_debug = 'tag fragments not extracted - maybe missing GITHUB_REF?' #type: str
 
     if GIT_TAG is None:
         raise Exception(
@@ -205,7 +206,8 @@ def get_chapter_name_and_translation_from_git_tag():
         )
     else:
         # Look for the chapter name to build in the git tag
-        tag_fragments = [x.lower() for x in re.split(r"[\W_]", GIT_REF)]
+        tag_fragments = [x.lower() for x in re.split(r"_", GIT_REF)]
+        tag_fragments_debug = str(tag_fragments)
 
         if "all" in tag_fragments:
             returned_chapter_name = "all"
@@ -218,7 +220,7 @@ def get_chapter_name_and_translation_from_git_tag():
         if "translation" in tag_fragments:
             translation = True
 
-    return returned_chapter_name, translation
+    return returned_chapter_name, translation, tag_fragments_debug
 
 
 def get_build_variants(selected_chapter: str) -> List[BuildVariant]:
@@ -323,11 +325,12 @@ force_download = args.force_download
 # Get chapter name from git tag if "github_actions" specified as the chapter
 chapter_name = args.chapter
 if chapter_name == "github_actions":
-    chapter_name, translation = get_chapter_name_and_translation_from_git_tag()
+    chapter_name, translation, tag_fragments_debug = get_chapter_name_and_translation_from_git_tag()
     if chapter_name is None:
         print(
-            f">>>> WARNING: No chapter name (or 'all') was found in git tag {GIT_TAG} - skipping building .assets"
+            f">>>> WARNING: No chapter name was found in git tag {GIT_TAG} parsed as {tag_fragments_debug} - skipping building .assets"
         )
+        print(f">>>> Should contain one of {chapter_to_build_variants.keys()} or 'all'")
         exit(0)
 
 # NOTE: For now, translation archive output is enabled by default, as most of the time this script will be used for translators
