@@ -266,7 +266,9 @@ fn copy_images(from: &str, to: &str) {
     println!("Copying images from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
-        fs::copy(&path, format!("{}/{}_Texture2D.png", to, path.file_stem().unwrap().to_str().unwrap())).expect("Unable to copy");
+        let to_path = format!("{}/{}_Texture2D.png", to, path.file_stem().unwrap().to_str().unwrap());
+        println!("Copying Image {} -> {}", path.to_string_lossy(), to_path);
+        fs::copy(&path, to_path).expect("Unable to copy");
     }
 }
 
@@ -278,6 +280,8 @@ fn copy_files(from: &str, to: &str) {
     println!("Copying files from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
-        fs::copy(&path, format!("{}/{}", to, path.file_name().unwrap().to_str().unwrap())).expect("Unable to copy");
+        let to_path = format!("{}/{}", to, path.file_name().unwrap().to_str().unwrap());
+        println!("Copying File {} -> {}", path.to_string_lossy(), to_path);
+        fs::copy(&path, to_path).expect("Unable to copy");
     }
 }
