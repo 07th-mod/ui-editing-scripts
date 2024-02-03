@@ -1,14 +1,14 @@
 from pathlib import Path
 import re
 
-en_regex = re.compile(r'OutputLine\([^,]*,\s*[^,]*,\s*[^,]*,\s*([^,]*)')
+en_regex = re.compile(r'OutputLine\([^,]*,\s*([^,]*),\s*[^,]*,\s*([^,]*)')
 
 def load_existing_list(path):
     with open(path, encoding='utf-8', newline='') as f:
         return f.read()
 
 
-existing_char_list = Path('C:/drojf/large_projects/umineko/ui-editing-scripts/scripts/CharacterInfoExtraction/msgothic_2_charset_OtherLang.txt')
+existing_char_list = Path('C:/drojf/large_projects/umineko/ui-editing-scripts/scripts/CharacterInfoExtraction/msgothic_2_charset_JP_and_OtherLang.txt')
 out_char_list = existing_char_list.with_suffix(existing_char_list.suffix + '.out')
 source_directory = Path('C:/drojf/large_projects/umineko/HIGURASHI_REPOS')
 
@@ -17,15 +17,25 @@ existing_font_set = set(existing_char_list_text)
 
 all_chars = set()
 
+search_en = True
+search_jp = True
+
 for file in source_directory.rglob("*.txt"):
     print(file)
     with open(file, encoding='utf-8') as f:
         whole_file_string = f.read()
         for match in en_regex.finditer(whole_file_string):
             if match:
+                outputline_jp_arg = match.group(1)
                 outputline_english_arg = match.group(1)
-                for c in outputline_english_arg:
-                    all_chars.add(c)
+
+                if search_en:
+                    for c in outputline_english_arg:
+                        all_chars.add(c)
+
+                if search_jp:
+                    for c in outputline_jp_arg:
+                        all_chars.add(c)
 
 all_chars_list = list(all_chars)
 all_chars_list.sort()
@@ -55,11 +65,26 @@ with open(out_char_list, 'w', encoding='utf-8', newline='') as f:
         f.write(c)
 
         # This is very bad for performance if there are lots of new chars found, but it works for now to maintain ordering
+        remove_list = []
         for new_character in chars_to_add:
             if new_character < c:
                 f.write(new_character)
-                chars_to_add.remove(new_character)
+                remove_list.append(new_character)
                 print(f"Inserting new character {new_character} at position {i} as it is less than {c}")
+
+        for item in remove_list:
+            chars_to_add.remove(item)
+
+    remove_list = []
+    for char in chars_to_add:
+        if char not in existing_font_set:
+            f.write(char)
+        else:
+            print(f"WARNING: character {char} already exists, skipping")
+        remove_list.append(char)
+
+    for item in remove_list:
+        chars_to_add.remove(item)
 
 if chars_to_add:
     raise Exception(f"One or more characters were not added {chars_to_add}")
