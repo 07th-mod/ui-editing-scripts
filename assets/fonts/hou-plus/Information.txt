@@ -1,0 +1,5 @@
+This font was generated using Unity 2019.4.40f1.
+See screenshot for settings used, but note:
+ - Use SDFAA initially until everything looks correct as it is way faster than SDF32, then use SDF32 for final pass
+ - I've used "Auto Sizing" which doesn't guarentee a fixed font size in-game, so you'll need to adjust the font size in the init.txt if you add or remove a huge amount of characters.
+See folder assets\files-hou-plus for the raw .dat files
