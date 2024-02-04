@@ -201,6 +201,19 @@ You'll need to extract the 'msgothic' font files from the stock `.assets` file b
 2. Rename them as `msgothic_0.dat` and `msgothic_2.dat`
 3. Move them to `assets/vanilla/<chapter>/msgothic_0.dat` & `assets/vanilla/<chapter>/msgothic_2.dat`
 
+### Fixing Caret (Ch.9 onwards)
+
+It appears the caret Sprite files need to be modified slightly, but otherwise can be copied between chapters. The caret textures (.png files) don't need to be modified.
+
+To do this:
+- Extract the caret Sprite files as .txt from Ch.9. There are 3 for each type of caret (clickwait, and pagewait carets)
+- Compare the two files in Winmerge or similar
+- Copy the `0 SInt64 m_PathID` value from the vanilla caret Sprite file to the mod caret Sprite file. This ensures the correct texture is referenced.
+- Now we need to convert the .txt back to .dat. To do this, open the modded sharedassets, then click "Import Dump" and import the fixed caret files, overwriting the appropriate sprites. Then click "Export as Raw" to get the .dat files usable 
+- Place the caret files in the `assets/files-[game_name]` folder.
+    - Note that each time a new game is released, you will need to update the Rust script to handle the new game, and reference the `assets/files-[game_name]` folder so it knows where to copy caret/fonts from.
+
+
 ----
 
 ## Extra Notes
