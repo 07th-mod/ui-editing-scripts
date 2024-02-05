@@ -6,6 +6,7 @@ import pathlib
 import shutil
 import argparse
 import json
+import zipfile
 from typing import List
 from urllib.request import Request, urlopen
 from warnings import catch_warnings
@@ -236,6 +237,43 @@ def get_build_variants(selected_chapter: str) -> List[BuildVariant]:
             f"Unknown Chapter {selected_chapter} - please update the build.py script"
         )
 
+def check_7z():
+    Globals.SEVEN_ZIP_EXECUTABLE = findWorkingExecutablePath(["7za", "7z"], ['-h'])
+    if Globals.SEVEN_ZIP_EXECUTABLE is None:
+        seven_zip_filename = '7z_x64_23-06-20.zip'
+        seven_zip_url = f"https://github.com/07th-mod/ui-editing-scripts/releases/download/v1.0.0/{seven_zip_filename}"
+
+        print(">>>> NOTE: Downloading 7zip as can't find 7zip as '7z' or '7za'")
+        if os.path.exists(seven_zip_filename):
+            os.remove(seven_zip_filename)
+
+        print(f"Downloading and Extracting 7-zip from {seven_zip_url}...")
+        download(seven_zip_url)
+        with zipfile.ZipFile(seven_zip_filename, 'r') as zip_ref:
+            zip_ref.extractall('.')
+        os.remove(seven_zip_filename)
+
+        Globals.SEVEN_ZIP_EXECUTABLE = findWorkingExecutablePath(["7za", "7z"], ['-h'])
+        if Globals.SEVEN_ZIP_EXECUTABLE is None:
+            print(">>>> ERROR: Can't find 7zip as '7z' or '7za', even after downloading it!")
+            print("Try running this script again. If it still fails, report this issue to 07th-mod")
+
+    # Check that 7zip is 64-bit
+    seven_zip_bitness = None
+    seven_zip_info = subprocess.check_output(Globals.SEVEN_ZIP_EXECUTABLE, text=True)
+    for line in seven_zip_info.splitlines():
+        if line.strip().startswith('7-Zip'):
+            if 'x64' in line:
+                seven_zip_bitness = 64
+            elif 'x86' in line:
+                seven_zip_bitness = 32
+            break
+
+    if seven_zip_bitness == 64:
+        print("7zip is 64-bit - OK")
+    else:
+        print(f">>>> ERROR: Unacceptable 7zip bitness '{seven_zip_bitness}' - need 64 bit.\n\n Please make sure your 7zip is 64-bit, or manually edit this script to use 128mb 7z dictionary size")
+        exit(-1)
 
 class LastModifiedManager:
     savePath = 'lastModified.json'
@@ -282,29 +320,6 @@ if sys.version_info < (2, 7):
     print(">>>> ERROR: This script does not work on Python 2.7")
     exit(-1)
 
-Globals.SEVEN_ZIP_EXECUTABLE = findWorkingExecutablePath(["7za", "7z"], ['-h'])
-if Globals.SEVEN_ZIP_EXECUTABLE is None:
-    print(">>>> ERROR: Can't find 7zip as '7z' or '7za'")
-    exit(-1)
-
-# Check that 7zip is 64-bit
-seven_zip_bitness = None
-seven_zip_info = subprocess.check_output(Globals.SEVEN_ZIP_EXECUTABLE, text=True)
-for line in seven_zip_info.splitlines():
-    if line.strip().startswith('7-Zip'):
-        if 'x64' in line:
-            seven_zip_bitness = 64
-        elif 'x86' in line:
-            seven_zip_bitness = 32
-        break
-
-if seven_zip_bitness == 64:
-    print("7zip is 64-bit - OK")
-else:
-    print(f">>>> ERROR: Unacceptable 7zip bitness '{seven_zip_bitness}' - need 64 bit.\n\n Please make sure your 7zip is 64-bit, or manually edit this script to use 128mb 7z dictionary size")
-    exit(-1)
-
-
 lastModifiedManager = LastModifiedManager()
 
 # Parse command line arguments
@@ -348,6 +363,13 @@ print(f"Variants:")
 print(f" - {build_variants_list}")
 print(f"-------------------------------")
 print()
+
+# Add the current folder to PATH (temporarily), so that any processes spawned
+# by this one can see the 7zip executable (downloaded if 7zip not found)
+os.environ['PATH'] += os.getcwd()
+
+# Install 7zip if required
+check_7z()
 
 # Install python dependencies
 print("Installing python dependencies")

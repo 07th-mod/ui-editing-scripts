@@ -4,3 +4,6 @@
 **/*.rs.bk
 /64bit
 lastModified.json
+7za.dll
+7za.exe
+7zxa.dll
