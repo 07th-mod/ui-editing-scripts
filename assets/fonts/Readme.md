@@ -9,3 +9,12 @@ If you're developing a translation into a non-English language like Vietnamese a
 ## Hou Plus Notes
 
 Hou Plus uses a single font file (msgothic_2). You will need to use the 'combined' list which contains both 'OtherLang' and Japanese characters.
+
+
+## Chinese Font Notes
+
+For Chinese, Noto Sans SC seems to cover all characters, but ask the translation team which font they wish to use in case they have a preferred one.
+
+Noto Sans SC: https://fonts.google.com/noto/specimen/Noto+Sans+SC
+
+One team used "WenQuanYi Micro Hei Mono - Regular"
