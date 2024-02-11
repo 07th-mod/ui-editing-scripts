@@ -129,14 +129,15 @@ fn main() -> ExitCode {
         5..=6 => "assets/files-5.5",
         7     => "assets/files-5.6",
         8     => "assets/files-2017.2",
-        9     => "assets/files-2019.4",
-        10    => "assets/files-hou-plus", // Both rei and hou-plus are 2019.4, but the rei caret/font doesn't work on hou-plus
+        9     => "assets/files-rei",
+        10    => "assets/files-hou-plus",
         _     => panic!("Couldn't determine folder for text carets with arc {}", arc_number)
     };
     copy_files(&caretdir, &directory_assets);
     println!();
 
-    // 3. fonts
+    // 3. fonts - NOTE: Only applied for chapters 1-8. Fonts for Rei (Ch.9) and Hou Plus (Ch.10) will need to be generated manually
+    // and saved in the files-rei and files-hou-plus folders.
     if arc_number.clone() < 9 {
         let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
         if ! Path::new(&font_path).exists() {
