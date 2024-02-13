@@ -2,7 +2,7 @@ Font objects for Rei (Ch.9) for Chinese
 
 See scripts\CharacterInfoExtraction\msgothic_2_charset_ZH_and_JP.txt
 
-Texture is 4096x4096 resolution
+Texture is 4096x8192 resolution
 
 ## Material edits to fix font weight and outline
 
@@ -14,7 +14,7 @@ To fix the font weight and outline, I copied the material settings from my build
 
 ## Charset Used
 
-Translator supplied 'commonly used 3500 characters', which I merged with JP charset to get `msgothic_2_charset_ZH_and_JP.txt` in the `scripts/CharacterInfoExtraction` folder.
+Translator supplied 'commonly used 7000 characters', which I merged with JP charset to get `msgothic_2_charset_ZH_and_JP.txt` in the `scripts/CharacterInfoExtraction` folder.
 
 ## Font Used
 
