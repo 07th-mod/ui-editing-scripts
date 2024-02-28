@@ -2,6 +2,7 @@
 name = "ui-compiler"
 version = "0.1.0"
 authors = ["Jáchym Toušek <enumag@gmail.com>"]
+edition = "2021"
 
 [dependencies]
 Inflector = "*"

@@ -1,7 +1,3 @@
-extern crate inflector;
-extern crate log;
-extern crate simplelog;
-
 use std::env;
 use std::process::{Command, ExitCode};
 use std::fs;
