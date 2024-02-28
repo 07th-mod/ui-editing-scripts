@@ -5,3 +5,5 @@ authors = ["Jáchym Toušek <enumag@gmail.com>"]
 
 [dependencies]
 Inflector = "*"
+log = "0.4.20"
+simplelog = "0.12.1"

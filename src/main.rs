@@ -1,4 +1,6 @@
 extern crate inflector;
+extern crate log;
+extern crate simplelog;
 
 use std::env;
 use std::process::{Command, ExitCode};
@@ -7,8 +9,18 @@ use std::path::Path;
 use std::collections::HashMap;
 use std::process;
 use inflector::Inflector;
+use log::*;
+use simplelog::{TermLogger, TerminalMode, ColorChoice,Config};
 
 fn main() -> ExitCode {
+    TermLogger::init(
+        LevelFilter::Trace,
+        Config::default(),
+        TerminalMode::Stdout,
+        ColorChoice::Auto,
+    )
+    .expect("Failed to init logger");
+
     let args: Vec<String> = env::args().collect();
     let chapter = &args[1];
     let unity = &args[2];
@@ -281,6 +293,24 @@ fn copy_files(from: &str, to: &str) {
     println!("Copying files from {}", from);
     for entry in fs::read_dir(from).expect("Can't read directory") {
         let path = entry.unwrap().path();
+
+        // Ignore paths starting with '.ignore' and emit warning
+        if let Some(name) = path.file_name() {
+            let name = name.to_os_string();
+            if name.to_string_lossy().to_lowercase().starts_with(".ignore")
+            {
+                warn!("Skipping path {:?} as it starts with '.ignore'", path);
+                continue;
+            }
+        }
+
+        // For now, subdirectories are not supported
+        if path.is_dir()
+        {
+            error!("Found subdirectory at {:?} - Subdirectories not supported, please remove or prepend with 'IGNORE' to ignore.", path);
+            panic!("Exiting due to unexpected subdirectory");
+        }
+
         let to_path = format!("{}/{}", to, path.file_name().unwrap().to_str().unwrap());
         println!("Copying File {} -> {}", path.to_string_lossy(), to_path);
         fs::copy(&path, to_path).expect("Unable to copy");
