@@ -64,8 +64,17 @@ fn main() -> ExitCode {
     let assets = format!("{}/{}", assets_containing_folder, "sharedassets0.assets");
     println!("Looking for vanilla assets at [{}]", assets);
     let directory_assets = "output/assets";
-    let directory_data = format!("output/HigurashiEp{:02}_Data", arc_number);
+
+    // Example 'HigurashiEp05_Data' for Chapter 5
+    let higu_ep_folder_name = format!("HigurashiEp{:02}_Data", arc_number);
+
+    // Example 'output/HigurashiEp05_Data'
+    let directory_data = format!("output/{}", higu_ep_folder_name);
+
+    // Example 'output/HigurashiEp05_Data/meakashi_5.5.3p1_unix.emip'
     let emip = format!("{}/{}_{}_{}.emip", &directory_data, &chapter, &unity, &system);
+
+    // Example 'Meakashi-UI_5.5.3p1_unix.7z'
     //to_title_case() replaces hyphens and underscores with spaces. If this happens, revert it by replacing spaces with hyphens.
     let archive = format!("{}-UI_{}_{}{}.7z", &chapter.to_title_case().replace(" ", "-"), &unity, &system, &format_checksum(checksum, "_"));
 
@@ -224,22 +233,20 @@ fn main() -> ExitCode {
 
     assert!(status.success());
 
-    fs::remove_file(format!("{}/sharedassets0.assets.bak0000", &directory_data)).expect("Failed to remove file");
-    let res_file = format!("{}/sharedassets0.assets.resS", &directory_data);
-    if Path::new(&res_file).exists() {
-        fs::remove_file(&res_file).expect("Failed to remove file");
-    }
-    fs::remove_file(&emip).expect("Failed to remove file");
-
     // 7. pack with 7zip
-    let result_7za = pack_7zip("7za", &archive, &directory_data);
+    // Note: We run 7zip from inside the "output" folder so the final archive just contains
+    // 'HigurashiEp05_Data/sharedassets0.assets' (otherwise it would be 'output/HigurashiEp05_Data/sharedassets0.assets')
+    let cwd = "output".to_string();
+    let files_to_archive = format!("{}/sharedassets0.assets", higu_ep_folder_name);
+
+    let result_7za = pack_7zip("7za", &archive, &cwd, &files_to_archive);
 
     let status: std::io::Result<process::ExitStatus> = match result_7za {
         Ok(ok) => Ok(ok),
         Err(err) => match err.kind() {
             std::io::ErrorKind::NotFound => {
                 println!("Warning: '7za' not found - trying '7z' instead");
-                pack_7zip("7z", &archive, &directory_data)
+                pack_7zip("7z", &archive, &cwd, &files_to_archive)
             },
             _ => Err(err),
         }
@@ -257,13 +264,15 @@ fn format_checksum(checksum: Option<&String>, sep: &str) -> String
     return checksum.map_or("".to_string(), |c| format!("{}{}", sep, c));
 }
 
-fn pack_7zip(command: &str, archive: &String, directory_data: &String) -> std::io::Result<process::ExitStatus> {
+fn pack_7zip(command: &str, archive: &String, cwd: &String, path: &String) -> std::io::Result<process::ExitStatus> {
+    println!("[7-Zip] Running {} in working directory: [{}] and path: [{}]...", command, cwd, path);
+
     Command::new(command)
-    .current_dir("output")
+    .current_dir(cwd)
     .arg("a")
     .arg("-t7z")
     .arg(archive)
-    .arg(format!("../{}", directory_data))
+    .arg(path)
     .status()
 }
 
