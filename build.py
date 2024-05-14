@@ -54,7 +54,7 @@ chapter_to_chapter_number = {
 }
 
 class BuildVariant:
-    def __init__(self, short_description, chapter, unity, system, target_crc32=None, translation_default=False):
+    def __init__(self, short_description, chapter, unity, system, target_crc32=None, translation_default=False, path_id_overrides=None):
         self.chapter = chapter
         self.unity = unity
         self.system = system
@@ -63,14 +63,21 @@ class BuildVariant:
         self.data_dir = f"HigurashiEp{self.chapter_number:02}_Data"
         self.translation_default = translation_default
         self.short_description = short_description
+        self.path_id_overrides = []
+        if path_id_overrides is not None:
+            self.path_id_overrides = path_id_overrides
 
-    def get_build_command(self) -> str:
-        args = [self.chapter, self.unity, self.system]
+    def get_build_settings(self) -> dict[str, object]:
+        return {
+            "chapter": self.chapter,
+            "unity": self.unity,
+            "system": self.system,
+            "crc32": self.target_crc32,
+            "path_id_overrides": self.path_id_overrides,
+        }
 
-        if self.target_crc32 is not None:
-            args.append(self.target_crc32)
-
-        return " ".join(args)
+    def get_build_settings_json(self) -> str:
+        return json.dumps(self.get_build_settings())
 
     def get_translation_sharedassets_name(self) -> str:
         operatingSystem = None
@@ -356,7 +363,7 @@ if args.disable_translation:
 
 # Get a list of build variants (like 'onikakushi 5.2.2f1 win') depending on commmand line arguments
 build_variants = get_build_variants(chapter_name)
-build_variants_list = "\n - ".join([b.get_build_command() for b in build_variants])
+build_variants_list = "\n - ".join([b.get_build_settings_json() for b in build_variants])
 print(f"-------- Build Started --------")
 print(f"Chapter: [{chapter_name}] | Translation Archive Output: [{('Enabled' if translation else 'Disabled')}]")
 print(f"Variants:")
@@ -440,11 +447,29 @@ except:
 
 # Build all the requested variants
 for build_variant in build_variants:
-    print(f"Building .assets for {build_variant.get_build_command()}...")
+    print(f"Building .assets for {build_variant.get_build_settings_json()}...")
+
+    # Delete any old .json settings to make sure we don't reuse it accidentally
+    settings_path = 'rust_script_settings.json'
+    if os.path.exists(settings_path):
+        os.remove(settings_path)
+
+    # Write json settings file for rust to use
+    json_settings = build_variant.get_build_settings_json()
+    print(f"Calling rust script with settings: {json_settings}")
+    with open(settings_path, 'w', encoding='utf-8') as f:
+        f.write(json_settings)
+
+    # Build command line arguments
+    command = []
     if working_cargo:
-        call(f"cargo run {build_variant.get_build_command()}")
+        command += ["cargo", "run"]
     else:
-        call(f"ui-compiler.exe {build_variant.get_build_command()}")
+        command += ["ui-compiler.exe"]
+    command += [settings_path]
+
+    # Call the rust script
+    call(command)
 
     if translation:
         source_sharedassets = os.path.join("output", build_variant.data_dir, "sharedassets0.assets")
