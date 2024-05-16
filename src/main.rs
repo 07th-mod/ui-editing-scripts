@@ -7,6 +7,65 @@ use std::process;
 use inflector::Inflector;
 use log::*;
 use simplelog::{TermLogger, TerminalMode, ColorChoice,Config};
+use serde::{Deserialize, Serialize};
+
+// The settings this program takes from the .json file
+// The .json file should be structured matching this struct
+#[derive(Serialize, Deserialize, Debug)]
+struct Settings {
+    chapter: String,
+    unity: String,
+    system: String,
+    checksum: Option<String>,
+    path_id_overrides: Vec<(String, usize)>
+}
+
+// Force a particular file to use a Unity .assets PathID by renaming the file, typically in the 'output/assets' folder
+fn force_path_id(directory_assets: &str, original_name: &str, path_id_override: usize) -> std::io::Result<()>
+{
+    let new_name = format!("{} {}", path_id_override, original_name);
+    let original_path = format!("{}/{}", directory_assets, original_name);
+    let new_path = format!("{}/{}", directory_assets, new_name);
+
+    println!("Forcing path id {}: {} -> {}", path_id_override, original_path, new_path);
+    fs::rename(original_path, new_path)
+}
+
+// Previously settings were read from cmd line, but now we load from .json
+// When loading from .json, the first argument should be the path to the .json file.
+fn read_settings_from_args_or_json() -> Settings
+{
+    let args: Vec<String> = env::args().collect();
+
+    if args[1].ends_with(".json")
+    {
+        let json_path = args[1].to_string();
+        println!("Loading settings from json file {}", json_path);
+        let json_str = fs::read_to_string(json_path).expect("Unable to read json config file");
+        serde_json::from_str(json_str.as_str()).expect("Unable to parse json file")
+    }
+    else
+    {
+        let chapter = args[1].to_string();
+        let unity = args[2].to_string();
+        let system = args[3].to_string();
+        let checksum = if args.len() > 4 {
+            Some(args[4].to_string())
+        } else {
+            None
+        };
+
+        Settings {
+            chapter,
+            unity,
+            system,
+            checksum,
+            path_id_overrides: Vec::new()
+        }
+    }
+}
+
+
 
 fn main() -> ExitCode {
     TermLogger::init(
@@ -17,15 +76,12 @@ fn main() -> ExitCode {
     )
     .expect("Failed to init logger");
 
-    let args: Vec<String> = env::args().collect();
-    let chapter = &args[1];
-    let unity = &args[2];
-    let system = &args[3];
-    let checksum = if args.len() > 4 {
-        Some(&args[4])
-    } else {
-        None
-    };
+    let settings = read_settings_from_args_or_json();
+    let chapter = &settings.chapter;
+    let unity = &settings.unity;
+    let system = &settings.system;
+    let checksum = settings.checksum.as_ref();
+    println!("Rust Settings: {:?}", settings);
 
     // Check if python is correctly installed
     println!("Running 'python --version' to check if python is correctly installed...");
@@ -220,6 +276,14 @@ fn main() -> ExitCode {
     copy_files(assets_containing_folder.as_ref(), &directory_data);
 
     println!();
+
+    // 4a. Force certain assets to have specific PathIDs
+    if settings.path_id_overrides.len() > 0 {
+        println!("------ Forcing PathIDs ------");
+    }
+    for (original_name, path_id_override) in settings.path_id_overrides {
+        force_path_id(&directory_assets, &original_name, path_id_override).expect("Failed to force ID");
+    }
 
     // 5. generate emip
     let status = Command::new("python")
