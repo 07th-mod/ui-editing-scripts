@@ -138,7 +138,11 @@ chapter_to_build_variants = {
     ],
     "minagoroshi": [
         BuildVariant("GOG-MG-Steam",        "minagoroshi", "5.6.7f1", "win", translation_default=True),
-        BuildVariant("GOG-MG-Steam",        "minagoroshi", "5.6.7f1", "unix"),
+        # I'm not sure why, but the msgothic_0 and msgothic_2 Atlas in the MacOS UI file need to be swapped for the fonts to work on MacOS
+        BuildVariant("GOG-MG-Steam",        "minagoroshi", "5.6.7f1", "unix", path_id_overrides=[
+            ["msgothic_0 SDF Atlas_Texture2D.dat", 57],
+            ["msgothic_2 SDF Atlas_Texture2D.dat", 56],
+        ]),
         # While GOG Windows is ver 5.6.7f1, we actually downgrade back to 5.5.3p3 in the installer, so we don't need this version.
         # 'matsuribayashi 5.6.7f1 win'
         # 'matsuribayashi 5.6.7f1 unix'
