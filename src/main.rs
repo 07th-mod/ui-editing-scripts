@@ -159,6 +159,13 @@ fn main() -> ExitCode {
         let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_0.dat", &chapter, &system, &unity);
         if ! Path::new(&font_path).exists() {
             font_path = format!("assets/vanilla/{}/msgothic_0.dat", &chapter);
+            println!("Using shared msgothic_0 font for {} located at {}", &chapter, &font_path);
+        } else {
+            println!("Using config specific ({}-{}) msgothic_0 font for {} located at {}", &system, &unity, &chapter, &font_path);
+        }
+
+        if !Path::new(&font_path).exists() {
+            panic!("Couldn't find msgothic_0 font for chapter {} with config {}-{} at path [{}]", &chapter, &system, &unity, &font_path);
         }
 
         let unity_ver_str = match arc_number {
@@ -184,6 +191,13 @@ fn main() -> ExitCode {
         let mut font_path = format!("assets/vanilla/{}/{}-{}-fonts/msgothic_2.dat", &chapter, &system, &unity);
         if ! Path::new(&font_path).exists() {
             font_path = format!("assets/vanilla/{}/msgothic_2.dat", &chapter);
+            println!("Using shared msgothic_2 font for {} located at {}", &chapter, &font_path);
+        } else {
+            println!("Using config specific ({}-{}) msgothic_2 font for {} located at {}", &system, &unity, &chapter, &font_path);
+        }
+
+        if !Path::new(&font_path).exists() {
+            panic!("Couldn't find msgothic_2 font for chapter {} with config {}-{} at path [{}]", &chapter, &system, &unity, &font_path);
         }
 
         let status = Command::new("python")
