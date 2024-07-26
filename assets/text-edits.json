@@ -48,10 +48,27 @@
         "NewJapanese": "TIPSを読む"
     },
     {
+        "Comment": "Back for chapters with only one back button",
         "CurrentEnglish": "Back",
         "CurrentJapanese": "戻る",
         "NewEnglish": "Back",
         "NewJapanese": "戻る"
+    },
+    {
+        "Comment": "Back for chapters with multiple back buttons (e.g Hou+)",
+        "CurrentEnglish": "Back",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Back",
+        "NewJapanese": "戻る",
+        "Discriminator": 0
+    },
+    {
+        "Comment": "Back for chapters with multiple back buttons (e.g Hou+)",
+        "CurrentEnglish": "Back",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Back",
+        "NewJapanese": "戻る",
+        "Discriminator": 1
     },
     {
         "CurrentEnglish": "Staff Room",
@@ -76,5 +93,93 @@
         "CurrentJapanese": "暇潰し編　２日目３",
         "NewEnglish": "Himatsubushi Day 2-3",
         "NewJapanese": "暇潰し編　２日目３"
+    },
+    {
+        "Comment": "Hou+ Omake Menu Buton (before you've completed the game)",
+        "CurrentEnglish": "Scenario Unlock",
+        "CurrentJapanese": "シナリオロック",
+        "NewEnglish": "Scenario Unlock",
+        "NewJapanese": "シナリオロック"
+    },
+    {
+        "Comment": "Hou+ Scenario Unlock Confirmation Button",
+        "CurrentEnglish": "Yes",
+        "CurrentJapanese": "はい",
+        "NewEnglish": "Yes",
+        "NewJapanese": "はい"
+    },
+    {
+        "Comment": "Hou+ Omake Menu Buttons (after you've completed the game)",
+        "CurrentEnglish": "2022 After Party",
+        "CurrentJapanese": "お疲れさま会 2022",
+        "NewEnglish": "2022 After Party",
+        "NewJapanese": "お疲れさま会 2022"
+    },
+    {
+        "CurrentEnglish": "Music Room",
+        "CurrentJapanese": "音楽室",
+        "NewEnglish": "Music Room",
+        "NewJapanese": "音楽室"
+    },
+    {
+        "CurrentEnglish": "Secret Staff Room",
+        "CurrentJapanese": "裏スタッフルーム",
+        "NewEnglish": "Secret Staff Room",
+        "NewJapanese": "裏スタッフルーム"
+    },
+    {
+        "Comment": "Secret Staff Room Menu Buttons",
+        "CurrentEnglish": "Watanagashi",
+        "CurrentJapanese": "綿流し編",
+        "NewEnglish": "Watanagashi",
+        "NewJapanese": "綿流し編"
+    },
+    {
+        "CurrentEnglish": "Tatarigoroshi",
+        "CurrentJapanese": "祟殺し編",
+        "NewEnglish": "Tatarigoroshi",
+        "NewJapanese": "祟殺し編"
+    },
+    {
+        "CurrentEnglish": "Himatsubushi",
+        "CurrentJapanese": "暇潰し編",
+        "NewEnglish": "Himatsubushi",
+        "NewJapanese": "暇潰し編"
+    },
+    {
+        "CurrentEnglish": "Meakashi",
+        "CurrentJapanese": "目明し編",
+        "NewEnglish": "Meakashi",
+        "NewJapanese": "目明し編"
+    },
+    {
+        "CurrentEnglish": "Tsumihoroboshi",
+        "CurrentJapanese": "罪滅し編",
+        "NewEnglish": "Tsumihoroboshi",
+        "NewJapanese": "罪滅し編"
+    },
+    {
+        "CurrentEnglish": "Minagoroshi",
+        "CurrentJapanese": "皆殺し編",
+        "NewEnglish": "Minagoroshi",
+        "NewJapanese": "皆殺し編"
+    },
+    {
+        "CurrentEnglish": "Matsuribayashi",
+        "CurrentJapanese": "祭囃し編",
+        "NewEnglish": "Matsuribayashi",
+        "NewJapanese": "祭囃し編"
+    },
+    {
+        "CurrentEnglish": "Saikoroshi",
+        "CurrentJapanese": "賽殺し編",
+        "NewEnglish": "Saikoroshi",
+        "NewJapanese": "賽殺し編"
+    },
+    {
+        "CurrentEnglish": "Kamikashimashi",
+        "CurrentJapanese": "神姦し編",
+        "NewEnglish": "Kamikashimashi",
+        "NewJapanese": "神姦し編"
     }
 ]
