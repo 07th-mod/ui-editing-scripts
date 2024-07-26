@@ -385,6 +385,7 @@ if lastModifiedManager.isRemoteModifiedAndUpdateMemory(assets_url) or force_down
     print("Downloading and Extracting Vanilla assets")
     pathlib.Path(vanilla_archive).unlink(missing_ok=True)
     if os.path.exists(vanilla_folder_path):
+        print("Attempting to remove old vanilla folder...")
         shutil.rmtree(vanilla_folder_path)
 
     download(assets_url)
@@ -434,6 +435,8 @@ try:
     working_cargo = True
 except:
     print("No working Rust/cargo found - download binary release of UI compiler...")
+    if os.path.exists('ui-compiler.exe'):
+        os.remove('ui-compiler.exe')
     download(
         "https://github.com/07th-mod/ui-editing-scripts/releases/latest/download/ui-compiler.exe"
     )
