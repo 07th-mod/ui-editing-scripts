@@ -6,5 +6,5 @@ edition = "2021"
 
 [dependencies]
 Inflector = "*"
-log = "0.4.20"
-simplelog = "0.12.1"
+log = "0.4"
+simplelog = "0.12"
