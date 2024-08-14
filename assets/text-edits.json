@@ -71,6 +71,13 @@
         "Discriminator": 1
     },
     {
+        "Comment": "Hou+ Special 'EXIT' Back button - this back button is shown during the 'Scenario Unlock' menu, and for some reason says 'EXIT' (in English) when the language is set to Japanese",
+        "CurrentEnglish": "Back",
+        "CurrentJapanese": "EXIT",
+        "NewEnglish": "Back",
+        "NewJapanese": "EXIT"
+    },
+    {
         "CurrentEnglish": "Staff Room",
         "CurrentJapanese": "スタッフルーム",
         "NewEnglish": "Staff Room",
