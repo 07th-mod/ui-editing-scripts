@@ -8,6 +8,20 @@ use inflector::Inflector;
 use log::*;
 use simplelog::{TermLogger, TerminalMode, ColorChoice,Config};
 
+fn try_absolute_exe_path(exe_name: &str) -> std::ffi::OsString
+{
+    if let Ok(maybe_path) = fs::canonicalize(format!("{}.exe", exe_name))
+    {
+        if maybe_path.exists()
+        {
+            println!("Successfully found abs path of [{}] at [{}]", exe_name, maybe_path.to_string_lossy());
+            return maybe_path.into_os_string();
+        }
+    }
+
+    return std::ffi::OsString::from(exe_name);
+}
+
 fn main() -> ExitCode {
     TermLogger::init(
         LevelFilter::Trace,
@@ -253,14 +267,14 @@ fn main() -> ExitCode {
     let cwd = "output".to_string();
     let files_to_archive = format!("{}/sharedassets0.assets", higu_ep_folder_name);
 
-    let result_7za = pack_7zip("7za", &archive, &cwd, &files_to_archive);
+    let result_7za = pack_7zip(&try_absolute_exe_path("7za"), &archive, &cwd, &files_to_archive);
 
     let status: std::io::Result<process::ExitStatus> = match result_7za {
         Ok(ok) => Ok(ok),
         Err(err) => match err.kind() {
             std::io::ErrorKind::NotFound => {
                 println!("Warning: '7za' not found - trying '7z' instead");
-                pack_7zip("7z", &archive, &cwd, &files_to_archive)
+                pack_7zip(&try_absolute_exe_path("7z"), &archive, &cwd, &files_to_archive)
             },
             _ => Err(err),
         }
@@ -278,8 +292,8 @@ fn format_checksum(checksum: Option<&String>, sep: &str) -> String
     return checksum.map_or("".to_string(), |c| format!("{}{}", sep, c));
 }
 
-fn pack_7zip(command: &str, archive: &String, cwd: &String, path: &String) -> std::io::Result<process::ExitStatus> {
-    println!("[7-Zip] Running {} in working directory: [{}] and path: [{}]...", command, cwd, path);
+fn pack_7zip<S: AsRef<std::ffi::OsStr>>(command: &S, archive: &String, cwd: &String, path: &String) -> std::io::Result<process::ExitStatus> {
+    println!("[7-Zip] Running {} in working directory: [{}] and path: [{}]...", command.as_ref().to_string_lossy(), cwd, path);
 
     Command::new(command)
     .current_dir(cwd)
