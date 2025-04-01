@@ -123,10 +123,39 @@
         "NewJapanese": "お疲れさま会 2022"
     },
     {
+        "Comment": "Hou+ Music Room",
         "CurrentEnglish": "Music Room",
         "CurrentJapanese": "音楽室",
         "NewEnglish": "Music Room",
         "NewJapanese": "音楽室"
+    },
+    {
+        "Comment": "Hou+ Music Room 'Play' Button",
+        "CurrentEnglish": "Play",
+        "CurrentJapanese": "演奏",
+        "NewEnglish": "Play",
+        "NewJapanese": "演奏"
+    },
+    {
+        "Comment": "Hou+ Music Room 'Stop' Button",
+        "CurrentEnglish": "Stop",
+        "CurrentJapanese": "停止",
+        "NewEnglish": "Stop",
+        "NewJapanese": "停止"
+    },
+    {
+        "Comment": "Hou+ Music Room 'Return' Button",
+        "CurrentEnglish": "Return",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Return",
+        "NewJapanese": "戻る"
+    },
+    {
+        "Comment": "I dont know where this is in the game. If you find out please tell me. Might be hou+ specific.",
+        "CurrentEnglish": "Back",
+        "CurrentJapanese": "EXIT",
+        "NewEnglish": "Back",
+        "NewJapanese": "EXIT"
     },
     {
         "CurrentEnglish": "Secret Staff Room",
