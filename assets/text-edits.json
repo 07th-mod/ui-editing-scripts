@@ -51,7 +51,7 @@
         "Comment": "Back for chapters with only one back button",
         "CurrentEnglish": "Back",
         "CurrentJapanese": "戻る",
-        "NewEnglish": "Back",
+        "NewEnglish": "Назад",
         "NewJapanese": "戻る"
     },
     {
@@ -80,20 +80,74 @@
     {
         "CurrentEnglish": "Staff Room",
         "CurrentJapanese": "スタッフルーム",
-        "NewEnglish": "Staff Room",
+        "NewEnglish": "От автора",
         "NewJapanese": "スタッフルーム"
     },
     {
-        "CurrentEnglish": "Watanagashi 12-3",
-        "CurrentJapanese": "綿流し編　１２日目３",
-        "NewEnglish": "Watanagashi Day 12-3",
-        "NewJapanese": "綿流し編　１２日目３"
+        "CurrentEnglish": "Chapter Jump",
+        "CurrentJapanese": "シナリオジャンプモード",
+        "NewEnglish": "Прыжок по сценарию",
+        "NewJapanese": "シナリオジャンプモード"
     },
     {
-        "CurrentEnglish": "Himatsubushi 2-2",
-        "CurrentJapanese": "暇潰し編　２日目２",
-        "NewEnglish": "Himatsubushi Day 2-2",
-        "NewJapanese": "暇潰し編　２日目２"
+        "CurrentEnglish": "View TIPS",
+        "CurrentJapanese": "TIPSを読む",
+        "NewEnglish": "Подсказки",
+        "NewJapanese": "TIPSを読む"
+    },
+    {
+        "CurrentEnglish": "Return to Extras Screen",
+        "CurrentJapanese": "戻る",
+        "NewEnglish": "Вернуться в меню бонусов",
+        "NewJapanese": "戻る"
+    },
+    {
+        "CurrentEnglish": "English",
+        "CurrentJapanese": "English",
+        "NewEnglish": "Русский",
+        "NewJapanese": "Русский"
+    },
+    {
+        "CurrentEnglish": "View New TIPS",
+        "CurrentJapanese": "新規TIPSを読む",
+        "NewEnglish": "Новые подсказки",
+        "NewJapanese": "新規TIPSを読む"
+    },
+    {
+        "CurrentEnglish": "View All TIPS",
+        "CurrentJapanese": "TIPSをすべて読む",
+        "NewEnglish": "Все подсказки",
+        "NewJapanese": "TIPSをすべて読む"
+    },
+    {
+        "CurrentEnglish": "Save & Load",
+        "CurrentJapanese": "Save & Load",
+        "NewEnglish": "Сохр. или Загр.",
+        "NewJapanese": "Save & Load"
+    },
+    {
+        "CurrentEnglish": "Continue",
+        "CurrentJapanese": "ゲームを進める",
+        "NewEnglish": "Продолжить",
+        "NewJapanese": "ゲームを進める"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 1",
+        "CurrentJapanese": "目明し編　１日目",
+        "NewEnglish": "57-й год эры Сёва",
+        "NewJapanese": "目明し編　１日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 2",
+        "CurrentJapanese": "目明し編　２日目",
+        "NewEnglish": "Первое утро на свободе",
+        "NewJapanese": "目明し編　２日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 3",
+        "CurrentJapanese": "目明し編　３日目",
+        "NewEnglish": "Разговор с Мион",
+        "NewJapanese": "目明し編　３日目"
     },
     {
         "CurrentEnglish": "Himatsubushi 2-3",
@@ -217,5 +271,219 @@
         "CurrentJapanese": "神姦し編",
         "NewEnglish": "Kamikashimashi",
         "NewJapanese": "神姦し編"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 4",
+        "CurrentJapanese": "目明し編　４日目",
+        "NewEnglish": "Встреча с Сатоши",
+        "NewJapanese": "目明し編　４日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 5",
+        "CurrentJapanese": "目明し編　５日目",
+        "NewEnglish": "Вторая встреча с Сатоши",
+        "NewJapanese": "目明し編　５日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 6",
+        "CurrentJapanese": "目明し編　６日目",
+        "NewEnglish": "Бойцы Хинамидзавы",
+        "NewJapanese": "目明し編　６日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 7",
+        "CurrentJapanese": "目明し編　７日目",
+        "NewEnglish": "Рассказ Рэны",
+        "NewJapanese": "目明し編　７日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 8",
+        "CurrentJapanese": "目明し編　８日目",
+        "NewEnglish": "Хинамидзавская школа",
+        "NewJapanese": "目明し編　８日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 9",
+        "CurrentJapanese": "目明し編　９日目",
+        "NewEnglish": "Вечерний звонок",
+        "NewJapanese": "目明し編　９日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 10",
+        "CurrentJapanese": "目明し編　１０日目",
+        "NewEnglish": "Ватанагаси 57-го года Сёва",
+        "NewJapanese": "目明し編　１０日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 11",
+        "CurrentJapanese": "目明し編　１１日目",
+        "NewEnglish": "Тётка мертва",
+        "NewJapanese": "目明し編　１１日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 12",
+        "CurrentJapanese": "目明し編　１２日目",
+        "NewEnglish": "Поместье Сонодзаки",
+        "NewJapanese": "目明し編　１２日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 13",
+        "CurrentJapanese": "目明し編　１３日目",
+        "NewEnglish": "Исчезновение",
+        "NewJapanese": "目明し編　１３日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 14",
+        "CurrentJapanese": "目明し編　１４日目",
+        "NewEnglish": "Проклятие Оясиро-сама",
+        "NewJapanese": "目明し編　１４日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 15",
+        "CurrentJapanese": "目明し編　１５日目",
+        "NewEnglish": "58-й год эры Сёва",
+        "NewJapanese": "目明し編　１５日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 16",
+        "CurrentJapanese": "目明し編　１６日目",
+        "NewEnglish": "Канун Ватанагаси 58-го года",
+        "NewJapanese": "目明し編　１６日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 17",
+        "CurrentJapanese": "目明し編　１７日目",
+        "NewEnglish": "Полночь Ватанагаси 58-го года",
+        "NewJapanese": "目明し編　１７日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 18",
+        "CurrentJapanese": "目明し編　１８日目",
+        "NewEnglish": "Допрос в подземелье",
+        "NewJapanese": "目明し編　１８日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 19",
+        "CurrentJapanese": "目明し編　１９日目",
+        "NewEnglish": "Утро после Ватанагаси",
+        "NewJapanese": "目明し編　１９日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 20",
+        "CurrentJapanese": "目明し編　２０日目",
+        "NewEnglish": "Совет старейшин",
+        "NewJapanese": "目明し編　２０日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 21",
+        "CurrentJapanese": "目明し編　２１日目",
+        "NewEnglish": "Третий день",
+        "NewJapanese": "目明し編　２１日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 22",
+        "CurrentJapanese": "目明し編　２２日目",
+        "NewEnglish": "Шион звонит Кейти",
+        "NewJapanese": "目明し編　２２日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 23",
+        "CurrentJapanese": "目明し編　２３日目",
+        "NewEnglish": "Четвертый день",
+        "NewJapanese": "目明し編　２３日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Day 24",
+        "CurrentJapanese": "目明し編　２４日目",
+        "NewEnglish": "Последний день",
+        "NewJapanese": "目明し編　２４日目"
+    },
+    {
+        "CurrentEnglish": "Meakashi Epilogue 1",
+        "CurrentJapanese": "目明し編　エピローグ１",
+        "NewEnglish": "Эпилог 1",
+        "NewJapanese": "目明し編　エピローグ１"
+    },
+    {
+        "CurrentEnglish": "Meakashi Epilogue 2",
+        "CurrentJapanese": "目明し編　エピローグ２",
+        "NewEnglish": "Эпилог 2",
+        "NewJapanese": "目明し編　エピローグ２"
+    },
+    {
+        "CurrentEnglish": "Meakashi Epilogue 3",
+        "CurrentJapanese": "目明し編　エピローグ３",
+        "NewEnglish": "Эпилог 3",
+        "NewJapanese": "目明し編　エピローグ３"
+    },
+    {
+        "CurrentEnglish": "Fullscreen",
+        "CurrentJapanese": "フルスクリーン",
+        "NewEnglish": "Полный экран",
+        "NewJapanese": "フルスクリーン"
+    },
+    {
+        "CurrentEnglish": "Show Menu",
+        "CurrentJapanese": "メニュー表示",
+        "NewEnglish": "Показать меню",
+        "NewJapanese": "メニュー表示"
+    },
+    {
+        "CurrentEnglish": "ON",
+        "CurrentJapanese": "全て",
+        "NewEnglish": "Вкл",
+        "NewJapanese": "全て"
+    },
+    {
+        "CurrentEnglish": "ON",
+        "CurrentJapanese": "ON",
+        "NewEnglish": "Вкл",
+        "NewJapanese": "ON",
+        "Discriminator": 0
+    },
+    {
+        "CurrentEnglish": "ON",
+        "CurrentJapanese": "ON",
+        "NewEnglish": "Вкл",
+        "NewJapanese": "ON",
+        "Discriminator": 1
+    },
+    {
+        "CurrentEnglish": "OFF",
+        "CurrentJapanese": "既読のみ",
+        "NewEnglish": "Выкл",
+        "NewJapanese": "既読のみ"
+    },
+    {
+        "CurrentEnglish": "OFF",
+        "CurrentJapanese": "OFF",
+        "NewEnglish": "Выкл",
+        "NewJapanese": "OFF",
+        "Discriminator": 0
+    },
+    {
+        "CurrentEnglish": "OFF",
+        "CurrentJapanese": "OFF",
+        "NewEnglish": "Выкл",
+        "NewJapanese": "OFF",
+        "Discriminator": 1
+    },
+    {
+        "CurrentEnglish": "Hide Window",
+        "CurrentJapanese": "ウィンドウ非表示",
+        "NewEnglish": "Скрыть окно",
+        "NewJapanese": "ウィンドウ非表示"
+    },
+    {
+        "CurrentEnglish": "Remake",
+        "CurrentJapanese": "リメーク",
+        "NewEnglish": "MangaGamer",
+        "NewJapanese": "リメーク"
+    },
+    {
+        "CurrentEnglish": "Console",
+        "CurrentJapanese": "ゲーム機",
+        "NewEnglish": "Консоль",
+        "NewJapanese": "ゲーム機"
     }
 ]
