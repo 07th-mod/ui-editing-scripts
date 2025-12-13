@@ -14,12 +14,21 @@ import json
 class Fragment:
     order = 0
 
-    def __init__(self, fragment_as_dictionary: dict[str, str]):
+    def __init__(self, fragment_as_dictionary: dict[str, str], en_mode: bool):
         self.current_english = fragment_as_dictionary['CurrentEnglish']
         self.current_japanese = fragment_as_dictionary['CurrentJapanese']
-        self.new_english = fragment_as_dictionary['NewEnglish']
-        self.new_japanese = fragment_as_dictionary['NewJapanese']
+
+        # When producing the "English" example .json, the 'new' fields should match the 'current' fields
+        # as no modification of the text is being performed.
+        if en_mode:
+            self.new_english = self.current_english
+            self.new_japanese = self.current_japanese
+        else:
+            self.new_english = fragment_as_dictionary['NewEnglish']
+            self.new_japanese = fragment_as_dictionary['NewJapanese']
+
         self.discriminator = fragment_as_dictionary.get('Discriminator')
+        self.comment = fragment_as_dictionary.get('Comment')
         self.order = Fragment.order
         Fragment.order += 1
 
@@ -33,8 +42,6 @@ class Fragment:
         return (
             self.current_english == other.current_english and
             self.current_japanese == other.current_japanese and
-            self.new_english == other.new_english and
-            self.new_japanese == other.new_japanese and
             self.discriminator == other.discriminator
         )
 
@@ -52,6 +59,9 @@ class Fragment:
         if self.discriminator is not None:
             retval['Discriminator'] = self.discriminator
 
+        if self.comment is not None:
+            retval['Comment'] = self.comment
+
         return retval
 
 def merge(all_translations: dict[str, Fragment], fragment: Fragment):
@@ -66,7 +76,7 @@ def merge(all_translations: dict[str, Fragment], fragment: Fragment):
         else:
             raise Exception(f"Warning: non duplicate item existing:{existing_item} new: {fragment}")
 
-
+en_mode = False
 
 in_folder = "text-edits"
 
@@ -81,7 +91,7 @@ for filename in files:
     with open(path, encoding='utf-8') as f:
         chapter_list_dict = json.loads(f.read())
 
-        all_fragments.extend(Fragment(f) for f in chapter_list_dict)
+        all_fragments.extend(Fragment(f, en_mode) for f in chapter_list_dict)
 
 all_translations = {}
 
